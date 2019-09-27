@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>gulp &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/gulp/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>Gulp 筆記</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/gulp-note/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/gulp-note/#respond</comments>
+		<pubDate>Fri, 14 Jul 2017 10:36:54 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[gulp]]></category>
+		<category><![CDATA[javascript]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1231</guid>
+		<description><![CDATA[一些關於 gulp 的筆記 Gulp 入門教學 -- 安裝 Gulp.js 前端自動化神器 Gulp 架設簡易 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>一些關於 gulp 的筆記<br />
+<span id="more-1231"></span></p>
+<p><a href="http://abgne.tw/web/gulp/gulp-tuts-install-gulp-js.html">Gulp 入門教學 -- 安裝 Gulp.js</a></p>
+<p><a href="https://blog.ccjeng.com/2015/08/Gulp.html">前端自動化神器 Gulp</a></p>
+<p><a href="https://dotblogs.com.tw/hellodeveloper/2017/03/01/150434">架設簡易開發用的WEB SERVER</a></p>
+<p><a href="http://www.oxxostudio.tw/articles/201601/css-less-01.html">用 LESS 寫 CSS ( 入門、Import、變數 )</a></p>
+<p>在專案目錄中 依序執行下列命令 (要先安裝 npm, gulp-cli)</p>
+<pre class="brush: plain; title: ; notranslate">
+// 初始化 node.js
+npm init
+
+// 安裝所需的 gulp 套件
+npm install gulp gulp-less gulp-webserver --save-dev
+
+// 執行 gulp 任務
+gulp
+
+</pre>
+<p>gulpfile.js 的內容 (需要手動建立 gulpfile.js 檔案)</p>
+<pre class="brush: jscript; title: ; notranslate">
+var gulp = require('gulp');
+var less = require('gulp-less');
+var webserver = require('gulp-webserver');
+
+gulp.task('less',function(){
+    gulp.src('./src/less/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('./build/css/'))
+});
+
+gulp.task('watch',function(){
+    gulp.watch('./src/less/*.less',['less']);
+});
+
+gulp.task('webserver', function() {
+  gulp.src('./build/')
+    .pipe(webserver({
+      port:3000,
+      livereload: true,
+      directoryListing: false,
+      open: true
+  }));
+});
+
+gulp.task('default',['less','watch','webserver']);
+</pre>
+<p>專案目錄設定為</p>
+<ul>
+<li>
+        node_modules/</p>
+<ul>
+<li>所需套件</li>
+</ul>
+</li>
+<li>
+        src/</p>
+<ul>
+<li>
+                less/</p>
+<ul>
+<li>style.less</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+        build/</p>
+<ul>
+<li>
+                css/</p>
+<ul>
+<li>style.css</li>
+</ul>
+</li>
+<li>index.html</li>
+</ul>
+</li>
+<li>package.json</li>
+<li>gulpfile.js</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/gulp-note/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

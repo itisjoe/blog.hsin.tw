@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>「jQuery in Action Ch.1 筆記」的迴響</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/</link>
+	<description></description>
+	<lastBuildDate>Tue, 25 Jun 2019 01:03:19 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>由：任性的撒野． &#187; jQuery in Action Ch.1 筆記</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-38590</link>
+		<dc:creator><![CDATA[任性的撒野． &#187; jQuery in Action Ch.1 筆記]]></dc:creator>
+		<pubDate>Mon, 16 Jun 2014 08:27:46 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-38590</guid>
+		<description><![CDATA[[&#8230;] print? [&#8230;]]]></description>
+		<content:encoded><![CDATA[<p>[&#8230;] print? [&#8230;]</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7989</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Fri, 20 Apr 2012 04:08:31 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7989</guid>
+		<description><![CDATA[是的 jquery的html() 就是innerHTML]]></description>
+		<content:encoded><![CDATA[<p>是的 jquery的html() 就是innerHTML</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：小嵐</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7988</link>
+		<dc:creator><![CDATA[小嵐]]></dc:creator>
+		<pubDate>Fri, 20 Apr 2012 04:02:46 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7988</guid>
+		<description><![CDATA[非常感謝，
+早上有參考這篇
+https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/
+有把一些功能都寫出來，
+
+剛剛是在研究innerHTML，
+jQuery中好像沒有這個功能，是JavaScript才有。
+.html()可以替換成.innerHTML()?]]></description>
+		<content:encoded><![CDATA[<p>非常感謝，<br />
+早上有參考這篇<br />
+<a href="https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/" rel="nofollow">https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/</a><br />
+有把一些功能都寫出來，</p>
+<p>剛剛是在研究innerHTML，<br />
+jQuery中好像沒有這個功能，是JavaScript才有。<br />
+.html()可以替換成.innerHTML()?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7986</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Fri, 20 Apr 2012 03:18:53 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7986</guid>
+		<description><![CDATA[makeSize()前面講過了
+
+
+focus()參考這頁
+http://api.jquery.com/focus/
+直接對要操作的input加上一個id 例如是myid1
+$(&quot;#myid1&quot;).focus();
+
+
+readonly跟disabled都是更改屬性就好
+https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/
+$(&quot;#myid1&quot;).attr(&quot;disabled&quot;,&quot;disabled&quot;); //設為disabled
+$(&quot;#myid1&quot;).attr(&quot;disabled&quot;,&quot;&quot;); //取消disabled
+
+$(&quot;#myid1&quot;).attr(&quot;readonly&quot;,true); //設為readonly
+$(&quot;#myid1&quot;).attr(&quot;readonly&quot;,false); //取消readonly
+
+
+$(&quot;#form1 input[type=checkbox]:checked&quot;).each(function(){
+    alert($(this).val());
+});
+
+
+全選、全取消、反向選擇 都也是改屬性而已
+全選
+$(&quot;#form1 input[type=checkbox]&quot;).attr(&quot;checked&quot;,true);
+全取消
+$(&quot;#form1 input[type=checkbox]&quot;).attr(&quot;checked&quot;,false);
+反向選擇
+$(&quot;#form1 input[type=checkbox]&quot;).each(function(){
+    if($(this).attr(&quot;checked&quot;)==true){
+        $(this).attr(&quot;checked&quot;,false);
+    } else {
+        $(this).attr(&quot;checked&quot;,true);
+    }
+});
+
+
+radio的checked跟上面類似
+alert($(&quot;#form1 input[type=radio]:checked&quot;).val());
+
+
+改文字顏色跟背景顏色
+https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/
+這篇都有寫
+
+
+改標籤裡的文字 是html()
+$(&quot;div#content&quot;).html(&quot;這是更新的文字&quot;);
+
+
+onclick要改用
+$(&quot;#btn1&quot;).click(function(){
+    // 要做的事
+});
+
+
+以最後一個為例 更改自己的名字及顏色
+先給這個input加一個id (每個標籤的id都要不同 一個網頁上 一個id只能出現一次)
+&#060;input type=&quot;button&quot; id=&quot;btn&quot; value=&quot;替換為自己的名字,字顏色為藍色粗體&quot; /&#062;
+在script標籤中
+則是寫
+$(&quot;#btn&quot;).click(function(){
+    $(&quot;#htmlText&quot;).html(&quot;Lan&quot;);
+    $(&quot;#htmlText&quot;).css(&quot;color&quot;,&quot;#0000ff&quot;);
+    $(&quot;#htmlText&quot;).css(&quot;fontWeight&quot;,&quot;bold&quot;);
+});
+其他都一樣]]></description>
+		<content:encoded><![CDATA[<p>makeSize()前面講過了</p>
+<p>focus()參考這頁<br />
+<a href="http://api.jquery.com/focus/" rel="nofollow">http://api.jquery.com/focus/</a><br />
+直接對要操作的input加上一個id 例如是myid1<br />
+$(&#8220;#myid1&#8221;).focus();</p>
+<p>readonly跟disabled都是更改屬性就好<br />
+<a href="https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/" rel="nofollow">https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/</a><br />
+$(&#8220;#myid1&#8221;).attr(&#8220;disabled&#8221;,&#8221;disabled&#8221;); //設為disabled<br />
+$(&#8220;#myid1&#8221;).attr(&#8220;disabled&#8221;,&#8221;&#8221;); //取消disabled</p>
+<p>$(&#8220;#myid1&#8221;).attr(&#8220;readonly&#8221;,true); //設為readonly<br />
+$(&#8220;#myid1&#8221;).attr(&#8220;readonly&#8221;,false); //取消readonly</p>
+<p>$(&#8220;#form1 input[type=checkbox]:checked&#8221;).each(function(){<br />
+    alert($(this).val());<br />
+});</p>
+<p>全選、全取消、反向選擇 都也是改屬性而已<br />
+全選<br />
+$(&#8220;#form1 input[type=checkbox]&#8221;).attr(&#8220;checked&#8221;,true);<br />
+全取消<br />
+$(&#8220;#form1 input[type=checkbox]&#8221;).attr(&#8220;checked&#8221;,false);<br />
+反向選擇<br />
+$(&#8220;#form1 input[type=checkbox]&#8221;).each(function(){<br />
+    if($(this).attr(&#8220;checked&#8221;)==true){<br />
+        $(this).attr(&#8220;checked&#8221;,false);<br />
+    } else {<br />
+        $(this).attr(&#8220;checked&#8221;,true);<br />
+    }<br />
+});</p>
+<p>radio的checked跟上面類似<br />
+alert($(&#8220;#form1 input[type=radio]:checked&#8221;).val());</p>
+<p>改文字顏色跟背景顏色<br />
+<a href="https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/" rel="nofollow">https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/</a><br />
+這篇都有寫</p>
+<p>改標籤裡的文字 是html()<br />
+$(&#8220;div#content&#8221;).html(&#8220;這是更新的文字&#8221;);</p>
+<p>onclick要改用<br />
+$(&#8220;#btn1&#8243;).click(function(){<br />
+    // 要做的事<br />
+});</p>
+<p>以最後一個為例 更改自己的名字及顏色<br />
+先給這個input加一個id (每個標籤的id都要不同 一個網頁上 一個id只能出現一次)<br />
+&lt;input type=&#8221;button&#8221; id=&#8221;btn&#8221; value=&#8221;替換為自己的名字,字顏色為藍色粗體&#8221; /&gt;<br />
+在script標籤中<br />
+則是寫<br />
+$(&#8220;#btn&#8221;).click(function(){<br />
+    $(&#8220;#htmlText&#8221;).html(&#8220;Lan&#8221;);<br />
+    $(&#8220;#htmlText&#8221;).css(&#8220;color&#8221;,&#8221;#0000ff&#8221;);<br />
+    $(&#8220;#htmlText&#8221;).css(&#8220;fontWeight&#8221;,&#8221;bold&#8221;);<br />
+});<br />
+其他都一樣</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：小嵐</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7984</link>
+		<dc:creator><![CDATA[小嵐]]></dc:creator>
+		<pubDate>Fri, 20 Apr 2012 01:30:44 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7984</guid>
+		<description><![CDATA[我是想問怎麼寫，
+並沒有要你幫我寫，
+
+我只是沒有抓到他們相對應的方法可以對照，
+所以只是希望告訴我如何撰寫而不是幫我寫。
+
+真的很不好意思麻煩你了。]]></description>
+		<content:encoded><![CDATA[<p>我是想問怎麼寫，<br />
+並沒有要你幫我寫，</p>
+<p>我只是沒有抓到他們相對應的方法可以對照，<br />
+所以只是希望告訴我如何撰寫而不是幫我寫。</p>
+<p>真的很不好意思麻煩你了。</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：小嵐</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7983</link>
+		<dc:creator><![CDATA[小嵐]]></dc:creator>
+		<pubDate>Fri, 20 Apr 2012 01:17:12 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7983</guid>
+		<description><![CDATA[不好意思～
+謝謝你囉！～
+不好意思麻煩哩～
+
+我會努力專研的～]]></description>
+		<content:encoded><![CDATA[<p>不好意思～<br />
+謝謝你囉！～<br />
+不好意思麻煩哩～</p>
+<p>我會努力專研的～</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：[jquery] 不懂javascript的網頁設計師也可以輕鬆上手的jquery &#124; Life["Breathing"]</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7980</link>
+		<dc:creator><![CDATA[[jquery] 不懂javascript的網頁設計師也可以輕鬆上手的jquery &#124; Life["Breathing"]]]></dc:creator>
+		<pubDate>Thu, 19 Apr 2012 17:35:37 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7980</guid>
+		<description><![CDATA[[...] 幾乎完全一樣 記得用單引號 &#8216; 或是 雙引號 &#034; 前後包起來 更多請看我之前寫的筆記或是官方文件(英文的) ▼ [...]]]></description>
+		<content:encoded><![CDATA[<p>[&#8230;] 幾乎完全一樣 記得用單引號 &#8216; 或是 雙引號 &quot; 前後包起來 更多請看我之前寫的筆記或是官方文件(英文的) ▼ [&#8230;]</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7979</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Thu, 19 Apr 2012 15:38:16 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7979</guid>
+		<description><![CDATA[如果是作業或工作上的東西
+我沒有義務要幫你喔
+真的很急的話
+建議你可以到ptt的codejob版
+花個幾百塊急徵一下
+或甚至花p幣就好
+那邊會有人樂意馬上幫你寫的]]></description>
+		<content:encoded><![CDATA[<p>如果是作業或工作上的東西<br />
+我沒有義務要幫你喔<br />
+真的很急的話<br />
+建議你可以到ptt的codejob版<br />
+花個幾百塊急徵一下<br />
+或甚至花p幣就好<br />
+那邊會有人樂意馬上幫你寫的</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：嵐</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7978</link>
+		<dc:creator><![CDATA[嵐]]></dc:creator>
+		<pubDate>Thu, 19 Apr 2012 14:52:38 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7978</guid>
+		<description><![CDATA[嗯嗯~
+
+了解~
+
+不好意思啊!~
+只不過我下午2點就要驗收了~
+所以......
+真的不好意思!~]]></description>
+		<content:encoded><![CDATA[<p>嗯嗯~</p>
+<p>了解~</p>
+<p>不好意思啊!~<br />
+只不過我下午2點就要驗收了~<br />
+所以&#8230;&#8230;<br />
+真的不好意思!~</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/comment-page-1/#comment-7977</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Thu, 19 Apr 2012 14:27:41 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=190#comment-7977</guid>
+		<description><![CDATA[你貼的真的有點多 哈
+所以我可能會發一篇文
+寫一些比較簡單的jquery的用法
+再請你直接對照用法
+去做更換囉
+
+可能明天會寫吧]]></description>
+		<content:encoded><![CDATA[<p>你貼的真的有點多 哈<br />
+所以我可能會發一篇文<br />
+寫一些比較簡單的jquery的用法<br />
+再請你直接對照用法<br />
+去做更換囉</p>
+<p>可能明天會寫吧</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

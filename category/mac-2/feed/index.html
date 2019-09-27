@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>MAC &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/mac-2/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[Mac] 移除 ._ 開頭的隱藏檔案 (點底線)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/mac-remove-hidden-dot-underline-files/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/mac-remove-hidden-dot-underline-files/#respond</comments>
+		<pubDate>Thu, 21 May 2015 14:53:15 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[MAC]]></category>
+		<category><![CDATA[mac]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=943</guid>
+		<description><![CDATA[首先打開終端機 以下指令都是輸入在終端機中 ▼ 找出所有以 ._ 開頭的檔案 ▼ 刪除所有以 ._ 開頭的檔案 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>首先打開終端機<br />
+<span id="more-943"></span><br />
+以下指令都是輸入在終端機中</p>
+<p>▼ 找出所有以 ._ 開頭的檔案</p>
+<pre class="brush: plain; title: ; notranslate">
+find /Volumes/檔案位置 -name &quot;._*&quot;
+</pre>
+<p>▼ 刪除所有以 ._ 開頭的檔案 即在後面加上 -delete</p>
+<pre class="brush: plain; title: ; notranslate">
+find /Volumes/檔案位置 -name &quot;._*&quot; -delete
+</pre>
+<p>像是如果要找名稱為 JetDrive32G 的隨身硬碟<br />
+即是如下</p>
+<pre class="brush: plain; title: ; notranslate">
+find /Volumes/JetDrive32G/ -name &quot;._*&quot;
+</pre>
+<p>--<br />
+ref:<br />
+http://mewo.com.tw/soho/archives/122</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/mac-remove-hidden-dot-underline-files/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Mac] 顯示隱藏檔案及目錄</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/mac-display-hidden-file-and-path/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/mac-display-hidden-file-and-path/#respond</comments>
+		<pubDate>Thu, 21 May 2015 14:44:03 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[MAC]]></category>
+		<category><![CDATA[mac]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=938</guid>
+		<description><![CDATA[首先打開終端機 下面的指令都是在終端機中輸入 ▼顯示隱藏檔案及目錄 接著重新啟動 Finder ▼隱藏隱藏檔案 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>首先打開終端機<br />
+<span id="more-938"></span><br />
+下面的指令都是在終端機中輸入</p>
+<p>▼顯示隱藏檔案及目錄</p>
+<pre class="brush: plain; title: ; notranslate">
+defaults write com.apple.finder AppleShowAllFiles TRUE
+</pre>
+<p>接著重新啟動 Finder</p>
+<pre class="brush: plain; title: ; notranslate">
+killall Finder
+</pre>
+<p>▼隱藏隱藏檔案及目錄</p>
+<pre class="brush: plain; title: ; notranslate">
+defaults write com.apple.finder AppleShowAllFiles FALSE
+</pre>
+<p>接著重新啟動 Finder</p>
+<pre class="brush: plain; title: ; notranslate">
+killall Finder
+</pre>
+<p>--<br />
+ref:<br />
+http://iphone4.tw/forums/showthread.php?t=159613</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/mac-display-hidden-file-and-path/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Mac] Parallels Desktop 7的一些注意事項</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/mac-parallels-desktop-7-notice/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/mac-parallels-desktop-7-notice/#respond</comments>
+		<pubDate>Wed, 28 Dec 2011 05:14:53 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[MAC]]></category>
+		<category><![CDATA[mac]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=491</guid>
+		<description><![CDATA[用了幾個月的VirtualBox還是覺得不順 所以決定還是付錢買個Parallels Desktop(以下簡稱 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>用了幾個月的VirtualBox還是覺得不順<br />
+<span id="more-491"></span><br />
+所以決定還是付錢買個Parallels Desktop(以下簡稱PD)吧<br />
+PD 7已經是多語言的了<br />
+所以可以下載安裝檔案裝<br />
+然後買簡體中文或港版的序號 =&gt; <a href="http://store.revo.com.hk/product_info.php?cPath=103_112&amp;products_id=509" target="_blank">this way</a><br />
+買人民幣或港幣的都滿便宜的 不到NT1000<br />
+就看匯率囉</p>
+<p><strong>▼ 安裝win7完後 出現下面這個問題</strong><br />
+FATAL ERROR: NO free memory for XSDT.<br />
+Press any key to continue booting.</p>
+<p>[解決方法]<br />
+1. Go to Parallels Desktop Configuration --&gt; Hardware --&gt; Boot Order and find Boot Flags field:<br />
+2. Copy/paste the following line there:<br />
+kernel.waet.enable=0<br />
+3. Save the changes and start your virtual machine.<br />
+[ref.]<br />
+<a href="http://www.mobile01.com/topicdetail.php?f=480&amp;t=2350771&amp;last=30936707">http://www.mobile01.com/topicdetail.php?f=480&amp;t=2350771&amp;last=30936707</a><br />
+<a href="http://kb.parallels.com/en/111406">http://kb.parallels.com/en/111406</a> (這邊有圖例)</p>
+<p><strong>▼ 雙螢幕時 將全螢幕的PD畫面拉去外接顯示器</strong><br />
+1. 先到 Virtual Machine &gt; Configure &gt; Option &gt; Full Screen<br />
+2. 將Use Mac OS X Full Screen 的勾勾拿掉</p>
+<p>PS.<br />
+1. PD7 必須先昇級到 7.0.14922<br />
+2. Virtual machine 要先關機<br />
+[ref.]<br />
+<a href="http://www.mobile01.com/topicdetail.php?f=482&amp;t=2354633&amp;last=30909625">http://www.mobile01.com/topicdetail.php?f=482&amp;t=2354633&amp;last=30909625</a></p>
+<p><strong>▼ Mac跟Win7共用資料夾</strong><br />
+在Parallel視窗的右下角有一個看起來像是兩個齒輪的icon<br />
+必須要點選那個去下載Parallel Tools<br />
+待它自動安裝好後<br />
+就會在Parallel視窗的桌面跳出&#8221;Parallel Shared Folders&#8221;<br />
+這樣子就可以同時在Windows的環境看到原本儲存在Mac系統下的檔案了</p>
+<p>Parallel Shared Folders的路徑是\\psf<br />
+預設打開的是Mac的home<br />
+打開的時候Mac這邊的Dock上會出現一個長得像Win檔案總管的東西<br />
+[ref.]<br />
+<a href="http://www.mobile01.com/topicdetail.php?f=482&amp;t=2379925&amp;r=3&amp;p=1">http://www.mobile01.com/topicdetail.php?f=482&amp;t=2379925&amp;r=3&amp;p=1</a></p>
+<p><strong>▼ 與host的Mac用同一層網路</strong><br />
+預設是共用網路 所以虛擬機器裡的內網只看得到自己<br />
+要改成看得到和host的Mac一樣的內網</p>
+<p>[解決方法]<br />
+Focus到該虛擬機器<br />
+工具列上的&#8221;虛擬機器&#8221; -&gt; 配置 -&gt; 硬體 -&gt; 網路 -&gt; 類型<br />
+從&#8221;共用網路&#8221; 改選成&#8221;橋接網路&#8221;<br />
+[ref.]<br />
+<a href="http://www.oikos.com.tw/v4/viewtopic.php?id=45159">http://www.oikos.com.tw/v4/viewtopic.php?id=45159</a></p>
+<p><strong>▼ windows下無法切換輸入法(ctrl+space,ctrl+空白鍵)</strong><br />
+在win7虛擬機器裡 都未更動的情況下 如果按ctrl+space 會打開Mac下的spotlight<br />
+這樣就沒辦法切換輸入法</p>
+<p>[解決方法]<br />
+PD的&#8221;偏好設定&#8221; -&gt; 鍵盤 -&gt; 啟用 Mac OS X 系統快速鍵<br />
+將這個勾勾取消<br />
+之後就不會打開Mac的spotlight 而是win裡的切換輸入法了</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/mac-parallels-desktop-7-notice/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Mac] 強制關閉程式 強制結束應用程式</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/mac-exit-application-forced/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/mac-exit-application-forced/#respond</comments>
+		<pubDate>Thu, 29 Sep 2011 08:47:00 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[MAC]]></category>
+		<category><![CDATA[mac]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=471</guid>
+		<description><![CDATA[按下 cmd + option + esc 會出現正在使用的應用程式列表 選擇要關閉的程式 按下強制結束 EN [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>按下<strong> cmd + option + esc</strong></p>
+<p><span id="more-471"></span></p>
+<p>會出現正在使用的應用程式列表</p>
+<p>選擇要關閉的程式 按下<strong>強制結束</strong></p>
+<p>END</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/mac-exit-application-forced/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Mac] 修改開啟同類型檔案的程式 指定軟體開啟同類型的檔案</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/mac-open-file-type/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/mac-open-file-type/#respond</comments>
+		<pubDate>Fri, 12 Aug 2011 07:30:13 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[MAC]]></category>
+		<category><![CDATA[mac]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=463</guid>
+		<description><![CDATA[最近買了MacBook Air (mid 2011) 開箱文看此 開始適應新作業系統 到目前為止適應的情況還不 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>最近買了MacBook Air (mid 2011)</p>
+<p><span id="more-463"></span><a title="MacBook Air" href="http://www.oneshot.tw/13128119951699443469" target="_blank">開箱文看此</a></p>
+<p>開始適應新作業系統 到目前為止適應的情況還不錯</p>
+<p>觸控版超威的</p>
+<p>多點觸控 我裝了一堆手勢 裝完根本不用滑鼠啦</p>
+<p>但是有些功能還需要咕狗才知道怎麼做 做了過幾天還會忘記XD</p>
+<p>所以我自己記下來吧！ 讓有需要的人也有機會咕狗到 哈</p>
+<p>因為我這台mac 已經是裝了Lion了 所以其他版本的可能不太一樣</p>
+<p>如果不一樣的地方請自行腦補 (噗</p>
+<p>======================</p>
+<p><strong>本文開始 XDXDXD</strong></p>
+<p>[修改開啟同類型檔案的程式]</p>
+<p>選擇要修改的檔案後</p>
+<p><strong>點右鍵 選擇簡介</strong> 或是<strong>直接按 cmd + i</strong></p>
+<p>裡面找到 <strong>打開檔案的應用程式</strong></p>
+<p>選擇你要用來開啟的程式</p>
+<p>接著按下下面的<strong>全部更改</strong>按鈕</p>
+<p>會跳出一個cofirm的視窗 按下<strong>繼續</strong></p>
+<p>這樣就好囉</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/mac-open-file-type/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

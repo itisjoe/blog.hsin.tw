@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="UTF-8"><link rel="stylesheet" type="text/css" media="all" href="https://itisjoe.github.io/blog.hsin.tw/wp-content/themes/simplest/style.css"><title>[iOS Dev] IAP設定 | [lifeIs: tooShort to: waste]</title><meta name="description" content="當然首先是要有付錢成為iOS developer (1年$99) iPhone 實機如果有JB 可能會無法測試IAP功能 請記得這點喔 在iTunes Connect裡面的Contracts, Tax, and Banking Contract Type為 iOS Paid Applications的"><meta name="keywords" content="ios,dev,iphone,cocoa,xcode"><link rel="dns-prefetch" href="//s.w.org"><style type="text/css" id="syntaxhighlighteranchor"></style></head><body class="post-template-default single single-post postid-581 single-format-standard">
+    <div id="container">
+      <div id="header">
+        <h1><a href="https://itisjoe.github.io/blog.hsin.tw">[lifeIs: tooShort to: waste]</a></h1>
+        <p id="description"></p>
+                  <ul></ul></div>
+<div style="text-align:center;margin:0 auto;">
+<script type="text/javascript" src="//js1.bloggerads.net/ShowBanner.aspx?blogid=20090103000284"></script></div>
+      <div id="content">
+                  <div class="post-581 post type-post status-publish format-standard hentry category-ios-dev tag-ios">
+            <h2><a href="https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-iap-setting/">[iOS Dev] IAP設定</a></h2>
+            <h3>2012-06-14</h3>
+            <p>當然首先是要有付錢成為iOS developer (1年$99)<span id="more-581"></span></p>
+<p><strong>iPhone 實機如果有JB 可能會無法測試IAP功能 請記得這點喔</strong></p>
+<p>在iTunes Connect裡面的Contracts, Tax, and Banking<br>
+Contract Type為 iOS Paid Applications的 要先按request<br>
+然後 set up 以下三個： Contact Info, Bank Info, Tax Info<br>
+Contact Info 填聯絡資料 其中有個 title 欄位 我英文比較不好 這應該是填 Mr Miss Mrs 這個<br>
+Bank Info 填銀行資料 選 Taiwan 然後填銀行帳號資料<br>
+只能說靠邀了 我銀行只填銀行代碼 但是我後來看書說 需要的是銀行代碼+分行代碼<br>
+阿乾………………..以後收不到款再說吧= =|||<br>
+Tax Info 要把 US 的填好 但是因為我不是在美國 所以前面兩個都選NO 最後一個表單 有個欄位選 individual<br>
+都填好之後 後面的 Status 應該就會變成 Processing<br>
+就等他被移去 Contracts In Effect 了</p>
+<p>接著要建立一個新的APP ID<br>
+如果要用IAP 就不能用 wildcard (“*”) character<br>
+所以要新建立一個<br><a href="https://developer.apple.com/ios/manage/bundles/index.action">https://developer.apple.com/ios/manage/bundles/index.action</a><br>
+到上面這網址建立吧<br>
+建立好一個新的APP之後<br>
+再到下面這個 生成一個Provisioning Profile<br><a href="https://developer.apple.com/ios/manage/provisioningprofiles/index.action">https://developer.apple.com/ios/manage/provisioningprofiles/index.action</a><br>
+有分 Development 跟 Distribution<br>
+看目前開發到哪個進度囉 先選 Development 吧<br>
+完成後會看到他是 pending 的狀態 重整頁面之後 就可以download 了<br>
+再對下載的檔案點兩下打開 就會加到Xcode裡了</p>
+<p>Certificates 跟 Devices 都還需要增加 不過如果之前有上架過app的話 應該就是都用過了</p>
+<p>接著就是建立測試帳號跟要付費的產品<br>
+到iTunes Connect裡的Manage Users建立測試帳號<br>
+Select User Type 選擇 Test User<br>
+再按Add New User<br>
+依據表單要填的項目依序填入<br>
+信箱有個 tip 可以用同一個信箱註冊成不同帳號<br>
+不然原本規定是一個 email 只能註冊一個帳號<br>
+(我只知道 gmail 可以 其他信箱不知道~~~ )<br>
+例如如果我的信箱為 hsin@gmail.com<br>
+那我可以把信箱寫成 hsin+test@gmail.com<br>
+重點就在那個 + 加號 後面加任何字 就會被當做不同的信箱<br>
+但是他寄信都是會寄到 hsin@gmail.com 這樣要管理就不會搞得很複雜啦<br>
+表單填完就好囉<br>
+之後再測試IAP付費功能時 都要用這個test user的帳號測試<br>
+iphone需要先登出再登入這個帳號</p>
+<p>[20120628更新 START]<br>
+Test User 使用方式<br>
+1.<br>
+先在 設定 -> Store -> 點Apple ID -> 點取消<br>
+2.<br>
+不要再在 Store 裡登入 Test User<br>
+直接進入要測試的 APP 並進入購買頁按下購買<br>
+此時會要你登入 Apple ID<br>
+這時候再填寫 Test User 的帳號密碼<br>
+即可繼續測試<br>
+[20120628更新 END]</p>
+<p>付費的產品 必須先建立好一個新的APP<br>
+到iTunes Connect裡的Manage Your Apps 按 Add New App 建立一個新的App<br>
+依序填寫表單的項目吧 裡面有需要縮圖的地方 就必須先有暫時的圖先放 之後可以再放正式的圖上去<br>
+建立好之後 在 iOS App Recent Activity 裡進入這個 App 的詳細內容<br>
+再選擇右邊藍色按鈕其中一個 Manage In-App Purchases<br>
+按左上的 Create New 建立一個新的<br>
+有幾項產品就要建立幾個 如果很多就慢慢加吧~</p>
+<p>首先會遇到選擇種類<br>
+Consumable<br>
+Non-Consumable<br>
+Auto-Renewable Subscriptions<br>
+Free Subscription<br>
+Non-Renewing Subscription</p>
+<p>我目前使用第一項 Consumable 也就是消耗性產品 (像是買虛擬幣或虛擬物品)<br>
+接下來這頁是一個表單 也是依序填入即可<br>
+比較重要的是 Product ID 這個在之後程式會用到<br>
+我也是照APP的表示方式 domain name 反著寫<br>
+像是: tw.hsin.myapp.product1<br>
+各產品都必須獨立不重複<br>
+這邊也是需要一個縮圖 可以先傳暫時的圖 之後再傳正式的圖</p>
+<p>記好這邊建立的 Product ID 們 就可以進行接下來程式的部份了</p>
+<p><a href="https://itisjoe.github.io/blog.hsin.tw/2012/ios-iap-code-example">[iOS Dev] IAP 程式設定</a> </p>
+<p>ref :<br><a href="http://blog.k-res.net/%E8%AE%BE%E8%AE%A1%E5%BC%80%E5%8F%91/%E5%85%B3%E4%BA%8Eapple-ios-iap%E5%BA%94%E7%94%A8%E5%86%85%E7%BD%AE%E4%BB%98%E8%B4%B9%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97%EF%BC%81.html">關於Apple iOS IAP應用內置付費設置的一些心得！</a><br><a href="https://developer.apple.com/library/ios/#technotes/tn2259/_index.html">https://developer.apple.com/library/ios/#technotes/tn2259/_index.html</a></p>
+                                      <div class="pagination"></div>
+                        <div class="clear"> </div>
+          </div>
+                      <div class="meta">
+              <p>Posted by <a href="https://itisjoe.github.io/blog.hsin.tw/author/hsin/" title="由 hsin 發表" rel="author">hsin</a>              on <a href="https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-iap-setting/">2012 年 06 月 14 日</a>
+              in <a href="https://itisjoe.github.io/blog.hsin.tw/category/ios-dev/" rel="category tag">iOS Dev</a>, <a href="https://itisjoe.github.io/blog.hsin.tw/tag/ios/" rel="tag">iOS</a></p>
+            </div>
+                                                <div class="left"><a href="https://itisjoe.github.io/blog.hsin.tw">« Home page</a></div>
+                <div style="clear:both;margin: 100px;"> </div>
+                  <div class="widgets"><div class="widget"><h4>標籤</h4><div class="tagcloud"><a href="https://itisjoe.github.io/blog.hsin.tw/tag/addon/" class="tag-cloud-link tag-link-49 tag-link-position-1" style="font-size: 8pt;" aria-label="addon (1 個項目)">addon</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/admob/" class="tag-cloud-link tag-link-47 tag-link-position-2" style="font-size: 8pt;" aria-label="admob (1 個項目)">admob</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/apache/" class="tag-cloud-link tag-link-27 tag-link-position-3" style="font-size: 9.9236641221374pt;" aria-label="apache (2 個項目)">apache</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/bookmarklet/" class="tag-cloud-link tag-link-12 tag-link-position-4" style="font-size: 11.206106870229pt;" aria-label="bookmarklet (3 個項目)">bookmarklet</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/checkbox/" class="tag-cloud-link tag-link-13 tag-link-position-5" style="font-size: 8pt;" aria-label="checkbox (1 個項目)">checkbox</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ckeditor/" class="tag-cloud-link tag-link-36 tag-link-position-6" style="font-size: 8pt;" aria-label="ckeditor (1 個項目)">ckeditor</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/cocos2d/" class="tag-cloud-link tag-link-46 tag-link-position-7" style="font-size: 11.206106870229pt;" aria-label="Cocos2D (3 個項目)">Cocos2D</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/codeigniter/" class="tag-cloud-link tag-link-29 tag-link-position-8" style="font-size: 12.274809160305pt;" aria-label="Codeigniter (4 個項目)">Codeigniter</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/cpanel/" class="tag-cloud-link tag-link-39 tag-link-position-9" style="font-size: 8pt;" aria-label="cPanel (1 個項目)">cPanel</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/css/" class="tag-cloud-link tag-link-3 tag-link-position-10" style="font-size: 14.946564885496pt;" aria-label="css (8 個項目)">css</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/excel/" class="tag-cloud-link tag-link-23 tag-link-position-11" style="font-size: 8pt;" aria-label="excel (1 個項目)">excel</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/exif/" class="tag-cloud-link tag-link-30 tag-link-position-12" style="font-size: 8pt;" aria-label="exif (1 個項目)">exif</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/facebook/" class="tag-cloud-link tag-link-28 tag-link-position-13" style="font-size: 9.9236641221374pt;" aria-label="facebook (2 個項目)">facebook</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/firefox/" class="tag-cloud-link tag-link-4 tag-link-position-14" style="font-size: 13.129770992366pt;" aria-label="firefox (5 個項目)">firefox</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/git/" class="tag-cloud-link tag-link-63 tag-link-position-15" style="font-size: 9.9236641221374pt;" aria-label="git (2 個項目)">git</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/gmail/" class="tag-cloud-link tag-link-22 tag-link-position-16" style="font-size: 8pt;" aria-label="gmail (1 個項目)">gmail</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/gps/" class="tag-cloud-link tag-link-31 tag-link-position-17" style="font-size: 8pt;" aria-label="gps (1 個項目)">gps</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/html/" class="tag-cloud-link tag-link-14 tag-link-position-18" style="font-size: 20.290076335878pt;" aria-label="html (27 個項目)">html</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/iad/" class="tag-cloud-link tag-link-48 tag-link-position-19" style="font-size: 8pt;" aria-label="iAD (1 個項目)">iAD</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/instagram/" class="tag-cloud-link tag-link-50 tag-link-position-20" style="font-size: 8pt;" aria-label="instagram (1 個項目)">instagram</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ios/" class="tag-cloud-link tag-link-40 tag-link-position-21" style="font-size: 21.251908396947pt;" aria-label="iOS (34 個項目)">iOS</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/iosdev/" class="tag-cloud-link tag-link-62 tag-link-position-22" style="font-size: 13.129770992366pt;" aria-label="iosdev (5 個項目)">iosdev</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ipad/" class="tag-cloud-link tag-link-44 tag-link-position-23" style="font-size: 15.480916030534pt;" aria-label="iPad (9 個項目)">iPad</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/iphone/" class="tag-cloud-link tag-link-43 tag-link-position-24" style="font-size: 19.541984732824pt;" aria-label="iPhone (23 個項目)">iPhone</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/javascript/" class="tag-cloud-link tag-link-5 tag-link-position-25" style="font-size: 21.251908396947pt;" aria-label="javascript (34 個項目)">javascript</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/jquery/" class="tag-cloud-link tag-link-6 tag-link-position-26" style="font-size: 17.404580152672pt;" aria-label="jquery (14 個項目)">jquery</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/laravel/" class="tag-cloud-link tag-link-52 tag-link-position-27" style="font-size: 19.541984732824pt;" aria-label="laravel (23 個項目)">laravel</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/mac/" class="tag-cloud-link tag-link-34 tag-link-position-28" style="font-size: 13.129770992366pt;" aria-label="mac (5 個項目)">mac</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/php/" class="tag-cloud-link tag-link-7 tag-link-position-29" style="font-size: 22pt;" aria-label="php (40 個項目)">php</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/plugin/" class="tag-cloud-link tag-link-15 tag-link-position-30" style="font-size: 13.129770992366pt;" aria-label="plugin (5 個項目)">plugin</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/redirect/" class="tag-cloud-link tag-link-26 tag-link-position-31" style="font-size: 8pt;" aria-label="redirect (1 個項目)">redirect</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/rss/" class="tag-cloud-link tag-link-8 tag-link-position-32" style="font-size: 9.9236641221374pt;" aria-label="rss (2 個項目)">rss</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/select/" class="tag-cloud-link tag-link-16 tag-link-position-33" style="font-size: 9.9236641221374pt;" aria-label="select (2 個項目)">select</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/server/" class="tag-cloud-link tag-link-24 tag-link-position-34" style="font-size: 13.129770992366pt;" aria-label="server (5 個項目)">server</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/shopping/" class="tag-cloud-link tag-link-37 tag-link-position-35" style="font-size: 8pt;" aria-label="shopping (1 個項目)">shopping</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ubuntu/" class="tag-cloud-link tag-link-33 tag-link-position-36" style="font-size: 8pt;" aria-label="ubuntu (1 個項目)">ubuntu</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/website/" class="tag-cloud-link tag-link-51 tag-link-position-37" style="font-size: 8pt;" aria-label="website (1 個項目)">website</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/wordpress/" class="tag-cloud-link tag-link-9 tag-link-position-38" style="font-size: 16.656488549618pt;" aria-label="wordpress (12 個項目)">wordpress</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/xcode/" class="tag-cloud-link tag-link-41 tag-link-position-39" style="font-size: 14.412213740458pt;" aria-label="Xcode (7 個項目)">Xcode</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/xml/" class="tag-cloud-link tag-link-17 tag-link-position-40" style="font-size: 9.9236641221374pt;" aria-label="xml (2 個項目)">xml</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/zeus/" class="tag-cloud-link tag-link-25 tag-link-position-41" style="font-size: 8pt;" aria-label="zeus (1 個項目)">zeus</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/zip/" class="tag-cloud-link tag-link-18 tag-link-position-42" style="font-size: 9.9236641221374pt;" aria-label="zip (2 個項目)">zip</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/%e7%80%8f%e8%a6%bd%e5%99%a8/" class="tag-cloud-link tag-link-19 tag-link-position-43" style="font-size: 18.473282442748pt;" aria-label="瀏覽器 (18 個項目)">瀏覽器</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/%e7%95%ab%e7%95%ab/" class="tag-cloud-link tag-link-58 tag-link-position-44" style="font-size: 11.206106870229pt;" aria-label="畫畫 (3 個項目)">畫畫</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/%e8%bb%9f%e9%ab%94/" class="tag-cloud-link tag-link-11 tag-link-position-45" style="font-size: 12.274809160305pt;" aria-label="軟體 (4 個項目)">軟體</a></div>
+</div><div class="widget"><h4>分類</h4>		<ul><li class="cat-item cat-item-38"><a href="https://itisjoe.github.io/blog.hsin.tw/category/buy/">buy</a> (1)
+</li>
+	<li class="cat-item cat-item-29"><a href="https://itisjoe.github.io/blog.hsin.tw/category/codeigniter/">Codeigniter</a> (3)
+</li>
+	<li class="cat-item cat-item-3"><a href="https://itisjoe.github.io/blog.hsin.tw/category/css/">css</a> (2)
+</li>
+	<li class="cat-item cat-item-23"><a href="https://itisjoe.github.io/blog.hsin.tw/category/excel/">excel</a> (1)
+</li>
+	<li class="cat-item cat-item-4"><a href="https://itisjoe.github.io/blog.hsin.tw/category/firefox/">firefox</a> (4)
+</li>
+	<li class="cat-item cat-item-66"><a href="https://itisjoe.github.io/blog.hsin.tw/category/git-usage/">Git-Usage</a> (2)
+</li>
+	<li class="cat-item cat-item-22"><a href="https://itisjoe.github.io/blog.hsin.tw/category/gmail/">gmail</a> (1)
+</li>
+	<li class="cat-item cat-item-70"><a href="https://itisjoe.github.io/blog.hsin.tw/category/gulp/">gulp</a> (1)
+</li>
+	<li class="cat-item cat-item-42"><a href="https://itisjoe.github.io/blog.hsin.tw/category/ios-dev/">iOS Dev</a> (33)
+</li>
+	<li class="cat-item cat-item-43"><a href="https://itisjoe.github.io/blog.hsin.tw/category/iphone/">iPhone</a> (5)
+</li>
+	<li class="cat-item cat-item-5"><a href="https://itisjoe.github.io/blog.hsin.tw/category/javascript/">javascript</a> (30)
+</li>
+	<li class="cat-item cat-item-6"><a href="https://itisjoe.github.io/blog.hsin.tw/category/jquery/">jquery</a> (13)
+</li>
+	<li class="cat-item cat-item-55"><a href="https://itisjoe.github.io/blog.hsin.tw/category/laravel-php/">laravel</a> (23)
+</li>
+	<li class="cat-item cat-item-59"><a href="https://itisjoe.github.io/blog.hsin.tw/category/life/">Life</a> (3)
+</li>
+	<li class="cat-item cat-item-57"><a href="https://itisjoe.github.io/blog.hsin.tw/category/linux/">Linux</a> (1)
+</li>
+	<li class="cat-item cat-item-35"><a href="https://itisjoe.github.io/blog.hsin.tw/category/mac-2/">MAC</a> (5)
+</li>
+	<li class="cat-item cat-item-45"><a href="https://itisjoe.github.io/blog.hsin.tw/category/mobile-app/">Mobile App</a> (6)
+</li>
+	<li class="cat-item cat-item-21"><a href="https://itisjoe.github.io/blog.hsin.tw/category/mymanager-tw/">mymanager.tw</a> (2)
+</li>
+	<li class="cat-item cat-item-32"><a href="https://itisjoe.github.io/blog.hsin.tw/category/oneshot-tw/">oneshot.tw</a> (1)
+</li>
+	<li class="cat-item cat-item-7"><a href="https://itisjoe.github.io/blog.hsin.tw/category/php/">php</a> (32)
+</li>
+	<li class="cat-item cat-item-8"><a href="https://itisjoe.github.io/blog.hsin.tw/category/rss/">rss</a> (1)
+</li>
+	<li class="cat-item cat-item-24"><a href="https://itisjoe.github.io/blog.hsin.tw/category/server/">server</a> (5)
+</li>
+	<li class="cat-item cat-item-68"><a href="https://itisjoe.github.io/blog.hsin.tw/category/woocommerce/">woocommerce</a> (6)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://itisjoe.github.io/blog.hsin.tw/category/wordpress/">wordpress</a> (6)
+</li>
+	<li class="cat-item cat-item-10"><a href="https://itisjoe.github.io/blog.hsin.tw/category/nothing/">沒什麼好說的</a> (7)
+</li>
+	<li class="cat-item cat-item-19"><a href="https://itisjoe.github.io/blog.hsin.tw/category/%e7%80%8f%e8%a6%bd%e5%99%a8/">瀏覽器</a> (5)
+</li>
+	<li class="cat-item cat-item-20"><a href="https://itisjoe.github.io/blog.hsin.tw/category/%e7%9f%a5%e8%ad%98or%e5%b8%b8%e8%ad%98/">知識(or常識?)</a> (1)
+</li>
+	<li class="cat-item cat-item-11"><a href="https://itisjoe.github.io/blog.hsin.tw/category/%e8%bb%9f%e9%ab%94/">軟體</a> (4)
+</li>
+		</ul></div></div>
+          <div style="clear:both;"></div>
+                <div class="clear"> </div>
+      </div>
+    </div>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-6753542-1', 'auto');
+  ga('send', 'pageview');
+
+</script></body></html>

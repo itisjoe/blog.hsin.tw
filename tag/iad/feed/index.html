@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>iAD &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/iad/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[iOS Dev] 將iAD廣告放入APP中</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2014/ios-dev-integrate-iad-banners-into-your-app/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2014/ios-dev-integrate-iad-banners-into-your-app/#comments</comments>
+		<pubDate>Sun, 31 Aug 2014 11:36:30 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iAD]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=784</guid>
+		<description><![CDATA[步驟其實比ADMob還簡單 首先要把收錢的帳戶搞定 (其實也可以最後做 反正要做就是了) 到 iTunes C [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>步驟其實比ADMob還簡單<br />
+<span id="more-784"></span></p>
+<p>首先要把收錢的帳戶搞定 (其實也可以最後做 反正要做就是了)<br />
+到 iTunes Connect 網站中<br />
+進入到 Contracts, Tax, and Banking<br />
+有一行的 Contract Type 為 iAd App Network<br />
+將以下這三個 Contact Info, Bank Info, Tax Info 都個別按下 Set Up<br />
+並跟著步驟完成<br />
+這跟你賺到錢後要把錢匯到哪裡有關係<br />
+這篇文章就不詳述了</p>
+<p>接著進入程式部分</p>
+<p>1.<br />
+在左側的 Project Navigator 中點選你的Project (藍藍的)<br />
+再點選TARGETS中的專案<br />
+標籤選擇 General<br />
+在 Linked Frameworks and Libraries 這個部分 (應該是在最下面)<br />
+點選加號後<br />
+找到 iAd.framework (可以按搜尋 iAd 後 就會出現了)<br />
+點這個後按 add<br />
+便加入成功</p>
+<p>2.<br />
+在 ViewController.h 中<br />
+import .h檔案並加上 delegate</p>
+<pre class="brush: cpp; title: ; notranslate">
+// import iAd
+#import &lt;iAd/iAd.h&gt;
+
+// 加上 delegate
+@interface viewController : UIViewController &lt;ADBannerViewDelegate&gt;
+@end
+
+</pre>
+<p>3.<br />
+接著在 ViewController.m 中<br />
+先給 banner 一個變數<br />
+然後在 viewDidLoad 中將 banner 設定好<br />
+最後在 delegate 的 methods 中設定顯示或隱藏 banner </p>
+<pre class="brush: cpp; title: ; notranslate">
+
+@interface viewController (){
+// 變數
+    ADBannerView *bannerView_;
+}
+@end
+
+@implementation viewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+// 設定 banner 的位置及長寬 這邊是放在底部
+    bannerView_ = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, 320, 50)];
+    bannerView_.delegate = self;
+    // 預設為隱藏 load成功後再在 delegate 的 method 中顯示
+    bannerView_.alpha = 0.0;
+    [self.view addSubview:bannerView_];
+}
+
+// 這個是 delegate 的 method , load完後會呼叫
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@&quot;Ad Banner did load ad.&quot;);
+    // Show the ad banner.
+    [UIView animateWithDuration:0.5 animations:^{
+        bannerView_.alpha = 1.0;
+    }];
+}
+
+// 這個是 delegate 的 method , 如果失敗或有 error 會呼叫
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+
+    NSLog(@&quot;Unable to show ads. Error: %@&quot;, [error localizedDescription]);
+
+    // Hide the ad banner.
+    [UIView animateWithDuration:0.5 animations:^{
+        bannerView_.alpha = 0.0;
+    }];
+}
+@end
+
+</pre>
+<p>這樣就完成了<br />
+run 後會出現 iAd 相關的畫面<br />
+上架之後就會有正式的廣告了</p>
+<p>報表這邊看<br />
+<a href="https://iad.apple.com/itcportal/#app_homepage">https://iad.apple.com/itcportal/#app_homepage</a></p>
+<p>以上</p>
+<p>ref:<br />
+<a href="http://codewithchris.com/iad-tutorial/">http://codewithchris.com/iad-tutorial/</a><br />
+<a href="http://www.cocoachina.com/industry/20140701/8998.html">http://www.cocoachina.com/industry/20140701/8998.html</a></p>
+<p>===題外話 發牢騷===<br />
+原本是用 ADMob 的<br />
+但我的 google adsense 不知道為啥就被停權了<br />
+因為是連動的<br />
+所以連帶也把我的 ADMob 也停了&#8230;<br />
+乾&#8230;<br />
+後來又換新帳號<br />
+但前幾天又被停！<br />
+乾乾乾！！<br />
+所以不爽用了！！！<br />
+老子不爽用 ADMob 了！！<br />
+乾～～～！</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2014/ios-dev-integrate-iad-banners-into-your-app/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

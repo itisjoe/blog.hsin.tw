@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Linux &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/linux/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[Linux] 自定義指令 alias 並設定成永久有效</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/linux-alias-works-always/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/linux-alias-works-always/#comments</comments>
+		<pubDate>Tue, 21 Jul 2015 12:33:12 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Linux]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=954</guid>
+		<description><![CDATA[alias : 設置指令的別名 設定後 輸入 ll 就會等於輸入 ls -a 輸入 alias 可以看目前有哪 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>alias : 設置指令的別名<br />
+<span id="more-954"></span></p>
+<pre class="brush: plain; title: ; notranslate">
+alias ll='ls -a'
+</pre>
+<p>設定後 輸入 ll 就會等於輸入 ls -a</p>
+<p>輸入 alias 可以看目前有哪些指令別名</p>
+<p>如果要讓這個指令別名永久有效<br />
+要寫入個別使用者的 ~/.bashrc 中</p>
+<pre class="brush: plain; title: ; notranslate">
+echo &quot;alias ll='ls -a'&quot; &gt;&gt; ~/.bashrc
+</pre>
+<p>或是直接編輯 ~/.bashrc 這個檔案 加入需要的指令別名</p>
+<p>如果要即時啟用的話 接著輸入下面這行 (不然下次登入才會生效)</p>
+<pre class="brush: plain; title: ; notranslate">
+source ~/.bashrc
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/linux-alias-works-always/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Codeigniter &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/codeigniter/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[Codeigniter] Facebook SDK getUser 一直只回傳0</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/codeigniter-facebook-sdk-getuser-returns-0/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/codeigniter-facebook-sdk-getuser-returns-0/#comments</comments>
+		<pubDate>Wed, 07 Nov 2012 12:49:27 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Codeigniter]]></category>
+		<category><![CDATA[facebook]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=668</guid>
+		<description><![CDATA[我在 mymanager 有作過一次 facebook login 了 但這次仍然在一開始就卡住 我也忘了那時 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>我在 <a href="http://www.mymanager.tw">mymanager</a> 有作過一次 facebook login 了<br />
+<span id="more-668"></span><br />
+但這次仍然在一開始就卡住<br />
+我也忘了那時候是怎麼解決這個問題的<br />
+所以我決定這次記錄一下XD</p>
+<p>=====請注意文章發表時間 facebook SDK 的東西變化很快 此文章說明可能會失效=====</p>
+<p>其實就是少了一行而已 that&#8217;s all !<br />
+請在使用 facebook SDK 前加上這行</p>
+<pre class="brush: php; title: ; notranslate">
+parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
+</pre>
+<p>因為CI會自動過濾掉 $_REQUEST 的東西<br />
+但 facbebook SDK 提供的檔案 是利用這個來處理的<br />
+就&#8230; 沒辦法用了<br />
+所以要手動把 $_REQUEST 加回去</p>
+<p>這樣應該是不會有安全上的問題(?)</p>
+<p>那就是這樣了<br />
+收工</p>
+<p>ref : <a href="http://www.galalaly.me/index.php/2012/04/using-facebook-php-sdk-3-with-codeigniter-2-1/">Using Facebook PHP SDK 3 with CodeIgniter 2.1</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/codeigniter-facebook-sdk-getuser-returns-0/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>[CodeIgniter] extend CI_Model</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-extend-ci_model/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-extend-ci_model/#respond</comments>
+		<pubDate>Mon, 07 Nov 2011 08:43:53 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Codeigniter]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=474</guid>
+		<description><![CDATA[建立自己的程式庫 在這頁寫到可以擴充原有的程式庫，我想增加幾個基本的Method（CRUD之類的）到原有的CI [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://www.codeigniter.org.tw/user_guide/general/creating_libraries.html" target="_blank">建立自己的程式庫</a><br />
+<span id="more-474"></span><br />
+在這頁寫到可以擴充原有的程式庫，我想增加幾個基本的Method（CRUD之類的）到原有的CI_Model，這樣就不用每個Model檔案都寫一遍。雖然這頁說明寫說要放在 <strong>application/libraries </strong>中，但是CodeIgniter 2的Model已經是歸在Core中了，所以其實是要把MY_Model.php放在 <strong>application/core </strong>才對。</p>
+<p>1. 建立一個新檔案 MY_Model.php（<strong>MY_</strong>可在<strong>application/config/config.php</strong>修改）</p>
+<pre class="brush: php; title: ; notranslate">
+class MY_Model extends CI_Model{
+    function __construct()    {
+        parent::__construct();
+    }
+
+    // some methods
+}
+</pre>
+<p>2. 將檔案放在 <strong>application/core</strong> 中</p>
+<p>3. 之後新的Model檔案要extends的是MY_Model，而不是CI_Model。</p>
+<p>收工</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-extend-ci_model/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Codeigniter開啟csrf protection時 傳送表單(or ajax)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-csrf-protection-form-ajax/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-csrf-protection-form-ajax/#comments</comments>
+		<pubDate>Wed, 18 May 2011 10:37:42 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Codeigniter]]></category>
+		<category><![CDATA[php]]></category>
+		<category><![CDATA[javascript]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=449</guid>
+		<description><![CDATA[在CI 2.0中有一個csrf(Cross Site Request Forgery) protection的 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>在CI 2.0中有一個csrf(Cross Site Request Forgery) protection的功能<br />
+<span id="more-449"></span><br />
+如果打開這個功能的話<br />
+post表單給server 會吐 error 500<br />
+An Error Was Encountered<br />
+The action you have requested is not allowed.<br />
+會無法執行<br />
+這時候要在表單傳送的數值中加入一個token的值<br />
+才能正常使用表單功能</p>
+<p>可以在application/config/config.php中找到下面這幾行</p>
+<pre class="brush: php; title: ; notranslate">
+$config['csrf_protection'] = TRUE;
+$config['csrf_token_name'] = 'csrf_test_name';
+$config['csrf_cookie_name'] = 'csrf_cookie_name';
+$config['csrf_expire'] = 7200;
+</pre>
+<p>原本$config[&#8216;csrf_protection&#8217;]預設是FALSE 改成TRUE就可以打開了<br />
+開啟之後 會自動幫你在cookie中存一個值<br />
+cookie的name在上面說的config.php中可以設定<br />
+之後傳送表單就要連這個token一起傳才行</p>
+<p>以下用jquery的ajax功能示範</p>
+<pre class="brush: jscript; title: ; notranslate">
+$(function(){
+    $('#btn').click(function(){
+	    $.ajax({
+	        type:'POST'
+	        ,url:'/ajax' //ajax接收的server端
+	        ,data:$('#form').serialize()+'&amp;csrf_test_name='+ getCookie('csrf_test_name')
+	        ,success:function(data){
+			alert(data.msg);
+	        }
+	        ,dataType:'json'
+	    });
+    });
+});
+
+function getCookie(name){
+    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;));
+    if(arr != null) return unescape(arr[2]); return null;
+}
+</pre>
+<p>getCookie()是用js取出cookie的值<br />
+這是在網路上找到的 可以直接拿去用</p>
+<p>而csrf_test_name就是在config.php中可以設定的參數<br />
+將這個cookie抓出來一起送出表單<br />
+就可以正常使用了</p>
+<p>有任何指教歡迎留言~</p>
+<p>referer : <a href="http://ericlbarnes.com/blog/post/codeigniter_csrf_protection_with_ajax">http://ericlbarnes.com/blog/post/codeigniter_csrf_protection_with_ajax</a></p>
+<p>==================<br />
+update<br />
+==================<br />
+依據這頁<a href="http://codeigniter.com/forums/viewthread/163976/">http://codeigniter.com/forums/viewthread/163976/</a> 某樓提供的方法<br />
+可以使用以下方法取得token_name以及值</p>
+<pre class="brush: php; title: ; notranslate">
+&lt;input type=&quot;hidden&quot; name=&quot;&lt;?php echo $this-&gt;security-&gt;csrf_token_name?&gt;&quot; value=&quot;&lt;?php echo $this-&gt;security-&gt;csrf_hash?&gt;&quot; /&gt;
+</pre>
+<p>滿方便的<br />
+另外還有一點就是<br />
+如果是用CI內建的form helper<br />
+在開啟csrf_protection時 會自動幫你加入這個token的值<br />
+我本身是沒有在用啦<br />
+如果有在用的人 就會比較方便囉 (或許根本就不會發現這個問題XD)<br />
+==================<br />
+以上是update的資訊<br />
+==================</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-csrf-protection-form-ajax/feed/</wfw:commentRss>
+		<slash:comments>14</slash:comments>
+		</item>
+	</channel>
+</rss>

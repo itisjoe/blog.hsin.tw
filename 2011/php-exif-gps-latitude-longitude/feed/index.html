@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>「PHP 取得EXIF中GPS的經緯度」的迴響</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/</link>
+	<description></description>
+	<lastBuildDate>Tue, 25 Jun 2019 01:03:19 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-50492</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Wed, 10 Dec 2014 08:12:18 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-50492</guid>
+		<description><![CDATA[你好
+如果原本資訊就只有小數點後兩位的話
+算出來就可能只有小數點後兩位
+
+或是試試看
+把 getGps() 裡有出現的 floor() 都拿掉
+可能會有比較精確的數字]]></description>
+		<content:encoded><![CDATA[<p>你好<br />
+如果原本資訊就只有小數點後兩位的話<br />
+算出來就可能只有小數點後兩位</p>
+<p>或是試試看<br />
+把 getGps() 裡有出現的 floor() 都拿掉<br />
+可能會有比較精確的數字</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hu</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-50427</link>
+		<dc:creator><![CDATA[hu]]></dc:creator>
+		<pubDate>Tue, 09 Dec 2014 09:01:13 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-50427</guid>
+		<description><![CDATA[您好我想问一下 关于经纬度的精度问题我得秒是保留小数点后两位的 我想获得 小数点后面的 8位怎样设置]]></description>
+		<content:encoded><![CDATA[<p>您好我想问一下 关于经纬度的精度问题我得秒是保留小数点后两位的 我想获得 小数点后面的 8位怎样设置</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-30192</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Fri, 15 Nov 2013 03:29:43 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-30192</guid>
+		<description><![CDATA[已修正 謝謝
+
+一直都沒發現
+真不好意思 orz]]></description>
+		<content:encoded><![CDATA[<p>已修正 謝謝</p>
+<p>一直都沒發現<br />
+真不好意思 orz</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：aiden</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-30191</link>
+		<dc:creator><![CDATA[aiden]]></dc:creator>
+		<pubDate>Fri, 15 Nov 2013 03:23:53 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-30191</guid>
+		<description><![CDATA[function gps2Num($coordPart)
+{
+  $parts = explode(&#039;/&#039;, $coordPart);
+ 
+  if(count($parts)) &#060;= 0)
+    return 0;
+  if(count($parts)) == 1)
+    return $parts[0];
+ 
+  return floatval($parts[0]) / floatval($parts[1]);
+}
+
+ if(count($parts)) &#060;= 0)
+ if(count($parts)) &#060;= 1)
+
+ 这两行都多打了“)”,会让新手抓狂的]]></description>
+		<content:encoded><![CDATA[<p>function gps2Num($coordPart)<br />
+{<br />
+  $parts = explode(&#8216;/&#8217;, $coordPart);</p>
+<p>  if(count($parts)) &lt;= 0)<br />
+    return 0;<br />
+  if(count($parts)) == 1)<br />
+    return $parts[0];</p>
+<p>  return floatval($parts[0]) / floatval($parts[1]);<br />
+}</p>
+<p> if(count($parts)) &lt;= 0)<br />
+ if(count($parts)) &lt;= 1)</p>
+<p> 这两行都多打了“)”,会让新手抓狂的</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-9265</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Thu, 02 Aug 2012 11:23:03 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-9265</guid>
+		<description><![CDATA[能幫上忙我很高興 :D]]></description>
+		<content:encoded><![CDATA[<p>能幫上忙我很高興 :D</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：徐小花</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-9264</link>
+		<dc:creator><![CDATA[徐小花]]></dc:creator>
+		<pubDate>Thu, 02 Aug 2012 10:54:06 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-9264</guid>
+		<description><![CDATA[好东西，帮助我解决了一个问题，O(∩_∩)O谢谢]]></description>
+		<content:encoded><![CDATA[<p>好东西，帮助我解决了一个问题，O(∩_∩)O谢谢</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-3285</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Tue, 03 May 2011 07:18:50 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-3285</guid>
+		<description><![CDATA[ok~~~]]></description>
+		<content:encoded><![CDATA[<p>ok~~~</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：Yang</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-3284</link>
+		<dc:creator><![CDATA[Yang]]></dc:creator>
+		<pubDate>Tue, 03 May 2011 07:00:34 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-3284</guid>
+		<description><![CDATA[已解決，謝謝你唷:) 收益良多]]></description>
+		<content:encoded><![CDATA[<p>已解決，謝謝你唷:) 收益良多</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：hsin</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-3241</link>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+		<pubDate>Sun, 01 May 2011 12:49:44 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-3241</guid>
+		<description><![CDATA[那就一步一步的往回trace
+如果是進gps2Num()函式的第一行印 就印不出來
+那就在進去之前
+印出給這個函式的變數
+ex:
+print_r($var);
+gps2Num($var);
+
+可以加入exit;來中斷程式
+看看到底有沒有值
+ex:
+print_r($array);
+exit;
+
+
+先把得到的$exif印出來(print_r())看看呢?
+裡面應該有很多東西]]></description>
+		<content:encoded><![CDATA[<p>那就一步一步的往回trace<br />
+如果是進gps2Num()函式的第一行印 就印不出來<br />
+那就在進去之前<br />
+印出給這個函式的變數<br />
+ex:<br />
+print_r($var);<br />
+gps2Num($var);</p>
+<p>可以加入exit;來中斷程式<br />
+看看到底有沒有值<br />
+ex:<br />
+print_r($array);<br />
+exit;</p>
+<p>先把得到的$exif印出來(print_r())看看呢?<br />
+裡面應該有很多東西</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>由：Yang</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/comment-page-1/#comment-3240</link>
+		<dc:creator><![CDATA[Yang]]></dc:creator>
+		<pubDate>Sun, 01 May 2011 12:13:09 +0000</pubDate>
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422#comment-3240</guid>
+		<description><![CDATA[不好意思又再次拜訪你。
+原本那個問題我解決了，原來是多一個&quot; ) &quot; 這個括弧
+*
+我後來照著你說用
+ex:
+function gps2Num($coordPart)
+{
+print_r($coordPart);
+$parts = explode(‘/’, $coordPart);
+print_r($parts);
+
+if(count($parts)) &#060;= 0)
+return 0;
+if(count($parts)) == 1)
+return $parts[0];
+
+return floatval($parts[0]) / floatval($parts[1]);
+}
+
+去印，卻什麼也印不出來...]]></description>
+		<content:encoded><![CDATA[<p>不好意思又再次拜訪你。<br />
+原本那個問題我解決了，原來是多一個&#8221; ) &#8221; 這個括弧<br />
+*<br />
+我後來照著你說用<br />
+ex:<br />
+function gps2Num($coordPart)<br />
+{<br />
+print_r($coordPart);<br />
+$parts = explode(‘/’, $coordPart);<br />
+print_r($parts);</p>
+<p>if(count($parts)) &lt;= 0)<br />
+return 0;<br />
+if(count($parts)) == 1)<br />
+return $parts[0];</p>
+<p>return floatval($parts[0]) / floatval($parts[1]);<br />
+}</p>
+<p>去印，卻什麼也印不出來&#8230;</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

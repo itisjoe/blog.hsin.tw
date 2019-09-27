@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>css &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/css/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>css 同一行同時要有置左跟置右的內容</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/css-float-left-float-right/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/css-float-left-float-right/#respond</comments>
+		<pubDate>Sat, 13 Jun 2009 16:23:03 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[css]]></category>
+		<category><![CDATA[html]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=288</guid>
+		<description><![CDATA[這是在某網站找到的用法 不知道是不是很普通的用法 但是我到今天才知道XD 首先先講一下我原本的用法 右邊 左邊 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這是在某網站找到的用法<br />
+<span id="more-288"></span><br />
+不知道是不是很普通的用法<br />
+但是我到今天才知道XD<br />
+首先先講一下我原本的用法</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;div style=&quot;width:300px;border:1px solid #c3c3c3;&quot;&gt;
+  &lt;div style=&quot;float:left;&quot;&gt;左邊 長的會像這樣&lt;/div&gt;
+  &lt;div style=&quot;float:right;&quot;&gt;右邊&lt;/div&gt;
+  &lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<div style="width:300px;border:1px solid #c3c3c3;">
+<div style="float:right;">右邊</div>
+<div style="float:left;">左邊 長的會像這樣</div>
+<div style="clear:both;"></div>
+</div>
+<p>其實是堪用的<br />
+<br />
+不過我找到的用法是這樣</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;div style=&quot;width:300px;border:1px solid #c3c3c3;&quot;&gt;
+  &lt;div style=&quot;float:right;&quot;&gt;右邊&lt;/div&gt;
+  &lt;div&gt;左邊 效果是這樣&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<div style="width:300px;border:1px solid #c3c3c3;">
+<div style="float:right;">右邊</div>
+<div>左邊 效果是這樣</div>
+</div>
+<p>兩個效果好像一樣喔<br />
+但是碼簡潔了不少<br />
+記上一筆~~~</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/css-float-left-float-right/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>CSS 幾個關於IE6下無法使用position:fixed;的解決辦法</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/css-ie6position-fixed/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/css-ie6position-fixed/#respond</comments>
+		<pubDate>Mon, 23 Mar 2009 11:35:22 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[css]]></category>
+		<category><![CDATA[html]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=181</guid>
+		<description><![CDATA[找了幾個可能有效的辦法 不過發現好像都需要取捨些什麼. . . 所以這個問題還是無解 整個是. .. 外星來的 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>找了幾個可能有效的辦法<br />
+<span id="more-181"></span><br />
+不過發現好像都需要取捨些什麼. . . <囧><br />
+所以這個問題還是無解<br />
+整個是. .. 外星來的IE6&#8230;&#8230;&#8230;.<br />
+下面列一下我找到的資訊</p>
+<p><a target="_blank" href="http://www.happinesz.cn/archives/991/">IE6 position:fixed bug (固定窗口方法)</a><br />
+<a target="_blank" href="http://dancewithnet.com/2007/04/19/cross-brower-css-fixed-position/">跨浏览器的CSS固定定位{position:fixed}</a><br />
+<a target="_blank" href="http://davidwalsh.name/css-fixed-position">CSS Fixed Positioning</a><br />
+<a target="_blank" href="http://tagsoup.com/cookbook/css/fixed/">position:fixed for Internet Explorer</a><br />
+<a target="_blank" href="http://www.gunlaug.no/contents/wd_additions_15.html">position: fixed in Internet Explorer</a><br />
+<a target="_blank" href="http://www.wowbox.com.tw/blog/article.asp?id=2357">讓你的頁面在ie6也能玩position:fixed</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/css-ie6position-fixed/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

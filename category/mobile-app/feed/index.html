@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Mobile App &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/mobile-app/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[Cordova] 在 Mac 裡將網站轉成可上架的 Andorid App</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/cordova-%e5%9c%a8-mac-%e8%a3%a1%e5%b0%87%e7%b6%b2%e7%ab%99%e8%bd%89%e6%88%90%e5%8f%af%e4%b8%8a%e6%9e%b6%e7%9a%84-andorid-app/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/cordova-%e5%9c%a8-mac-%e8%a3%a1%e5%b0%87%e7%b6%b2%e7%ab%99%e8%bd%89%e6%88%90%e5%8f%af%e4%b8%8a%e6%9e%b6%e7%9a%84-andorid-app/#respond</comments>
+		<pubDate>Fri, 01 Jul 2016 08:16:08 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Mobile App]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1089</guid>
+		<description><![CDATA[Google Play 圖書合作夥伴中心一直都不開放註冊 真是阿砸 只好暫時轉為做成 Android App  [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://play.google.com/books/publish/">Google Play 圖書合作夥伴中心</a>一直都不開放註冊 真是阿砸<br />
+<span id="more-1089"></span></p>
+<p>只好暫時轉為做成 Android App 使用</p>
+<p>直接將 GitBook 的線上閱讀版本網站 使用 Cordova 轉成 Android App</p>
+<p>因為這是事後才記錄轉換步驟 所以可能會有遺漏 未來有機會再做一次流程的話會再補充</p>
+<p>還有這是在 Mac 作業系統下的步驟 Windows 跟 Linux 應該也大同小異吧 我想</p>
+<p>▼ 安裝 Android Studio</p>
+<p>因為還是需要 Android 開發相關的 SDK</p>
+<p>所以首先要把<a href="https://developer.android.com/studio/index.html"> Android Studio </a>裝起來</p>
+<p>裝起來後 可以先開一個專案 並用模擬器跑一遍</p>
+<p>這樣可以將需要的 SDK (還有什麼 JDK )與模擬器需要的 AVD 都先裝起來 (這部份可能會花點時間下載)</p>
+<p>Android Studio 預設要求安裝的 SDK 可能跟 Cordova 要求的版本不同 目前前者要求 24 而後者只要 23 的就好</p>
+<p>如果電腦硬碟空間夠的話 就都裝了省事</p>
+<p>** 接著以下的指令都要打開終端機執行 **</p>
+<p>▼ 安裝 Cordova</p>
+<p>使用 npm 來安裝 Cordova (沒有 npm 的要先裝)</p>
+<pre class="brush: plain; title: ; notranslate">
+sudo npm install -g cordova
+</pre>
+<p>▼ 建立 Cordova 專案</p>
+<p>找到要建立專案的位置後 建立一個新的專案</p>
+<pre class="brush: plain; title: ; notranslate">
+cordova create swiftgo tw.hsin.swiftgo SwiftGo
+</pre>
+<p>cordova create 指令後面依序為 建立目錄名稱, 專案識別碼, 專案名稱</p>
+<p>▼ 增加支援的平台</p>
+<p>建立好專案後 接下來的指令都是在 swiftgo 目錄下執行</p>
+<p>這邊只要 android 的 所以只加入一個 其他 ios 等等平台就是一樣的指令</p>
+<pre class="brush: plain; title: ; notranslate">
+cordova platform add android
+</pre>
+<p>▼ 加入內容</p>
+<p>swiftgo 目錄下有一個 www 的目錄 就是放網站的地方</p>
+<p>將原先預設的內容都刪掉 並把做好的網站放進 www 目錄下即可</p>
+<p>▼ 設定應用程式</p>
+<p>swiftgo 目錄下有一個 config.xml 檔案 是用來設定應用程式的基本資訊</p>
+<p>其內可以將預設的 name, description, author, content 標籤內容改成應用程式的資訊</p>
+<p>還有依照<a href="https://cordova.apache.org/docs/en/latest/config_ref/images.html"> Cordova 的文件</a> 你還可以在 config.xml 中設置應用程式的圖示</p>
+<p>如果是以 android 來說 需要下列六種尺寸的 icon</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;platform name=&quot;android&quot;&gt;
+    &lt;!-- ldpi : 36x36 px mdpi : 48x48 px hdpi : 72x72 px xhdpi : 96x96 px xxhdpi : 144x144 px xxxhdpi : 192x192 px --&gt;
+    &lt;icon src=&quot;res/android/ldpi.png&quot; density=&quot;ldpi&quot; /&gt;
+    &lt;icon src=&quot;res/android/mdpi.png&quot; density=&quot;mdpi&quot; /&gt;
+    &lt;icon src=&quot;res/android/hdpi.png&quot; density=&quot;hdpi&quot; /&gt;
+    &lt;icon src=&quot;res/android/xhdpi.png&quot; density=&quot;xhdpi&quot; /&gt;
+    &lt;icon src=&quot;res/android/xxhdpi.png&quot; density=&quot;xxhdpi&quot; /&gt;
+    &lt;icon src=&quot;res/android/xxxhdpi.png&quot; density=&quot;xxxhdpi&quot; /&gt;
+&lt;/platform&gt;
+</pre>
+<p>上述的路徑 是以專案路徑為根目錄 所以如果要依照上面寫的圖示路徑</p>
+<p>就要在 swiftgo 目錄下新增 res/android 目錄</p>
+<p>並把六個檔案放在 res/android 目錄裡</p>
+<p>另外要上架的話 還需要準備一個 512&#215;512 的圖示檔案</p>
+<p>▼ 在模擬器中測試</p>
+<p>在 swiftgo 目錄下執行以下指令來測試</p>
+<pre class="brush: plain; title: ; notranslate">
+cordova emulate android
+</pre>
+<p>這時有可能會缺少 SDK 檔案</p>
+<p>就照他提示的把 android SDK manager 打開 並安裝缺少的 SDK 即可 (這部份可能會花點時間下載)</p>
+<p>▼ 生成可以在 google play 上架的 apk 檔案</p>
+<p>以下指令可以生成 release build 的 apk</p>
+<pre class="brush: plain; title: ; notranslate">
+cordova build --release android
+</pre>
+<p>但生成的 apk 檔案是未 sign 過 會無法安裝</p>
+<p>所以還需要在 platforms/android 目錄下</p>
+<p>建立一個名為 release-signing.properties 的文字檔 內容如下</p>
+<pre class="brush: plain; title: ; notranslate">
+storeFile=/Users/joefeng/Documents/swiftgo.keystore
+storeType=jks
+keyAlias=androidkeystore
+</pre>
+<p>三行依序為：</p>
+<p>storeFile ：稍後會建立的 keystore 檔案路徑 ( joefeng 為 Mac 使用者名稱)</p>
+<p>storeType ：keystore 類型</p>
+<p>keyAlias ：keystore 使用的別名</p>
+<p>▼ 建立 keystore 檔案</p>
+<p>如果尚未有 keystore 檔案的話要先建立</p>
+<p>先到上述設置好的目錄 /Users/joefeng/Documents/ 下</p>
+<p>使用 keytool 建立一個 keystore 指令如下</p>
+<pre class="brush: plain; title: ; notranslate">
+keytool -genkey -v -keystore swiftgo.keystore -alias androidkeystore -keyalg RSA -keysize 2048 -validity 10000
+</pre>
+<p>keytool -genkey -v 後的指令參數依序為：</p>
+<p>-keystore swiftgo.keystore ：keystore 名稱 必須與前述 release-signing.properties 中的 storeFile 相同</p>
+<p>-alias androidkeystore ： keystore 使用的別名 必須與前述 release-signing.properties 中的 keyAlias 相同</p>
+<p>-keyalg RSA ： keystore 的加密格式</p>
+<p>-keysize 2048 ： keystore 的長度</p>
+<p>-validity 10000 ：keystore 的有效天數 單位為日</p>
+<p>建立過程中會向你詢問設置基本資訊以及密碼</p>
+<p>建立完後再執行前一個步驟 release build 的指令 就可以開始建立</p>
+<p>這過程中會詢問建立 keystore 時設置的密碼</p>
+<p>建立成功後 會在 swiftgo 目錄下的 platforms/android/build/outputs/apk/android-release.apk 找到這個 apk 檔案</p>
+<p>就可以拿來到 google play 上架了</p>
+<p>ref :<br />
+http://ephrain.pixnet.net/blog/post/61172941<br />
+http://ephrain.pixnet.net/blog/post/61242961<br />
+http://blog.twtnn.com/2014/08/apache-cordova-35-keystoreapk.html<br />
+http://www.inote.tw/create-android-keystore-on-macos</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/cordova-%e5%9c%a8-mac-%e8%a3%a1%e5%b0%87%e7%b6%b2%e7%ab%99%e8%bd%89%e6%88%90%e5%8f%af%e4%b8%8a%e6%9e%b6%e7%9a%84-andorid-app/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iPhone APP] Simple Acc &#8211; 極輕量個人記帳軟體</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2014/iphone-app-simple-acc/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2014/iphone-app-simple-acc/#respond</comments>
+		<pubDate>Wed, 10 Dec 2014 08:22:02 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Mobile App]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=800</guid>
+		<description><![CDATA[給你的耶誕禮物!!&#160;2014/12/22 ~ 24&#160;限時免費中!!! iPhone 記帳軟 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><span style="color: #ffffff;font-size: 24pt;background-color: #ff0000">給你的耶誕禮物!!&nbsp;<span style="color: #ffffff;font-size: 32px;background-color: #ff0000">2014/12/22 ~ 24</span>&nbsp;限時免費中!!!</span></p>
+<p><em id="__mceDel"><span style="color: #000000;font-size: 18pt">iPhone 記帳軟體 -- Simple Acc</span></em></p>
+<p><em id="__mceDel"><span style="color: #000000;font-size: 18pt">售價： <span style="text-decoration: line-through">NT$60</span>&nbsp;<span style="color: #ffffff;background-color: #ff0000">限時免費中</span></span></em></p>
+<p><em><span style="color: #000000;font-size: 18pt">需要 iOS 8.0 或以上版本</span></em></p>
+<p><em id="__mceDel"><span style="text-decoration: underline"><span style="font-size: 18pt;color: #000000"><span style="color: #000000;text-decoration: underline"><a href="https://itunes.apple.com/tw/app/id946614690">https://itunes.apple.com/tw/app/id946614690</a></span></span></span><br /></em></p>
+<p><!-- more --><span id="more-800"></span></p>
+<p><span style="font-size: 18pt;color: #000000">簡單、快速、極輕量的個人記帳軟體&nbsp;</span></p>
+<p><span style="font-size: 18pt;color: #000000">簡化記帳步驟</span><br /><span style="font-size: 18pt;color: #000000">簡單上手</span><br /><span style="font-size: 18pt;color: #000000">具有密碼保護功能</span><br /><span style="font-size: 18pt;color: #000000">私人資料不外洩</span></p>
+<p><span style="font-size: 18pt;color: #000000">&nbsp;</span></p>
+<p><span style="font-size: 18pt;color: #000000">下面介紹一下使用方式 很簡單就能上手喔~</span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 進入 APP 後 首先會看到這頁 點選你要記錄的類別 就可以開始記帳囉</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/3t2N2l2.png" alt="01" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 記帳很容易 填入金額及事由 就可以點擊勾勾完成這筆記帳</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/bsevfde.png" alt="02" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 記帳時 點選 ▪▪▪ 就可以直接選擇這個類別最近使用的事由</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/i1wJ1NP.png" alt="03" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 完成一筆記帳後 會跑來圖表這頁 看看你的成果吧</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/wl3FHZl.png" alt="04" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 按下六個分類其中任一個圖示 就可以單獨看這分類的記錄喔</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/ZAUYD15.png" alt="05" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 選擇年、月、日 可以切換不同時間區間的記錄 也可以左右切換時間 或是直接點擊時間 選擇你要切換的時間</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/WYkj7EX.png" alt="06" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 如果要修改記錄 直接點選你要修改的那項 就會進入編輯頁面 點 X 可以刪除這筆記錄</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/U643Zro.png" alt="07" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 你可以設定開啟 APP 後 要開始於圖表頁或是記錄頁 當然最基本又最重要的密碼保護也是有的</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/sFOHTlA.png" alt="08" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> ▼ 開啟密碼保護後 每次進入 APP 都會向你詢問密碼 (支援 Touch ID )</span><br /><span style="font-size: 18pt;color: #000000"> <img src="http://i.imgur.com/ihhJcWz.png" alt="09" /></span></p>
+<p><span style="font-size: 18pt;color: #000000"> 歡迎試用看看 有任何問題跟指教</span></p>
+<p><span style="font-size: 18pt;color: #000000">也歡迎來我們的<a href="https://fb.me/SimpleAccApp"><span style="text-decoration: underline"><span style="color: #000000;text-decoration: underline"> FB 粉絲頁&nbsp;</span></span></a>看看</span></p>
+<p><span style="text-decoration: underline"><span style="font-size: 18pt;color: #000000"><a href="https://fb.me/SimpleAccApp"><span style="color: #000000;text-decoration: underline">https://fb.me/SimpleAccApp</span></a> </span></span></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2014/iphone-app-simple-acc/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iPhone APP] D3 Heroes 暗黑破壞神3 檢視英雄裝備</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2014/iphone-app-d3-heroes-%e6%9a%97%e9%bb%91%e7%a0%b4%e5%a3%9e%e7%a5%9e3-%e6%aa%a2%e8%a6%96%e8%8b%b1%e9%9b%84%e8%a3%9d%e5%82%99/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2014/iphone-app-d3-heroes-%e6%9a%97%e9%bb%91%e7%a0%b4%e5%a3%9e%e7%a5%9e3-%e6%aa%a2%e8%a6%96%e8%8b%b1%e9%9b%84%e8%a3%9d%e5%82%99/#respond</comments>
+		<pubDate>Tue, 08 Jul 2014 08:53:28 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iPhone]]></category>
+		<category><![CDATA[Mobile App]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=773</guid>
+		<description><![CDATA[https://itunes.apple.com/tw/app/d3-heroes-for-diablo-3/ [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://itunes.apple.com/tw/app/d3-heroes-for-diablo-3/id893065524" title="D3 Heroes">https://itunes.apple.com/tw/app/d3-heroes-for-diablo-3/id893065524</a><br />
+<span id="more-773"></span></p>
+<p>主要是提供給<strong>暗黑破壞神3</strong>的玩家使用<br />
+可以查詢自己英雄的裝備、技能跟追隨者</p>
+<p>所以如果沒在玩的話<br />
+就完全沒用了XD</p>
+<p>但還是可以下載安裝 支持一下 哈</p>
+<p>需要 iOS 7 以上的版本</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2014/iphone-app-d3-heroes-%e6%9a%97%e9%bb%91%e7%a0%b4%e5%a3%9e%e7%a5%9e3-%e6%aa%a2%e8%a6%96%e8%8b%b1%e9%9b%84%e8%a3%9d%e5%82%99/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Objective-C] 使用 arc4random 函式取亂數</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/objective-c-random-function-arc4random/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/objective-c-random-function-arc4random/#respond</comments>
+		<pubDate>Mon, 21 Jan 2013 11:57:11 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iPhone]]></category>
+		<category><![CDATA[Mobile App]]></category>
+		<category><![CDATA[iOS]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=675</guid>
+		<description><![CDATA[使用 arc4random() 取亂數 可以不用先設定亂數種子 還滿方便的 但因為他的範圍很大 所以可以用取餘 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>使用 arc4random() 取亂數 <span id="more-675"></span><br />
+可以不用先設定亂數種子<br />
+還滿方便的<br />
+但因為他的範圍很大<br />
+所以可以用取餘數(%)的方式來取得一個範圍內的正整數</p>
+<pre class="brush: cpp; title: ; notranslate">
+int random = arc4random() % 15;
+</pre>
+<p>這樣就會隨機取得 0~14的整數了</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/objective-c-random-function-arc4random/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iAPP] dodgeDodge 躲躲</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/dodgedodge/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/dodgedodge/#comments</comments>
+		<pubDate>Mon, 06 Aug 2012 09:37:11 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Mobile App]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=666</guid>
+		<description><![CDATA[http://itunes.apple.com/tw/app/dodgedodge/id529461399?m [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://itunes.apple.com/tw/app/dodgedodge/id529461399?mt=8">http://itunes.apple.com/tw/app/dodgedodge/id529461399?mt=8</a><br />
+<span id="more-666"></span><br />
+軟體分類：Games<br />
+適用韌體：iOS 5.0 以上<br />
+購買費用：免費</p>
+<p>躲開飛行中的隕石 是你唯一逃命的辦法！</p>
+<p>遊戲中可以利用累積的能量施展技能</p>
+<p>將朝向你飛去的隕石群炸掉</p>
+<p>或是像無敵星星般把隕石都吃光光</p>
+<p>總共有 4 位駕駛員 及 4 台飛船 可供選用</p>
+<p>各自的能力如何 當然要靠你自己去了解啦！</p>
+<p><img alt="1" src="http://a5.mzstatic.com/us/r1000/063/Purple/v4/4b/3e/99/4b3e9903-d3ca-01ee-806c-6bec6f639ff1/mza_796628208112409789.320x480-75.jpg" class="alignnone" width="480" height="320" /></p>
+<p><img alt="2" src="http://a3.mzstatic.com/us/r1000/062/Purple/v4/3e/ee/2c/3eee2cb3-c73d-786b-7144-857c8e3ab391/mza_4888682135879735533.320x480-75.jpg" width="480" height="320" /></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/dodgedodge/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>[iAPP] paperNote 隨意記事</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/papernote/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/papernote/#respond</comments>
+		<pubDate>Mon, 21 May 2012 12:00:07 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Mobile App]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=608</guid>
+		<description><![CDATA[http://itunes.apple.com/tw/app/papernote/id518916699?mt [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://itunes.apple.com/tw/app/papernote/id518916699?mt=8">http://itunes.apple.com/tw/app/papernote/id518916699?mt=8</a><br />
+<span id="more-608"></span><br />
+軟體分類：Productivity<br />
+適用韌體：iOS 5.0 以上<br />
+購買費用：免費</p>
+<p>1分鐘Demo影片<br />
+
+<!-- iframe plugin v.4.3 wordpress.org/plugins/iframe/ -->
+<iframe src="http://www.youtube.com/embed/ewmykeC7xpw" width="560" height="315" scrolling="yes" class="iframe-class" frameborder="0"></iframe>
+</p>
+<p>在畫面上任何地方點兩下即可開始記事</p>
+<p>沒有條列式的標題列表</p>
+<p>所有記事全部攤開 一目了然</p>
+<p>如果是比較重要的記事 可以加上標籤</p>
+<p>加上標籤後 畫面邊緣會有箭頭指示該筆記事的位置</p>
+<p>點擊箭頭圖示 就會自動滑過去</p>
+<p>這個app很迷你 所以不能改顏色 不能畫圖 不能用Email寄出去</p>
+<p>單純就是記事而已 推薦給有需要的人</p>
+<p>小弟的首發app 有任何問題歡迎留言回應~</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/papernote/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

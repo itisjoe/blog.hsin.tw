@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>checkbox &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/checkbox/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>javascript 控制checkbox的全選與全取消</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-checkbox/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-checkbox/#comments</comments>
+		<pubDate>Sat, 20 Dec 2008 17:29:38 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[checkbox]]></category>
+		<category><![CDATA[html]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=3</guid>
+		<description><![CDATA[checkbox的全選跟全取消 這是js的部份 因為我server端是使用php 所以下面是php處理值的方法 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>checkbox的全選跟全取消<br />
+<span id="more-5"></span></p>
+<p>這是js的部份</p>
+<pre class="brush: jscript; title: ; notranslate">
+function checkall(num,maj)
+{
+var tag = 'dep[' + num +'][]';
+var switch_checked = maj.checked;
+var len = document.exp_form.elements.length;
+for (var i = 0; i &lt; len; i++)
+{
+if (document.exp_form.elements&amp;#91;i&amp;#93;.name == tag)
+document.exp_form.elements&amp;#91;i&amp;#93;.checked = switch_checked;
+}
+}
+&amp;#91;/sourcecode&amp;#93;
+
+這是html的部份
+
+&amp;#91;sourcecode lang='html'&amp;#93;
+&lt;form action=&quot;#&quot; name=&quot;exp_form&quot; method=&quot;post&quot;&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;depall0&quot; onclick=&quot;checkall(0,this);&quot;&gt;全選a&lt;br /&gt;
+&lt;input name=&quot;dep&amp;#91;0&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;a1&quot;&gt;a1
+&lt;input name=&quot;dep&amp;#91;0&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;a2&quot;&gt;a2
+&lt;input name=&quot;dep&amp;#91;0&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;a3&quot;&gt;a3 &lt;br /&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;depall1&quot; onclick=&quot;checkall(1,this);&quot;&gt;全選b&lt;br /&gt;
+&lt;input name=&quot;dep&amp;#91;1&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;b1&quot;&gt;b1
+&lt;input name=&quot;dep&amp;#91;1&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;b2&quot;&gt;b2
+&lt;input name=&quot;dep&amp;#91;1&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;b3&quot;&gt;b3 &lt;br /&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;depall2&quot; onclick=&quot;checkall(2,this);&quot;&gt;全選c&lt;br /&gt;
+&lt;input name=&quot;dep&amp;#91;2&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;c1&quot;&gt;c1
+&lt;input name=&quot;dep&amp;#91;2&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;c2&quot;&gt;c2
+&lt;input name=&quot;dep&amp;#91;2&amp;#93;&amp;#91;&amp;#93;&quot; type=&quot;checkbox&quot; value=&quot;c3&quot;&gt;c3
+&lt;/form&gt;
+</pre>
+<p>因為我server端是使用php 所以下面是php處理值的方法</p>
+<p>for($_i=0;$_i<3;$_i++)
+{
+for($_j=0;$_j<count($_POST['dep'][$_i]);$_j++ )
+{
+echo $_POST['dep'][$_i][$_j];
+}
+}
+[/sourcecode]
+
+<a href="http://ex.hsin.tw/exp01.php" target="_blank">這裡可以看範例</a></p>
+<p>這個是可以全選不只一類的</p>
+<p>如果只要全選全部的checkbox</p>
+<p>就可以再簡化一點囉</p>
+<p>可以自己研究看看～</p>
+<p>高手跟前輩們鞭小力一點XD</p>
+<p>如果有更好的用法希望不吝指教 謝謝～</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-checkbox/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+	</channel>
+</rss>

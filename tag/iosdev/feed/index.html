@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>iosdev &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/iosdev/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[電子書] Swift 起步走 更新至 Swift 3.0</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/%e9%9b%bb%e5%ad%90%e6%9b%b8-swift-%e8%b5%b7%e6%ad%a5%e8%b5%b0-%e6%9b%b4%e6%96%b0%e8%87%b3-swift-3-0/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/%e9%9b%bb%e5%ad%90%e6%9b%b8-swift-%e8%b5%b7%e6%ad%a5%e8%b5%b0-%e6%9b%b4%e6%96%b0%e8%87%b3-swift-3-0/#respond</comments>
+		<pubDate>Tue, 25 Oct 2016 04:32:04 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iosdev]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1162</guid>
+		<description><![CDATA[Swift 3.0 在 2016 年 9 月底推出正式版 隨即便開始進行電子書的更新 其實比我想像中的要麻煩些 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Swift 3.0 在 2016 年 9 月底推出正式版<br />
+<span id="more-1162"></span></p>
+<p>隨即便開始進行電子書的更新</p>
+<p>其實比我想像中的要麻煩些 幾乎是每個章節都要修正的狀況</p>
+<p>花了大概三個禮拜的時間 終於更新完畢</p>
+<p>也一併更新至 <a href="http://bit.ly/29niTXU">Readmoo</a>、<a href="http://bit.ly/29aXCoe">Leanpub</a>、<a href="http://bit.ly/29njOYt">GitBook</a></p>
+<p>GitBook 的 v1.1.0 ( Swift 3.0 ) 內容會提供至 2016 年 11 月底</p>
+<p>2016 年 12 月之後 會調整為 v1.0.2 ( Swift 2.2 )</p>
+<p>而 Readmoo 及 Leanpub 則一直會是最新版本</p>
+<p>另外也花了一點時間做了一個簡單的 <a href="https://hsin.tw/swift-book/">Landing Page</a></p>
+<p>裡面有購書及 FB 專頁的連結</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/%e9%9b%bb%e5%ad%90%e6%9b%b8-swift-%e8%b5%b7%e6%ad%a5%e8%b5%b0-%e6%9b%b4%e6%96%b0%e8%87%b3-swift-3-0/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] 使用 UIImagePickerController 取得相簿照片</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-uiimagepickercontroller-get-photoalbum/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-uiimagepickercontroller-get-photoalbum/#respond</comments>
+		<pubDate>Thu, 17 Dec 2015 06:10:39 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iosdev]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1051</guid>
+		<description><![CDATA[內建的取得相簿功能 已經可以滿足一般只是要拿照片的需求 ▼ 首先在 .h 檔案中加入 delegate 以及詢 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>內建的取得相簿功能 已經可以滿足一般只是要拿照片的需求<br />
+<span id="more-1051"></span><br />
+▼ 首先在 .h 檔案中加入 delegate<br />
+以及詢問相簿權限的 Photos library ( iOS9 以上)</p>
+<pre class="brush: cpp; title: ; notranslate">
+#import &lt;UIKit/UIKit.h&gt;
+@import Photos;
+@interface ViewController : UIViewController &lt;UINavigationControllerDelegate, UIImagePickerControllerDelegate&gt;
+@end
+</pre>
+<p>▼ 開啟相簿功能</p>
+<pre class="brush: cpp; title: ; notranslate">
+//建立一個ImagePickerController
+UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+
+// 設定影像來源 這裡設定為相簿
+imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+// 設置 delegate
+imagePicker.delegate = self;
+
+// 設定選完照片後可以編輯
+imagePicker.allowsEditing = YES;
+    
+// 顯示相簿
+[self presentViewController:imagePicker animated:YES completion:nil];
+
+</pre>
+<p>上面顯示相簿後 就會進入內建的相簿介面<br />
+接著選完照片後 如果 allowsEditing = YES 有設定<br />
+還會有一個編輯的步驟<br />
+▼ 完成後會帶著圖片返回 使用下面這個 delegate method</p>
+<pre class="brush: cpp; title: ; notranslate">
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    // 取得編輯後的圖片 UIImage
+    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (img == nil) {
+        // 如果沒有編輯 則是取得原始拍照的照片 UIImage
+        img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+    
+    // 再來就是對圖片的處理 img 是一個 UIImage
+    imgView.image = img;
+    
+    //移除Picker
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+</pre>
+<p>▼ iOS 9 之後 詢問相簿權限改成使用 PHPhotoLibrary</p>
+<pre class="brush: cpp; title: ; notranslate">
+PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+if ( status == PHAuthorizationStatusNotDetermined ) {
+    // 尚未詢問使用者權限
+} else if ( status == PHAuthorizationStatusRestricted ) {
+    // restricted, 通常不會發生
+} else if ( status == PHAuthorizationStatusDenied ) {
+    // 使用者拒絕提供權限
+} else if ( status == PHAuthorizationStatusAuthorized ) {
+    // 已取得使用者權限
+}
+</pre>
+<p>不過因為如果沒有取得權限<br />
+進到原先要顯示相簿列表的地方<br />
+會改成顯示 &#8220;提示使用者到 設定&gt;隱私權 打開權限&#8221; 的字樣<br />
+所以我作的話是偷懶沒有設置確認權限XD</p>
+<p>▼ 以上都設定完後 相簿介面應該是預設的英文<br />
+如果相簿介面要設定多國語系 需要對 info.plist 作多國語系的處理<br />
+詳細可參考 <a href="https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-localize-info-plist-infoplist-strings/">Localize info.plist 多國語系 InfoPlist.strings</a></p>
+<p>我製作了一個 相簿 demo app 放在 <a href="https://github.com/itisjoe/PhotoAlbumDemo">github</a></p>
+<p>ref:<br />
+https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-uiimagepickercontroller-get-photoalbum/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] 利用 UIImagePickerController 使用相機拍照</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-uiimagepickercontroller-cemera/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-uiimagepickercontroller-cemera/#respond</comments>
+		<pubDate>Wed, 16 Dec 2015 07:26:54 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iosdev]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1046</guid>
+		<description><![CDATA[如果只是要有拍照功能 沒有特別客製化拍照介面需求 可以直接使用內建的功能 ▼ 首先在 .h 檔案中加入 del [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>如果只是要有拍照功能 沒有特別客製化拍照介面需求<br />
+可以直接使用內建的功能<br />
+<span id="more-1046"></span></p>
+<p>▼ 首先在 .h 檔案中加入 delegate 以及詢問相機權限需要的 AVFoundation</p>
+<pre class="brush: cpp; title: ; notranslate">
+#import &lt;UIKit/UIKit.h&gt;
+#import &lt;AVFoundation/AVFoundation.h&gt;
+@interface ViewController : UIViewController &lt;UINavigationControllerDelegate, UIImagePickerControllerDelegate&gt;
+@end
+</pre>
+<p>▼ 開啟相機功能</p>
+<pre class="brush: cpp; title: ; notranslate">
+//建立一個ImagePickerController
+UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+
+// 設定影像來源 這裡設定為相機
+imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
+
+// 設置 delegate
+imagePicker.delegate = self;
+
+// 設置拍照完後 可以編輯 會多一個編輯照片的步驟
+imagePicker.allowsEditing = YES;
+
+// 顯示相機功能        
+[self presentViewController:imagePicker animated:YES completion:nil];
+
+</pre>
+<p>上面顯示相機功能後<br />
+接著就是內建的介面了 拍照 -&gt; 編輯(如果有設定 allowsEditing 的話)<br />
+然後會帶著照片返回頁面<br />
+▼ 最後需要有這個 delegate method 來處理</p>
+<pre class="brush: cpp; title: ; notranslate">
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
+    // 取得編輯後的圖片 UIImage
+    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (img == nil) {
+        // 如果沒有編輯 則是取得原始拍照的照片 UIImage
+        img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+
+    // 再來就是對圖片的處理 img 是一個 UIImage
+
+    //移除Picker
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+</pre>
+<p>▼ 現在要使用相機會先向使用者要求權限 會遇到的權限如下</p>
+<pre class="brush: cpp; title: ; notranslate">
+AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+if(authStatus == AVAuthorizationStatusAuthorized) {
+  // 已取得使用者權限
+} else if(authStatus == AVAuthorizationStatusDenied){
+  // 使用者拒絕提供權限 可以作提示到設定中開啟
+} else if(authStatus == AVAuthorizationStatusRestricted){
+  // restricted, 通常不會發生
+} else if(authStatus == AVAuthorizationStatusNotDetermined){
+  // 尚未詢問要求權限 則提一個詢問
+  [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+    if(granted){
+      NSLog(@&quot;Granted access to %@&quot;, mediaType);
+    } else {
+      NSLog(@&quot;Not granted access to %@&quot;, mediaType);
+    }
+  }];
+}
+</pre>
+<p>▼ 以上都設定完後 相機介面應該是預設的英文<br />
+如果相機介面要設定多國語系 需要對 info.plist 作多國語系的處理<br />
+詳細可參考 <a href="https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-localize-info-plist-infoplist-strings/">Localize info.plist 多國語系 InfoPlist.strings</a></p>
+<p>因為模擬器沒有相機功能 所以只能使用實機測試</p>
+<p>我製作了一個 相機 demo app 放在 <a href="https://github.com/itisjoe/CameraDemo">github</a></p>
+<p>ref:<br />
+http://furnacedigital.blogspot.tw/2011/12/uiimagepickercontroller-camera.html<br />
+http://stackoverflow.com/questions/20464631/detect-permission-of-camera-in-ios</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-uiimagepickercontroller-cemera/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] 使用 ContactsUI 取得聯絡人資訊</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-contactsui-get-contact/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-contactsui-get-contact/#comments</comments>
+		<pubDate>Tue, 15 Dec 2015 09:17:50 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iosdev]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1040</guid>
+		<description><![CDATA[iOS9 之後提供了新的通訊錄 framework : Contacts.framework 跟 Contac [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>iOS9 之後提供了新的通訊錄 framework : Contacts.framework 跟 ContactsUI.framework<br />
+<span id="more-1040"></span><br />
+Contacts.framework 沒有 UI 需要自己建立介面<br />
+ContactsUI.framework 則提供了與內建通訊錄一樣的介面 沒有特別需求的話用這個即可</p>
+<p>這邊介紹 ContactsUI.framework 的用法</p>
+<p>首先要先引入 ContactsUI.framework 並加入 delegate<br />
+▼ 在 .h 檔案中</p>
+<pre class="brush: cpp; title: ; notranslate">
+#import &lt;UIKit/UIKit.h&gt;
+@import ContactsUI;
+@interface ViewController : UIViewController &lt;CNContactPickerDelegate&gt;
+@end
+</pre>
+<p>▼ 開啟通訊錄聯絡人列表</p>
+<pre class="brush: cpp; title: ; notranslate">
+// init
+CNContactPickerViewController * picker = [[CNContactPickerViewController alloc]init];
+
+// 設置 delegate
+picker.delegate = self;
+
+// 限制顯示的聯絡人屬性 只取得電話號碼
+picker.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
+
+// 僅影響多選聯絡人的 delegate methods
+picker.predicateForSelectionOfProperty = [NSPredicate predicateWithFormat:@&quot;(key == 'emailAddresses') OR (key == 'phoneNumbers')&quot;];
+
+// 顯示聯絡人列表
+[self presentViewController:picker animated:YES completion:nil];
+</pre>
+<p>▼ delegate 主要有以下五個 methods 可以實作</p>
+<pre class="brush: cpp; title: ; notranslate">
+// 按下畫面右上角的取消時會觸發
+- (void)contactPickerDidCancel:(CNContactPickerViewController *)picker {
+}
+
+/*
+ * 單選 聯絡人
+*/
+
+// 在聯絡人列表時 點選其中一個聯絡人時會觸發
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(nonnull CNContact *)contact {
+}
+
+// 在聯絡人內容頁面時 點選其中一個屬性時會觸發
+- (void)contactPicker:(CNContactPickerViewController *)picker  didSelectContactProperty:(CNContactProperty *)contactProperty {
+}
+
+/*
+ * 多選 聯絡人
+*/
+
+// 在聯絡人列表時 選取多個聯絡人時候觸發
+// 會與前面說的 predicateForSelectionOfProperty 設定的條件比對 有符合才會取得
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray&lt;CNContact *&gt; *)contacts {
+    for (CNContact *contact in contacts) {
+        // phone number
+        NSLog(@&quot;%@&quot;,contact.phoneNumbers.firstObject.value.stringValue);
+        
+        // email
+        NSLog(@&quot;%@&quot;,contact.emailAddresses.firstObject.value);
+    }
+}
+
+// 在聯絡人列表時 選取多個聯絡人時候觸發 
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperties:(NSArray&lt;CNContactProperty *&gt; *)contactProperties {
+}
+
+</pre>
+<p>後面四個 methods 只需要實作一個就好<br />
+如果多選跟單選同時實作 單選會被忽略</p>
+<p>▼ 這邊介紹單選聯絡人屬性時的 method</p>
+<pre class="brush: cpp; title: ; notranslate">
+// 在聯絡人內容頁面時 點選其中一個屬性時會觸發
+- (void)contactPicker:(CNContactPickerViewController *)picker  didSelectContactProperty:(CNContactProperty *)contactProperty {
+    // 這是點選的電話號碼
+    CNPhoneNumber *thisnumber = contactProperty.value;
+    // 轉成 NSString
+    NSString *phoneNumber = thisnumber.stringValue;
+
+    // 這位聯絡人的資訊
+    CNContact *contact = contactProperty.contact;
+    /* contact 中有很多資訊 其中幾項如下
+        // 姓 NSString
+        contact.familyName  
+        // 名 NSString
+        contact.givenName
+        // 是否有照片 BOOL
+        contact.imageDataAvailable 
+        // 照片 NSData
+        contact.imageData 
+    */
+}
+</pre>
+<p>我製作了一個 demo app 放在 <a href="https://github.com/itisjoe/ContactsUIDemo">github</a><br />
+功能如下<br />
+點選[從通訊錄取得]按鈕後 會開啟預設的通訊錄聯絡人列表介面<br />
+點選一個聯絡人後 會進入該聯絡人詳細內容頁 (只顯示電話號碼)<br />
+點選其中一個電話號碼後 會返回頁面<br />
+並顯示姓名, 電話, 照片(如果有的話)</p>
+<p>ref:<br />
+http://m.blog.csdn.net/blog/Mamong/49623051</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-contactsui-get-contact/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] Localize info.plist 多國語系 InfoPlist.strings</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-localize-info-plist-infoplist-strings/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-localize-info-plist-infoplist-strings/#comments</comments>
+		<pubDate>Fri, 11 Dec 2015 16:51:25 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iosdev]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1029</guid>
+		<description><![CDATA[多年以來(?)的疑惑終於解開 首先開一個新專案 File &#62; New &#62; Project… 選擇  [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>多年以來(?)的疑惑終於解開<br />
+<span id="more-1029"></span><br />
+首先開一個新專案<br />
+<strong>File &gt; New &gt; Project…</strong><br />
+選擇 <strong>iOS &gt; Application &gt; Single View Application</strong></p>
+<p>▼ 接著新增一個檔案 (位置都可以 我是放在最外面的目錄)<br />
+<strong>File &gt; New &gt; File…</strong><br />
+接著在 <strong>iOS &gt; Resource</strong> 選擇 <strong>Strings File</strong><br />
+<img src="http://img.hsin.tw/201512/02.png"></p>
+<p>▼ 檔名取作 <strong>InfoPlist</strong> (一定要這名字 大小寫也必須一樣)<br />
+Targets 選擇要使用的 target<br />
+(像如果有 widget 就可以依需求選擇主 app 跟 widget 的 target )<br />
+<img src="http://img.hsin.tw/201512/03.png"></p>
+<p>▼ 接著開啟這個檔案 (副檔名會是 strings 所以在左邊列表中會是 InfoPlist.strings )<br />
+先填入 設定 app 名字</p>
+<pre class="brush: cpp; title: ; notranslate">
+&quot;CFBundleDisplayName&quot; = &quot;English Name&quot;;
+</pre>
+<p>等號左邊就是 info.plist 中會出現可以設定的名稱 右邊則是要顯示的名稱<br />
+可以設定的名稱可以看這 <a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html">Core Foundation Keys</a><br />
+<img src="http://img.hsin.tw/201512/04.png"></p>
+<p>▼ 接著拉開右邊側邊欄 點擊右方的 Localize&#8230; 按鈕 如下圖位置<br />
+<img src="http://img.hsin.tw/201512/05.png"></p>
+<p>▼ 會詢問要把原本的檔案轉成哪一個 我是選擇 Base (也就是預設的語言 English)<br />
+<img src="http://img.hsin.tw/201512/06.png"></p>
+<p>▼ 完成後 右側欄的 Localization 就會出現目前有的語言<br />
+<img src="http://img.hsin.tw/201512/07.png"></p>
+<p>▼ 接著要新增需要的語言 左側欄位點選專案 選擇 PROJECT 裡的專案名稱 注意是在 Info 頁籤裡面<br />
+下面有一個 Localizations 點擊加號選擇要的語言<br />
+我這邊是選擇 Chinese (Traditional, Taiwan) 在 other 裡面<br />
+<img src="http://img.hsin.tw/201512/08.png"></p>
+<p>▼ 再來會問你哪些檔案要 localize 可以看到剛剛建立的檔案 InfoPlist.strings 也在裡面<br />
+<img src="http://img.hsin.tw/201512/09.png"></p>
+<p>▼ 完成後 就可以看到左側欄裡的 InfoPlist.strings 變成了兩個檔案了 (看有幾個語言就會有幾個檔案)<br />
+<img src="http://img.hsin.tw/201512/10.png"></p>
+<p>▼ 接著就依序修改需要的文字 下圖即是改成中文名稱<br />
+<img src="http://img.hsin.tw/201512/11.png"></p>
+<p>這樣就完成了<br />
+可以開始編譯測試看看<br />
+記得最好先 Clean ( Product &gt; Clean ) 並把原先裝在手機(或模擬器)上的 app 刪掉</p>
+<p>示範 app 放在 <a href="https://github.com/itisjoe/LangDemo">github</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-localize-info-plist-infoplist-strings/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+	</channel>
+</rss>

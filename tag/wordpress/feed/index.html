@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>wordpress &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/wordpress/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>WooCommerce 訂單顯示自定義文字 以綠界超商取貨門市資訊為例</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e8%a8%82%e5%96%ae%e9%a1%af%e7%a4%ba%e8%87%aa%e5%ae%9a%e7%be%a9%e6%96%87%e5%ad%97-%e4%bb%a5%e7%b6%a0%e7%95%8c%e8%b6%85%e5%95%86%e5%8f%96%e8%b2%a8%e9%96%80%e5%b8%82%e8%b3%87%e8%a8%8a/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e8%a8%82%e5%96%ae%e9%a1%af%e7%a4%ba%e8%87%aa%e5%ae%9a%e7%be%a9%e6%96%87%e5%ad%97-%e4%bb%a5%e7%b6%a0%e7%95%8c%e8%b6%85%e5%95%86%e5%8f%96%e8%b2%a8%e9%96%80%e5%b8%82%e8%b3%87%e8%a8%8a/#comments</comments>
+		<pubDate>Thu, 06 Jul 2017 07:31:43 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[woocommerce]]></category>
+		<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1223</guid>
+		<description><![CDATA[使用外掛後 有時候會需要在訂單顯示額外的資訊 這邊以綠界超商取貨門市資訊為例 依序介紹在 1. 管理者後台的訂 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>使用外掛後 有時候會需要在訂單顯示額外的資訊<br />
+<span id="more-1223"></span></p>
+<p>這邊以綠界超商取貨門市資訊為例<br />
+依序介紹在<br />
+1. 管理者後台的訂單詳細頁面<br />
+2. 使用者前台的訂單詳細頁面<br />
+3. 使用者收到的訂單 email<br />
+顯示自定義文字</p>
+<p>如果這筆訂單是使用超商取貨<br />
+每筆訂單會多出四個資訊<br />
+_purchaserStore ： 門市名稱<br />
+_purchaserAddress ： 門市地址<br />
+_purchaserPhone ： 門市電話<br />
+_CVSStoreID ： 門市店號</p>
+<p>或是有可能為開頭是 _shipping 的資訊<br />
+_shipping_purchaserStore ： 門市名稱<br />
+_shipping_purchaserAddress ： 門市地址<br />
+_shipping_purchaserPhone ： 門市電話<br />
+_shipping_CVSStoreID ： 門市店號</p>
+<p>可以使用以下方式依據訂單編號取得</p>
+<pre class="brush: php; title: ; notranslate">
+$_purchaserStore = (array_key_exists('_shipping_purchaserStore', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserStore', true ) : get_post_meta( $order-&gt;id, '_purchaserStore', true );
+
+</pre>
+<p>接著就是在 wp-includes/functions.php 中加入以下程式</p>
+<pre class="brush: php; title: ; notranslate">
+// 後台訂單詳細頁面 顯示超商取貨門市資訊
+function my_custom_field_admin_info( $order ){
+    $_purchaserStore = (array_key_exists('_shipping_purchaserStore', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserStore', true ) : get_post_meta( $order-&gt;id, '_purchaserStore', true );
+    if( !empty($_purchaserStore) ){  
+        $ecPay_shipping = get_post_meta( $order-&gt;id, 'ecPay_shipping', true );
+        $shop_type = $ecPay_shipping;
+        if ($ecPay_shipping == 'UNIMART' || $ecPay_shipping == 'UNIMART_Collection') {
+            $shop_type = '7-11';
+        } else if ($ecPay_shipping == 'FAMI' || $ecPay_shipping == 'FAMI_Collection') {
+            $shop_type = '全家';
+        } else if ($ecPay_shipping == 'HILIFE' || $ecPay_shipping == 'HILIFE_Collection') {
+            $shop_type = '萊爾富';
+        }
+
+        $_purchaserAddress = (array_key_exists('_shipping_purchaserAddress', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserAddress', true ) : get_post_meta( $order-&gt;id, '_purchaserAddress', true );
+        $_purchaserPhone = (array_key_exists('_shipping_purchaserPhone', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserPhone', true ) : get_post_meta( $order-&gt;id, '_purchaserPhone', true );
+        $_CVSStoreID = (array_key_exists('_shipping_CVSStoreID', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_CVSStoreID', true ) : get_post_meta( $order-&gt;id, '_CVSStoreID', true );
+
+        echo '&lt;h4&gt;門市資訊&lt;/h4&gt;';
+        echo &quot;&lt;p&gt;&quot;. $shop_type .&quot;&amp;nbsp;&quot;.$_purchaserStore.&quot; (&quot;.$_CVSStoreID .&quot;)&lt;/p&gt;&quot;;
+        echo &quot;&lt;p&gt;門市地址： &quot;.$_purchaserAddress .&quot;&lt;/p&gt;&quot;;
+        if (!empty($_purchaserPhone)) {
+            echo &quot;&lt;p&gt;門市電話： &quot;.$_purchaserPhone .&quot;&lt;/p&gt;&quot;;
+        }
+    }
+}
+
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'my_custom_field_admin_info' );
+
+
+// 前台 使用者 訂單詳細頁面 顯示超商取貨門市資訊
+function my_custom_field_display_on_order_received( $order ){
+    $_purchaserStore = (array_key_exists('_shipping_purchaserStore', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserStore', true ) : get_post_meta( $order-&gt;id, '_purchaserStore', true );
+    if( !empty($_purchaserStore) ){  
+        $ecPay_shipping = get_post_meta( $order-&gt;id, 'ecPay_shipping', true );
+        $shop_type = $ecPay_shipping;
+        if ($ecPay_shipping == 'UNIMART' || $ecPay_shipping == 'UNIMART_Collection') {
+            $shop_type = '7-11';
+        } else if ($ecPay_shipping == 'FAMI' || $ecPay_shipping == 'FAMI_Collection') {
+            $shop_type = '全家';
+        } else if ($ecPay_shipping == 'HILIFE' || $ecPay_shipping == 'HILIFE_Collection') {
+            $shop_type = '萊爾富';
+        }
+
+        $_purchaserAddress = (array_key_exists('_shipping_purchaserAddress', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserAddress', true ) : get_post_meta( $order-&gt;id, '_purchaserAddress', true );
+        $_purchaserPhone = (array_key_exists('_shipping_purchaserPhone', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserPhone', true ) : get_post_meta( $order-&gt;id, '_purchaserPhone', true );
+        $_CVSStoreID = (array_key_exists('_shipping_CVSStoreID', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_CVSStoreID', true ) : get_post_meta( $order-&gt;id, '_CVSStoreID', true );
+
+        echo '&lt;h2&gt;超商取貨門市資訊&lt;/h2&gt;';
+        echo &quot;&lt;p&gt;&quot;. $shop_type .&quot;&amp;nbsp;&quot;.$_purchaserStore.&quot; (&quot;.$_CVSStoreID .&quot;)&lt;/p&gt;&quot;;
+        echo &quot;&lt;p&gt;門市地址： &quot;.$_purchaserAddress .&quot;&lt;/p&gt;&quot;;
+        if (!empty($_purchaserPhone)) {
+            echo &quot;&lt;p&gt;門市電話： &quot;.$_purchaserPhone .&quot;&lt;/p&gt;&quot;;
+        }
+    }
+}
+
+add_action('woocommerce_order_details_after_order_table', 'my_custom_field_display_on_order_received' );
+
+
+// 訂單 email 顯示超商取貨門市資訊
+function my_custom_field_order_email( $order, $sent_to_admin ){
+    $_purchaserStore = (array_key_exists('_shipping_purchaserStore', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserStore', true ) : get_post_meta( $order-&gt;id, '_purchaserStore', true );
+    if( !empty($_purchaserStore) ){  
+        $ecPay_shipping = get_post_meta( $order-&gt;id, 'ecPay_shipping', true );
+        $shop_type = $ecPay_shipping;
+        if ($ecPay_shipping == 'UNIMART' || $ecPay_shipping == 'UNIMART_Collection') {
+            $shop_type = '7-11';
+        } else if ($ecPay_shipping == 'FAMI' || $ecPay_shipping == 'FAMI_Collection') {
+            $shop_type = '全家';
+        } else if ($ecPay_shipping == 'HILIFE' || $ecPay_shipping == 'HILIFE_Collection') {
+            $shop_type = '萊爾富';
+        }
+
+        $_purchaserAddress = (array_key_exists('_shipping_purchaserAddress', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserAddress', true ) : get_post_meta( $order-&gt;id, '_purchaserAddress', true );
+        $_purchaserPhone = (array_key_exists('_shipping_purchaserPhone', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_purchaserPhone', true ) : get_post_meta( $order-&gt;id, '_purchaserPhone', true );
+        $_CVSStoreID = (array_key_exists('_shipping_CVSStoreID', get_post_meta($order-&gt;id))) ? get_post_meta( $order-&gt;id, '_shipping_CVSStoreID', true ) : get_post_meta( $order-&gt;id, '_CVSStoreID', true );
+
+        echo '&lt;h2&gt;超商取貨門市資訊&lt;/h2&gt;';
+        echo &quot;&lt;p&gt;&quot;. $shop_type .&quot;&amp;nbsp;&quot;.$_purchaserStore.&quot; (&quot;.$_CVSStoreID .&quot;)&lt;/p&gt;&quot;;
+        echo &quot;&lt;p&gt;門市地址： &quot;.$_purchaserAddress .&quot;&lt;/p&gt;&quot;;
+        if (!empty($_purchaserPhone)) {
+            echo &quot;&lt;p&gt;門市電話： &quot;.$_purchaserPhone .&quot;&lt;/p&gt;&quot;;
+        }
+    }
+}
+
+add_action( 'woocommerce_email_after_order_table', 'my_custom_field_order_email', 10, 2 );
+
+</pre>
+<p>以上三個函式都是使用 hook 的方式在預設的內容中插入自定義文字<br />
+所以可以依據自身情況修改其內的程式</p>
+<p>以下為設置後會顯示的地方及樣式</p>
+<p>管理者後台的訂單詳細頁面<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.17.44-580x235.png" alt="" width="580" height="235" class="alignnone size-medium wp-image-1224" srcset="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.17.44-580x235.png 580w, https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.17.44-768x311.png 768w, https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.17.44-940x381.png 940w, https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.17.44.png 1347w" sizes="(max-width: 580px) 100vw, 580px" /></p>
+<p>使用者前台的訂單詳細頁面<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.18.07-580x872.png" alt="" width="580" height="872" class="alignnone size-medium wp-image-1225" srcset="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.18.07-580x872.png 580w, https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.18.07.png 599w" sizes="(max-width: 580px) 100vw, 580px" /></p>
+<p>使用者收到的訂單 email<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午7.19.40.png" alt="" width="440" height="737" class="alignnone size-medium wp-image-1226" /></p>
+<p>ref:</p>
+<blockquote data-secret="XLeHrKzxzW" class="wp-embedded-content"><p><a href="http://www.solagirl.net/woocommerce-custom-checkout-field.html">WooCommerce添加自定义结账字段图文详解</a></p></blockquote>
+<p><iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" src="http://www.solagirl.net/woocommerce-custom-checkout-field.html/embed#?secret=XLeHrKzxzW" data-secret="XLeHrKzxzW" width="600" height="338" title="《WooCommerce添加自定义结账字段图文详解》—~SolagirL~" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e8%a8%82%e5%96%ae%e9%a1%af%e7%a4%ba%e8%87%aa%e5%ae%9a%e7%be%a9%e6%96%87%e5%ad%97-%e4%bb%a5%e7%b6%a0%e7%95%8c%e8%b6%85%e5%95%86%e5%8f%96%e8%b2%a8%e9%96%80%e5%b8%82%e8%b3%87%e8%a8%8a/feed/</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+		</item>
+		<item>
+		<title>WooCommerce 使用綠界超商取貨時 依據免運費門檻顯示運送方式</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bd%bf%e7%94%a8%e7%b6%a0%e7%95%8c%e8%b6%85%e5%95%86%e5%8f%96%e8%b2%a8%e6%99%82-%e4%be%9d%e6%93%9a%e5%85%8d%e9%81%8b%e8%b2%bb%e9%96%80%e6%aa%bb%e9%a1%af%e7%a4%ba%e9%81%8b%e9%80%81/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bd%bf%e7%94%a8%e7%b6%a0%e7%95%8c%e8%b6%85%e5%95%86%e5%8f%96%e8%b2%a8%e6%99%82-%e4%be%9d%e6%93%9a%e5%85%8d%e9%81%8b%e8%b2%bb%e9%96%80%e6%aa%bb%e9%a1%af%e7%a4%ba%e9%81%8b%e9%80%81/#comments</comments>
+		<pubDate>Wed, 05 Jul 2017 08:02:25 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[woocommerce]]></category>
+		<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1218</guid>
+		<description><![CDATA[使用綠界超商取貨時 可以根據達到免運費門檻出現兩個不同的運送方式 開啟綠界物流外掛套件的這隻檔案 wp-cot [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>使用綠界超商取貨時<br />
+<span id="more-1218"></span></p>
+<p>可以根據達到免運費門檻出現兩個不同的運送方式</p>
+<p>開啟綠界物流外掛套件的這隻檔案<br />
+wp-cotent/plugins/ecpay_shipping/ECPay-shipping-integration.php</p>
+<p>找到 calculate_shipping 這個方法<br />
+並修改如下</p>
+<pre class="brush: php; title: ; notranslate">
+function calculate_shipping($package = array()) {
+
+    // 省略顯示前面程式部分 請保留 不要刪掉
+
+    // 設置免運費門檻 499
+    if($package[&quot;contents_cost&quot;] &gt;= 499){
+        $shipping_total = 0;
+    }else{
+        $shipping_total = $fee;
+    }
+
+    $rate = array(
+        'id' =&gt; $this-&gt;id,
+        'label' =&gt; $this-&gt;title,
+        'cost' =&gt; $shipping_total
+    );
+
+    $this-&gt;add_rate($rate);
+}
+</pre>
+<p>門檻金額可以設定成自己希望的數字</p>
+<p>但有另一個問題出現<br />
+當使用<a href="https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-修正購物車免運費時-顯示兩個運送方式選項的/">前篇文章提到的 WooCommerce 修正購物車免運費時 顯示兩個運送方式選項的問題</a>的解決方法後<br />
+綠界的超商取貨便無法出現<br />
+所以這邊還需要將前篇文章提到的程式作修正<br />
+如下</p>
+<pre class="brush: php; title: ; notranslate">
+function hide_shipping_when_free_is_available( $rates ) {
+	$free = array();
+	foreach ( $rates as $rate_id =&gt; $rate ) {
+		if ( 'free_shipping' === $rate-&gt;method_id ) {
+			$free[ $rate_id ] = $rate;
+		}
+	}
+
+    /* 以下為需要新增修正的部份 */
+    // 免運費時 仍顯示超商取貨
+    if (!empty($free)) {
+        foreach ( $rates as $rate_id =&gt; $rate ) {
+        	if ( 'ecpay_shipping' === $rate-&gt;method_id ) {
+        		$free[ $rate_id ] = $rate;
+	    		break;
+	    	}
+	    }
+	}
+    /* 以上為需要新增修正的部份 */
+
+    return ! empty( $free ) ? $free : $rates;
+}
+</pre>
+<p>這樣便可以跟原始 WooCommerce 運送方式一起使用</p>
+<p>ref:<br />
+http://blog.darkwing.co/2017/05/woocommerce-%E5%A2%9E%E5%8A%A0%E6%BB%BF%E9%A1%8D%E8%B6%85%E5%95%86%E5%8F%96%E8%B2%A8%E5%85%8D%E9%81%8B%E8%B2%BB%E5%8A%9F%E8%83%BD-%E4%BB%A5%E7%B6%A0%E7%95%8Cecpay%E7%82%BA%E4%BE%8B/</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bd%bf%e7%94%a8%e7%b6%a0%e7%95%8c%e8%b6%85%e5%95%86%e5%8f%96%e8%b2%a8%e6%99%82-%e4%be%9d%e6%93%9a%e5%85%8d%e9%81%8b%e8%b2%bb%e9%96%80%e6%aa%bb%e9%a1%af%e7%a4%ba%e9%81%8b%e9%80%81/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		</item>
+		<item>
+		<title>WooCommerce 修正購物車免運費時 顯示兩個運送方式選項的問題</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bf%ae%e6%ad%a3%e8%b3%bc%e7%89%a9%e8%bb%8a%e5%85%8d%e9%81%8b%e8%b2%bb%e6%99%82-%e9%a1%af%e7%a4%ba%e5%85%a9%e5%80%8b%e9%81%8b%e9%80%81%e6%96%b9%e5%bc%8f%e9%81%b8%e9%a0%85%e7%9a%84/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bf%ae%e6%ad%a3%e8%b3%bc%e7%89%a9%e8%bb%8a%e5%85%8d%e9%81%8b%e8%b2%bb%e6%99%82-%e9%a1%af%e7%a4%ba%e5%85%a9%e5%80%8b%e9%81%8b%e9%80%81%e6%96%b9%e5%bc%8f%e9%81%b8%e9%a0%85%e7%9a%84/#comments</comments>
+		<pubDate>Tue, 04 Jul 2017 06:58:54 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[woocommerce]]></category>
+		<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1210</guid>
+		<description><![CDATA[這個問題還滿怪的 而且一直都沒有被修正 未達免運費門檻時 顯示運費選項 這樣是正常沒錯 如下圖 但當達到免運費 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這個問題還滿怪的 而且一直都沒有被修正<br />
+<span id="more-1210"></span></p>
+<p>未達免運費門檻時<br />
+顯示運費選項<br />
+這樣是正常沒錯<br />
+如下圖<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午6.23.46.png" alt="" width="579" height="412" class="alignnone size-full wp-image-1211" /></p>
+<p>但當達到免運費門檻時<br />
+卻會顯示兩個選項<br />
+一個是要運費 一個是免運費 (也就是設定的兩種運費方式)<br />
+如下圖<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午6.24.20.png" alt="" width="567" height="437" class="alignnone size-full wp-image-1212" /></p>
+<p>這樣實在是太怪了<br />
+使用者應該會相當困擾</p>
+<p>修正方式為在 wp-includes/functions.php 中加入以下程式</p>
+<pre class="brush: php; title: ; notranslate">
+function hide_shipping_when_free_is_available( $rates ) {
+	$free = array();
+
+	foreach ( $rates as $rate_id =&gt; $rate ) {
+		if ( 'free_shipping' === $rate-&gt;method_id ) {
+			$free[ $rate_id ] = $rate;
+		}
+	}
+
+	return ! empty( $free ) ? $free : $rates;
+}
+
+add_filter( 'woocommerce_package_rates', 'hide_shipping_when_free_is_available', 100 );
+
+</pre>
+<p>這樣當達到免運費門檻時<br />
+就只會出現一個選項<br />
+如下圖<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午6.27.14.png" alt="" width="578" height="416" class="alignnone size-full wp-image-1213" /></p>
+<h3>20170801 更新</h3>
+<p>多種運送方式也是適用的<br />
+如下<br />
+未達免運費門檻<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/07/螢幕快照-2017-08-01-下午4.13.23.png" alt="" width="577" height="499" class="alignnone size-full wp-image-1243" /></p>
+<p>已達免運費門檻<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/07/螢幕快照-2017-08-01-下午4.13.01.png" alt="" width="575" height="453" class="alignnone size-full wp-image-1242" /></p>
+<p>ref:</p>
+<blockquote data-secret="jnHP56aEaE" class="wp-embedded-content"><p><a href="https://www.minwt.com/website/wordpress/16002.html">Woocommerce 2.6版運費設定與免運費修正</a></p></blockquote>
+<p><iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" src="https://www.minwt.com/website/wordpress/16002.html/embed#?secret=jnHP56aEaE" data-secret="jnHP56aEaE" width="600" height="338" title="「Woocommerce 2.6版運費設定與免運費修正」 -- 梅問題．教學網" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bf%ae%e6%ad%a3%e8%b3%bc%e7%89%a9%e8%bb%8a%e5%85%8d%e9%81%8b%e8%b2%bb%e6%99%82-%e9%a1%af%e7%a4%ba%e5%85%a9%e5%80%8b%e9%81%8b%e9%80%81%e6%96%b9%e5%bc%8f%e9%81%b8%e9%a0%85%e7%9a%84/feed/</wfw:commentRss>
+		<slash:comments>11</slash:comments>
+		</item>
+		<item>
+		<title>WooCommerce 介接綠界金流時注意事項</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bb%8b%e6%8e%a5%e7%b6%a0%e7%95%8c%e9%87%91%e6%b5%81%e6%99%82%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bb%8b%e6%8e%a5%e7%b6%a0%e7%95%8c%e9%87%91%e6%b5%81%e6%99%82%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85/#respond</comments>
+		<pubDate>Mon, 03 Jul 2017 07:31:28 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[woocommerce]]></category>
+		<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1204</guid>
+		<description><![CDATA[因為 WooCommerce 金額預設是有小數點的 但綠界(或是說國內金流應該都是)的 API 可以接收的金額 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>因為 WooCommerce 金額預設是有小數點的<br />
+<span id="more-1204"></span></p>
+<p>但綠界(或是說國內金流應該都是)的 API 可以接收的金額都是整數<br />
+所以記得要將 WooCommerce &gt; 設定 &gt; 一般 &gt; 小數位數 設為 0 (預設為 2 )<br />
+如下圖<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/未命名.png" alt="" width="544" height="837" class="alignnone size-full wp-image-1205" /></p>
+<p>另外還有應該是 WooCommerce 通用的注意事項<br />
+記得要將 WordPress 的時區設定正確<br />
+不然訂單時間會不正確<br />
+如下圖 選擇一個如同你地區的時區<br />
+<img src="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午5.57.07-580x195.png" alt="" width="580" height="195" class="alignnone size-medium wp-image-1206" srcset="https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午5.57.07-580x195.png 580w, https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午5.57.07-768x259.png 768w, https://itisjoe.github.io/blog.hsin.tw/wp-content/uploads/2017/06/螢幕快照-2017-06-29-下午5.57.07.png 778w" sizes="(max-width: 580px) 100vw, 580px" /></p>
+<p>綠界外掛套件安裝介紹：<br />
+http://diary.taskinghouse.com/posts/1465311-wordpress-woocommerce-connect-ecpayphpcartmodule</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e4%bb%8b%e6%8e%a5%e7%b6%a0%e7%95%8c%e9%87%91%e6%b5%81%e6%99%82%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>WooCommerce 註冊帳號時 不限制密碼強度</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e8%a8%bb%e5%86%8a%e5%b8%b3%e8%99%9f%e6%99%82-%e4%b8%8d%e9%99%90%e5%88%b6%e5%af%86%e7%a2%bc%e5%bc%b7%e5%ba%a6/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e8%a8%bb%e5%86%8a%e5%b8%b3%e8%99%9f%e6%99%82-%e4%b8%8d%e9%99%90%e5%88%b6%e5%af%86%e7%a2%bc%e5%bc%b7%e5%ba%a6/#respond</comments>
+		<pubDate>Sun, 02 Jul 2017 08:51:19 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[woocommerce]]></category>
+		<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1200</guid>
+		<description><![CDATA[WooCommerce 預設會限制註冊帳號時的密碼強度 但預設的強度限制實在是太強了 有時反而會造成困擾(有利 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>WooCommerce 預設會限制註冊帳號時的密碼強度<br />
+<span id="more-1200"></span></p>
+<p>但預設的強度限制實在是太強了<br />
+有時反而會造成困擾(有利有弊啦)<br />
+將下列程式加入至 wp-includes/functions.php 中<br />
+便可移除這個限制</p>
+<pre class="brush: php; title: ; notranslate">
+// 不限制設置密碼的強度
+function my_remove_password_strength() {
+    if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
+        wp_dequeue_script( 'wc-password-strength-meter' );
+    }
+}
+
+add_action( 'wp_print_scripts', 'my_remove_password_strength', 100 );
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e8%a8%bb%e5%86%8a%e5%b8%b3%e8%99%9f%e6%99%82-%e4%b8%8d%e9%99%90%e5%88%b6%e5%af%86%e7%a2%bc%e5%bc%b7%e5%ba%a6/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>WordPress 佈景主題中判斷是否位於首頁</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e4%bd%88%e6%99%af%e4%b8%bb%e9%a1%8c%e4%b8%ad%e5%88%a4%e6%96%b7%e6%98%af%e5%90%a6%e4%bd%8d%e6%96%bc%e9%a6%96%e9%a0%81/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e4%bd%88%e6%99%af%e4%b8%bb%e9%a1%8c%e4%b8%ad%e5%88%a4%e6%96%b7%e6%98%af%e5%90%a6%e4%bd%8d%e6%96%bc%e9%a6%96%e9%a0%81/#respond</comments>
+		<pubDate>Sat, 01 Jul 2017 07:22:50 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1194</guid>
+		<description><![CDATA[使用時機在佈景主題使用共通頁面(像是相同的 header )時 判斷目前是否位於首頁 在佈景主題檔案中 需要判 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>使用時機在佈景主題使用共通頁面(像是相同的 header )時 判斷目前是否位於首頁<br />
+<span id="more-1194"></span></p>
+<p>在佈景主題檔案中<br />
+需要判斷的地方加入以下程式<br />
+這邊以一個 logo 圖片的 img 標籤為例</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;?php if ( is_home() || is_front_page() ) : ?&gt;
+&lt;img src=&quot;img/logo.png&quot;&gt;
+&lt;?php endif ?&gt;
+</pre>
+<p>這樣只有在首頁時<br />
+才會顯示這張圖片</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e4%bd%88%e6%99%af%e4%b8%bb%e9%a1%8c%e4%b8%ad%e5%88%a4%e6%96%b7%e6%98%af%e5%90%a6%e4%bd%8d%e6%96%bc%e9%a6%96%e9%a0%81/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>WooCommerce 移除結帳時的帳單資訊或收件資訊欄位</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e7%a7%bb%e9%99%a4%e7%b5%90%e5%b8%b3%e6%99%82%e7%9a%84%e5%b8%b3%e5%96%ae%e8%b3%87%e8%a8%8a%e6%88%96%e6%94%b6%e4%bb%b6%e8%b3%87%e8%a8%8a%e6%ac%84%e4%bd%8d/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e7%a7%bb%e9%99%a4%e7%b5%90%e5%b8%b3%e6%99%82%e7%9a%84%e5%b8%b3%e5%96%ae%e8%b3%87%e8%a8%8a%e6%88%96%e6%94%b6%e4%bb%b6%e8%b3%87%e8%a8%8a%e6%ac%84%e4%bd%8d/#respond</comments>
+		<pubDate>Fri, 30 Jun 2017 06:53:52 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[woocommerce]]></category>
+		<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1190</guid>
+		<description><![CDATA[應該也是有外掛可以做到 但如果只想簡單的用程式修改的話 則是在 wp-includes/functions.p [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>應該也是有外掛可以做到<br />
+<span id="more-1190"></span></p>
+<p>但如果只想簡單的用程式修改的話<br />
+則是在 wp-includes/functions.php 中加入以下程式</p>
+<pre class="brush: php; title: ; notranslate">
+// 移除 帳單資訊 或 收件資訊 欄位
+function custom_override_checkout_fields( $fields ) {
+
+    // 移除 帳單資訊 email 欄位
+    unset($fields['billing']['billing_email']);
+
+    // 移除 收件資訊 公司 欄位
+    unset($fields['shipping']['shipping_company']);
+
+    return $fields;
+}
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+</pre>
+<p>更多可以移除的預設欄位<br />
+或是其他結帳表單的自定義方式<br />
+可以參考官網文件</p>
+<blockquote data-secret="Jbg55XhVlL" class="wp-embedded-content"><p><a href="https://docs.woocommerce.com/document/tutorial-customising-checkout-fields-using-actions-and-filters/">Customizing checkout fields using actions and filters</a></p></blockquote>
+<p><iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" src="https://docs.woocommerce.com/document/tutorial-customising-checkout-fields-using-actions-and-filters/embed/#?secret=Jbg55XhVlL" data-secret="Jbg55XhVlL" width="600" height="338" title="&#8220;Customizing checkout fields using actions and filters&#8221; -- WooCommerce Docs" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></p>
+<p>另外可以直接修改套件內程式<br />
+但不建議這樣做<br />
+因為套件升級後 可能會把修改部分給覆蓋過去<br />
+開啟 wp-content/plugins/woocommerce/includes/class-wc-countries.php<br />
+找到 get_default_address_fields 這個方法<br />
+其內可為預設欄位作設定</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/woocommerce-%e7%a7%bb%e9%99%a4%e7%b5%90%e5%b8%b3%e6%99%82%e7%9a%84%e5%b8%b3%e5%96%ae%e8%b3%87%e8%a8%8a%e6%88%96%e6%94%b6%e4%bb%b6%e8%b3%87%e8%a8%8a%e6%ac%84%e4%bd%8d/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>WordPress 隱藏管理後台側邊欄選單</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e9%9a%b1%e8%97%8f%e7%ae%a1%e7%90%86%e5%be%8c%e5%8f%b0%e5%81%b4%e9%82%8a%e6%ac%84%e9%81%b8%e5%96%ae/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e9%9a%b1%e8%97%8f%e7%ae%a1%e7%90%86%e5%be%8c%e5%8f%b0%e5%81%b4%e9%82%8a%e6%ac%84%e9%81%b8%e5%96%ae/#respond</comments>
+		<pubDate>Thu, 29 Jun 2017 08:56:18 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1187</guid>
+		<description><![CDATA[針對特定帳號 隱藏側邊欄特定的選單 如果使用內建的不同層級 role 已經無法滿足需求 需要客製隱藏不同的選單 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>針對特定帳號 隱藏側邊欄特定的選單<br />
+<span id="more-1187"></span><br />
+如果使用內建的不同層級 role 已經無法滿足需求<br />
+需要客製隱藏不同的選單<br />
+則必須增加程式至 wp-includes/functions.php 中</p>
+<pre class="brush: php; title: ; notranslate">
+function my_remove_menus() {
+    // 受限制的帳號列表
+    $accounts = array('user1','user2','user3');
+
+    // 取得當前登入帳號的資訊
+    $user = get_currentuserinfo();
+    
+    // 取得當前登入的帳號 $user-&gt;data-&gt;user_login
+    if(in_array(strtolower($user-&gt;data-&gt;user_login), $accounts)) {
+        // 依據需求隱藏選單各欄位
+        remove_menu_page( 'index.php' );                  //Dashboard
+        remove_menu_page( 'edit.php' );                   //Posts
+        remove_menu_page( 'upload.php' );                 //Media
+        remove_menu_page( 'edit.php?post_type=page' );    //Pages
+        remove_menu_page( 'edit-comments.php' );          //Comments
+        remove_menu_page( 'themes.php' );                 //Appearance
+        remove_menu_page( 'plugins.php' );                //Plugins
+        remove_menu_page( 'users.php' );                  //Users
+        remove_menu_page( 'tools.php' );                  //Tools
+        remove_menu_page( 'options-general.php' );        //Settings
+    }
+}
+
+add_action( 'admin_menu', 'my_remove_menus' );
+</pre>
+<p>此段程式只是單純隱藏 如果知道正確網址的話仍然可以進入</p>
+<p>ref: https://codex.wordpress.org/Function_Reference/remove_menu_page</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e9%9a%b1%e8%97%8f%e7%ae%a1%e7%90%86%e5%be%8c%e5%8f%b0%e5%81%b4%e9%82%8a%e6%ac%84%e9%81%b8%e5%96%ae/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[WordPress] 新！ 版本4.6.1 解決中文網址會發生 404 錯誤的問題</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-%e8%a7%a3%e6%b1%ba%e4%b8%ad%e6%96%87%e7%b6%b2%e5%9d%80%e6%9c%83%e7%99%bc%e7%94%9f-404-%e9%8c%af%e8%aa%a4%e7%9a%84%e5%95%8f%e9%a1%8c/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-%e8%a7%a3%e6%b1%ba%e4%b8%ad%e6%96%87%e7%b6%b2%e5%9d%80%e6%9c%83%e7%99%bc%e7%94%9f-404-%e9%8c%af%e8%aa%a4%e7%9a%84%e5%95%8f%e9%a1%8c/#comments</comments>
+		<pubDate>Mon, 05 Dec 2016 08:54:25 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1165</guid>
+		<description><![CDATA[之前遇到時沒解決，這次終於解決了！ (舒暢~) 請注意，這篇文章發表時的 WordPress 版本為 4.6. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>之前遇到時沒解決，這次終於解決了！ (舒暢~)<br />
+<span id="more-1165"></span></p>
+<p>請注意，這篇文章發表時的 WordPress 版本為 4.6.1 ，未來的版本可能不一定適用。</p>
+<p>可以咕狗到的解決方法大多是以下這樣：</p>
+<p>找到 wp-includes/class-wp.php 這隻檔案並以編輯器開啟，分別修改下列兩個地方：</p>
+<p>1. 找到這行</p>
+<pre class="brush: php; title: ; notranslate">
+$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
+</pre>
+<p>替換成這樣</p>
+<pre class="brush: php; title: ; notranslate">
+$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? mb_convert_encoding( $_SERVER['PATH_INFO'], 'UTF-8', 'Big5') : '';
+</pre>
+<p>2. 找到這行</p>
+<pre class="brush: php; title: ; notranslate">
+list( $req_uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
+</pre>
+<p>替換成這樣</p>
+<pre class="brush: php; title: ; notranslate">
+list( $req_uri ) = explode( '?', mb_convert_encoding( $_SERVER['REQUEST_URI'], 'UTF-8', 'Big5' ) );
+</pre>
+<p>大多在這兩個地方修改完就可以正常顯示，但我還是不行阿！終於讓我找到另外的解決辦法！</p>
+<p>同樣是 wp-includes/class-wp.php 這隻，找到以下這行(也就是上述解法的第二步)：</p>
+<pre class="brush: php; title: ; notranslate">
+list( $req_uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
+</pre>
+<p>在這行下面加上一行新的程式(不是修改喔！是新增一行)：</p>
+<pre class="brush: php; title: ; notranslate">
+$req_uri = urldecode($req_uri);
+</pre>
+<p>這樣在我的 WordPress 就可以正常顯示中文網址的文章了！感恩～</p>
+<p><span style="color:red">[注意]</span><br />
+因為是修改 WordPress 的核心檔案，所以未來更新 WordPress 版本時，沒意外的話是會被蓋過去的，如果還是有這個需求的話，請記得更新版本後要再改一次。(當然最好還是官方把這個問題修正啦，非英文語系沒人權哪～)</p>
+<p>ref:<br />
+<a href="http://www.zbolo.com/index.php/2016/05/12/wordpress%E4%B8%AD%E6%96%87%E9%93%BE%E6%8E%A5%E3%80%81tag%E7%9A%84404%E9%94%99%E8%AF%AF%E7%9A%84%E6%9C%80%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">wordpress|中文鏈接、tag的404錯誤的最新解決方案</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-%e8%a7%a3%e6%b1%ba%e4%b8%ad%e6%96%87%e7%b6%b2%e5%9d%80%e6%9c%83%e7%99%bc%e7%94%9f-404-%e9%8c%af%e8%aa%a4%e7%9a%84%e5%95%8f%e9%a1%8c/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>[WordPress] 佈景主題 &#8211; Purely</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-theme-purely/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-theme-purely/#respond</comments>
+		<pubDate>Wed, 21 Sep 2016 08:50:24 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1147</guid>
+		<description><![CDATA[這兩天作了一個 WordPress 佈景主題 -- Purely 雖然前一篇文章好像說了沒有很難 但完工了後要 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這兩天作了一個 WordPress 佈景主題 -- Purely<br />
+<span id="more-1147"></span></p>
+<p>雖然<a href="https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-dev-create-theme-custom-stuff/">前一篇文章</a>好像說了沒有很難</p>
+<p>但完工了後要用才發現套用我這個部落格 好像跟其他東西(像是高亮度語法套件)沒辦法合用 </p>
+<p>好像還需要加點東西才行(但也暫時不知道怎麼修改)</p>
+<p>原本打算上傳至 WordPress 官網 但上傳完後 Checker 吐一堆錯誤跟警告</p>
+<p>所以先丟上 <a href="https://github.com/itisjoe/WordPressTheme-Purely">Github</a> </p>
+<p>以後找時間再改吧</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-theme-purely/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

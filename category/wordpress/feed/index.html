@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>wordpress &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/wordpress/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>WordPress 佈景主題中判斷是否位於首頁</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e4%bd%88%e6%99%af%e4%b8%bb%e9%a1%8c%e4%b8%ad%e5%88%a4%e6%96%b7%e6%98%af%e5%90%a6%e4%bd%8d%e6%96%bc%e9%a6%96%e9%a0%81/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e4%bd%88%e6%99%af%e4%b8%bb%e9%a1%8c%e4%b8%ad%e5%88%a4%e6%96%b7%e6%98%af%e5%90%a6%e4%bd%8d%e6%96%bc%e9%a6%96%e9%a0%81/#respond</comments>
+		<pubDate>Sat, 01 Jul 2017 07:22:50 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1194</guid>
+		<description><![CDATA[使用時機在佈景主題使用共通頁面(像是相同的 header )時 判斷目前是否位於首頁 在佈景主題檔案中 需要判 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>使用時機在佈景主題使用共通頁面(像是相同的 header )時 判斷目前是否位於首頁<br />
+<span id="more-1194"></span></p>
+<p>在佈景主題檔案中<br />
+需要判斷的地方加入以下程式<br />
+這邊以一個 logo 圖片的 img 標籤為例</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;?php if ( is_home() || is_front_page() ) : ?&gt;
+&lt;img src=&quot;img/logo.png&quot;&gt;
+&lt;?php endif ?&gt;
+</pre>
+<p>這樣只有在首頁時<br />
+才會顯示這張圖片</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e4%bd%88%e6%99%af%e4%b8%bb%e9%a1%8c%e4%b8%ad%e5%88%a4%e6%96%b7%e6%98%af%e5%90%a6%e4%bd%8d%e6%96%bc%e9%a6%96%e9%a0%81/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>WordPress 隱藏管理後台側邊欄選單</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e9%9a%b1%e8%97%8f%e7%ae%a1%e7%90%86%e5%be%8c%e5%8f%b0%e5%81%b4%e9%82%8a%e6%ac%84%e9%81%b8%e5%96%ae/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e9%9a%b1%e8%97%8f%e7%ae%a1%e7%90%86%e5%be%8c%e5%8f%b0%e5%81%b4%e9%82%8a%e6%ac%84%e9%81%b8%e5%96%ae/#respond</comments>
+		<pubDate>Thu, 29 Jun 2017 08:56:18 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1187</guid>
+		<description><![CDATA[針對特定帳號 隱藏側邊欄特定的選單 如果使用內建的不同層級 role 已經無法滿足需求 需要客製隱藏不同的選單 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>針對特定帳號 隱藏側邊欄特定的選單<br />
+<span id="more-1187"></span><br />
+如果使用內建的不同層級 role 已經無法滿足需求<br />
+需要客製隱藏不同的選單<br />
+則必須增加程式至 wp-includes/functions.php 中</p>
+<pre class="brush: php; title: ; notranslate">
+function my_remove_menus() {
+    // 受限制的帳號列表
+    $accounts = array('user1','user2','user3');
+
+    // 取得當前登入帳號的資訊
+    $user = get_currentuserinfo();
+    
+    // 取得當前登入的帳號 $user-&gt;data-&gt;user_login
+    if(in_array(strtolower($user-&gt;data-&gt;user_login), $accounts)) {
+        // 依據需求隱藏選單各欄位
+        remove_menu_page( 'index.php' );                  //Dashboard
+        remove_menu_page( 'edit.php' );                   //Posts
+        remove_menu_page( 'upload.php' );                 //Media
+        remove_menu_page( 'edit.php?post_type=page' );    //Pages
+        remove_menu_page( 'edit-comments.php' );          //Comments
+        remove_menu_page( 'themes.php' );                 //Appearance
+        remove_menu_page( 'plugins.php' );                //Plugins
+        remove_menu_page( 'users.php' );                  //Users
+        remove_menu_page( 'tools.php' );                  //Tools
+        remove_menu_page( 'options-general.php' );        //Settings
+    }
+}
+
+add_action( 'admin_menu', 'my_remove_menus' );
+</pre>
+<p>此段程式只是單純隱藏 如果知道正確網址的話仍然可以進入</p>
+<p>ref: https://codex.wordpress.org/Function_Reference/remove_menu_page</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/wordpress-%e9%9a%b1%e8%97%8f%e7%ae%a1%e7%90%86%e5%be%8c%e5%8f%b0%e5%81%b4%e9%82%8a%e6%ac%84%e9%81%b8%e5%96%ae/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[WordPress] 新！ 版本4.6.1 解決中文網址會發生 404 錯誤的問題</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-%e8%a7%a3%e6%b1%ba%e4%b8%ad%e6%96%87%e7%b6%b2%e5%9d%80%e6%9c%83%e7%99%bc%e7%94%9f-404-%e9%8c%af%e8%aa%a4%e7%9a%84%e5%95%8f%e9%a1%8c/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-%e8%a7%a3%e6%b1%ba%e4%b8%ad%e6%96%87%e7%b6%b2%e5%9d%80%e6%9c%83%e7%99%bc%e7%94%9f-404-%e9%8c%af%e8%aa%a4%e7%9a%84%e5%95%8f%e9%a1%8c/#comments</comments>
+		<pubDate>Mon, 05 Dec 2016 08:54:25 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1165</guid>
+		<description><![CDATA[之前遇到時沒解決，這次終於解決了！ (舒暢~) 請注意，這篇文章發表時的 WordPress 版本為 4.6. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>之前遇到時沒解決，這次終於解決了！ (舒暢~)<br />
+<span id="more-1165"></span></p>
+<p>請注意，這篇文章發表時的 WordPress 版本為 4.6.1 ，未來的版本可能不一定適用。</p>
+<p>可以咕狗到的解決方法大多是以下這樣：</p>
+<p>找到 wp-includes/class-wp.php 這隻檔案並以編輯器開啟，分別修改下列兩個地方：</p>
+<p>1. 找到這行</p>
+<pre class="brush: php; title: ; notranslate">
+$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
+</pre>
+<p>替換成這樣</p>
+<pre class="brush: php; title: ; notranslate">
+$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? mb_convert_encoding( $_SERVER['PATH_INFO'], 'UTF-8', 'Big5') : '';
+</pre>
+<p>2. 找到這行</p>
+<pre class="brush: php; title: ; notranslate">
+list( $req_uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
+</pre>
+<p>替換成這樣</p>
+<pre class="brush: php; title: ; notranslate">
+list( $req_uri ) = explode( '?', mb_convert_encoding( $_SERVER['REQUEST_URI'], 'UTF-8', 'Big5' ) );
+</pre>
+<p>大多在這兩個地方修改完就可以正常顯示，但我還是不行阿！終於讓我找到另外的解決辦法！</p>
+<p>同樣是 wp-includes/class-wp.php 這隻，找到以下這行(也就是上述解法的第二步)：</p>
+<pre class="brush: php; title: ; notranslate">
+list( $req_uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
+</pre>
+<p>在這行下面加上一行新的程式(不是修改喔！是新增一行)：</p>
+<pre class="brush: php; title: ; notranslate">
+$req_uri = urldecode($req_uri);
+</pre>
+<p>這樣在我的 WordPress 就可以正常顯示中文網址的文章了！感恩～</p>
+<p><span style="color:red">[注意]</span><br />
+因為是修改 WordPress 的核心檔案，所以未來更新 WordPress 版本時，沒意外的話是會被蓋過去的，如果還是有這個需求的話，請記得更新版本後要再改一次。(當然最好還是官方把這個問題修正啦，非英文語系沒人權哪～)</p>
+<p>ref:<br />
+<a href="http://www.zbolo.com/index.php/2016/05/12/wordpress%E4%B8%AD%E6%96%87%E9%93%BE%E6%8E%A5%E3%80%81tag%E7%9A%84404%E9%94%99%E8%AF%AF%E7%9A%84%E6%9C%80%E6%96%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">wordpress|中文鏈接、tag的404錯誤的最新解決方案</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-%e8%a7%a3%e6%b1%ba%e4%b8%ad%e6%96%87%e7%b6%b2%e5%9d%80%e6%9c%83%e7%99%bc%e7%94%9f-404-%e9%8c%af%e8%aa%a4%e7%9a%84%e5%95%8f%e9%a1%8c/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>[WordPress] 佈景主題 &#8211; Purely</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-theme-purely/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-theme-purely/#respond</comments>
+		<pubDate>Wed, 21 Sep 2016 08:50:24 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1147</guid>
+		<description><![CDATA[這兩天作了一個 WordPress 佈景主題 -- Purely 雖然前一篇文章好像說了沒有很難 但完工了後要 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這兩天作了一個 WordPress 佈景主題 -- Purely<br />
+<span id="more-1147"></span></p>
+<p>雖然<a href="https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-dev-create-theme-custom-stuff/">前一篇文章</a>好像說了沒有很難</p>
+<p>但完工了後要用才發現套用我這個部落格 好像跟其他東西(像是高亮度語法套件)沒辦法合用 </p>
+<p>好像還需要加點東西才行(但也暫時不知道怎麼修改)</p>
+<p>原本打算上傳至 WordPress 官網 但上傳完後 Checker 吐一堆錯誤跟警告</p>
+<p>所以先丟上 <a href="https://github.com/itisjoe/WordPressTheme-Purely">Github</a> </p>
+<p>以後找時間再改吧</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-theme-purely/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[WordPress Dev] 建立一個佈景主題時可以自定義的功能</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-dev-create-theme-custom-stuff/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-dev-create-theme-custom-stuff/#respond</comments>
+		<pubDate>Tue, 20 Sep 2016 16:01:47 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1126</guid>
+		<description><![CDATA[建立一個 WordPress (以下簡稱 WP )的佈景主題沒有想像中的困難 (當然是指入門 要做到相當深入也 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>建立一個 WordPress (以下簡稱 WP )的佈景主題沒有想像中的困難<br />
+<span id="more-1126"></span><br />
+(當然是指入門 要做到相當深入也是很複雜的我想)</p>
+<p>請注意：本文發表時的 WP 版本為 4.6.1 ，未來有可能因為新版本的推出導致本文內容與實際情況有落差。</p>
+<p>只要有基本的 PHP, HTML, CSS 知識<br />
+其他的就只是要了解有哪些 API 可以使用即可</p>
+<p>首先只有 index.php 跟 style.css 是必須的<br />
+而額外還可以再切為 header.php, footer.php, sidebar.php, single.php 等等<br />
+再細分更可以客製化需要的每個頁面<br />
+這邊就不深入討論<br />
+這篇文章主要是記錄一下可以讓使用者在後台可以自定義的功能</p>
+<h2>&diams; <a href="https://codex.wordpress.org/Navigation_Menus">選單 Menu</a></h2>
+<p>在 functions.php 中加入：</p>
+<pre class="brush: php; title: ; notranslate">
+if (function_exists('register_nav_menus')) {
+    register_nav_menus( array(
+        'primary' =&gt; 'Primary Menu',
+        'footer'  =&gt; 'Footer Menu',
+    ) );
+}
+</pre>
+<p>用 <strong>function_exists()</strong> 先確認是否有這個函式可以用，雖然新寫的佈景主題應該比較少會有用舊版 WP 的人用，但還是加一下以防萬一。</p>
+<p>接著就使用 <strong>register_nav_menus()</strong> 來註冊選單，要讓使用者可以用幾個選單就註冊幾個(就看你的佈景主題需要多少個)，陣列的 key 值可以說是這個選單的 id ，而 value 值則是後台顯示的名稱。這邊註冊兩個選單，分別放在不同的地方。</p>
+<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>選單</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br />
+<img src="http://img.hsin.tw/201609/02.png" alt="[外觀]中的[選單]" /><br />
+點選後就可以設定你的選單要顯示什麼(文章、頁面或是分類都可以，很活)。</p>
+<p>接著就是在佈景主題的前台顯示選單，在要顯示的頁面(像是 index.php 或 header.php )中加入：</p>
+<pre class="brush: php; title: ; notranslate">
+wp_nav_menu(array('theme_location'=&gt;'footer'));
+</pre>
+<p>使用 <strong>wp_nav_menu()</strong> 來顯示一個選單，可以傳入一個陣列參數來做額外的設定，像上面寫的 theme_location 就是指這邊要顯示哪一個選單(前面註冊的兩個其中一個)。更多可以設定的功能可以<a href="https://developer.wordpress.org/reference/functions/wp_nav_menu/">參考文件</a>。</p>
+<h2>&diams; <a href="https://codex.wordpress.org/Function_Reference/register_sidebar">側邊欄位 Sidebar Widgets</a></h2>
+<p>除了可以在佈景主題的側邊欄中加入預設固定的項目(月曆、分類、最近文章這種)，也可以讓使用者在後台可以自由編排側邊欄要顯示的項目與順序。先在 functions.php 中加入：</p>
+<pre class="brush: php; title: ; notranslate">
+function theme_widgets_init() {
+    if (function_exists('register_sidebar')) {
+        register_sidebar(array(
+            'name' =&gt; 'Sidebar Widgets',
+            'id' =&gt; 'sidebar-widgets',
+            'description' =&gt; '',
+            'before_widget' =&gt; '&lt;div class=&quot;widget&quot;&gt;',
+            'after_widget' =&gt; '&lt;/div&gt;',
+            'before_title' =&gt; '&lt;h2&gt;',
+            'after_title' =&gt; '&lt;/h2&gt;'
+        ));
+    }
+}
+
+add_action( 'widgets_init', 'theme_widgets_init' );
+</pre>
+<p>使用 <strong>register_sidebar()</strong> 來註冊一個自定義側邊欄，可以傳入一個陣列參數作額外的設定，更多可以設定的內容可以<a href="https://codex.wordpress.org/Function_Reference/register_sidebar">參考文件</a>。</p>
+<p>上述將註冊動作用一個函式包起來，並使用 <strong>add_action( &#8216;widgets_init&#8217;, &#8216;theme_widgets_init&#8217; )</strong> 來加入這個註冊動作， <strong>add_action()</strong> 是 WP 特殊功能，可以在不碰到核心程式的情況下，在不同階段加入自定義的程式，像是製作 PlugIn 也是很常用到這個功能。</p>
+<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>小工具</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br />
+<img src="http://img.hsin.tw/201609/03.png" alt="[外觀]中的[小工具]" /></p>
+<p>接著在前台顯示的地方( index.php 或是有切出來的 sidebar.php )加入：</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar Widgets') ) : ?&gt;
+    &lt;div class=&quot;widget&quot;&gt;
+        &lt;?php get_search_form(); ?&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;widget&quot;&gt;
+        &lt;h2&gt;&lt;?php _e('Calendar'); ?&gt;&lt;/h2&gt;
+        &lt;?php get_calendar(); ?&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;widget&quot;&gt;
+        &lt;h2&gt;&lt;?php _e('Categories'); ?&gt;&lt;/h2&gt;
+        &lt;ul&gt;
+            &lt;?php wp_list_categories(['title_li'=&gt;'']); ?&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;widget&quot;&gt;
+        &lt;h2&gt;&lt;?php _e('Tags'); ?&gt;&lt;/h2&gt;
+        &lt;?php wp_tag_cloud(); ?&gt;
+    &lt;/div&gt;			    
+    &lt;div class=&quot;widget&quot;&gt;
+        &lt;h2&gt;&lt;?php _e('Archives'); ?&gt;&lt;/h2&gt;
+        &lt;ul&gt;
+            &lt;?php wp_get_archives(); ?&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;?php endif; ?&gt;
+
+</pre>
+<p>先用 <strong>dynamic_sidebar()</strong> 來判斷使用者有沒有在後台啟用自定義側邊欄，<span style="color:red"><strong>沒有的話</strong>才會顯示 if 條件式裡的內容</span>，上述裡面的內容就是顯示預設固定的項目。</p>
+<h2>&diams; <a href="https://codex.wordpress.org/Custom_Headers">首頁圖片 Header Image</a></h2>
+<p>首先在 functions.php 中加入：</p>
+<pre class="brush: php; title: ; notranslate">
+function theme_custom_setup() {
+    if (function_exists('add_theme_support')) {
+    	add_theme_support( 'custom-header', array(
+    	    'width'         =&gt; 1600,
+    	    'height'        =&gt; 1200,
+    	    'default-image' =&gt; get_template_directory_uri() . '/images/header.jpg',
+    	    'uploads'       =&gt; true
+    	));
+    }
+}
+
+add_action( 'after_setup_theme', 'theme_custom_setup' );
+
+</pre>
+<p>使用 <strong>add_theme_support(&#8216;custom-header&#8217;)</strong> 來註冊一個首頁圖片，第一個參數是可以自定義的類型( WP 把一些項目都整合到這個函式了，另外還有像是 custom-logo 可以設定)，還可以傳入第二個陣列參數作額外的設定，更多可以設定的內容可以<a href="https://codex.wordpress.org/Custom_Headers">參考文件</a>。</p>
+<p>上述將註冊動作用一個函式包起來，並使用 <strong>add_action( &#8216;after_setup_theme&#8217;, &#8216;theme_custom_setup&#8217; )</strong> 來加入這個註冊動作， <strong>add_action()</strong> 是 WP 特殊功能，可以在不碰到核心程式的情況下，在不同階段加入自定義的程式，像是製作 PlugIn 也是很常用到這個功能。</p>
+<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>頁首</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br />
+<img src="http://img.hsin.tw/201609/04.png" alt="[外觀]中的[頁首]" /></p>
+<p>接著在前台顯示的地方( index.php 或是有切出來的 header.php )加入：</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;img src=&quot;&lt;?php header_image(); ?&gt;&quot; height=&quot;&lt;?php echo get_custom_header()-&gt;height; ?&gt;&quot; width=&quot;&lt;?php echo get_custom_header()-&gt;width; ?&gt;&quot; alt=&quot;&quot; /&gt;
+</pre>
+<p>使用 <strong>header_image()</strong> 來取得 Header Image 的圖片路徑。</p>
+<h2>&diams; <a href="https://codex.wordpress.org/Theme_Logo">網站 Logo</a></h2>
+<p>首先在 functions.php 中加入：</p>
+<pre class="brush: php; title: ; notranslate">
+function theme_custom_setup() {
+    if (function_exists('add_theme_support')) {
+    	add_theme_support( 'custom-logo', array(
+    	    'width'         =&gt; 200,
+    	    'height'        =&gt; 200,
+    	    'flex-width' =&gt; true,
+    	    'flex-height' =&gt; true
+    	));
+    }
+}
+
+add_action( 'after_setup_theme', 'theme_custom_setup' );
+
+</pre>
+<p>與前面講過的 Header Image 類似(可以寫在同一個 <strong>theme_custom_setup()</strong> 中一起註冊)。第二個傳入的陣列參數可以作額外的設定，更多設定的內容可以<a href="https://codex.wordpress.org/Theme_Logo">參考文件</a>。</p>
+<p>加好後在 WP 後台的左側選單&#8230; <span style="color:red">看不到 LOGO !!! (我卡在這邊兩三個小時！這也太不人性化了吧！誰知道你突然有個選項是藏在裡面的啦！)</span></p>
+<p>他是藏在<strong>外觀</strong>下的<strong>自訂</strong>，點進去後要先選<strong>網站識別</strong>，接著在裡面就可以看到<strong>標誌</strong>( logo )了，如下面三張圖片：</p>
+<table>
+<tr>
+<td style="border:0px;vertical-align:top"><img src="http://img.hsin.tw/201609/05.png" alt="[外觀]中的[自訂]" /></td>
+<td style="border:0px;vertical-align:top"><span style="font-size:36px">-&gt;</span></td>
+<td style="border:0px;vertical-align:top"><img src="http://img.hsin.tw/201609/06.png" alt="[自訂]中的[網站識別]" /></td>
+<td style="border:0px;vertical-align:top"><span style="font-size:36px">-&gt;</span></td>
+<td style="border:0px;vertical-align:top"><img src="http://img.hsin.tw/201609/07.png" alt="[網站識別]中的[標誌]" /></td>
+</tr>
+</table>
+<p>接著在前台顯示的地方( index.php 或是有切出來的 header.php )加入：</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;?php if (has_custom_logo()) :
+get_custom_logo();
+endif; ?&gt;
+</pre>
+<p><strong>get_custom_logo()</strong> 會自動顯示一個 a 標籤包著一個 img 標籤(不知道為什麼要這麼多餘，直接給個 image src 不就好了？！)。</p>
+<p>ref:</p>
+<blockquote data-secret="NHgajcPCpF" class="wp-embedded-content"><p><a href="https://wpbeaches.com/using-new-custom-logo-theme-support-genesis/">Using the new WordPress custom-logo theme support with Genesis</a></p></blockquote>
+<p><iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" src="https://wpbeaches.com/using-new-custom-logo-theme-support-genesis/embed/#?secret=NHgajcPCpF" data-secret="NHgajcPCpF" width="600" height="338" title="&#8220;Using the new WordPress custom-logo theme support with Genesis&#8221; -- WP Beaches" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/wordpress-dev-create-theme-custom-stuff/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>wordpress plugins (20090611更新)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2008/wordpress-plugins/</link>
+		<pubDate>Sun, 21 Dec 2008 12:38:31 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[wordpress]]></category>
+		<category><![CDATA[plugin]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=39</guid>
+		<description><![CDATA[我有在用的wordpress plugins StatPressCN new 另一個熱門文章跟瀏覽人次的記錄p [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>我有在用的wordpress plugins<br />
+<span id="more-39"></span><br />
+<strong><a style="font-size:15px" href="http://wordpress.org/extend/plugins/statpresscn/" target="_blank">StatPressCN</a></strong> <span style="font-weight:bold;color:red">new</span><br />
+另一個熱門文章跟瀏覽人次的記錄plugin</p>
+<p><strong><a style="font-size:15px" href="http://dd32.id.au/wordpress-plugins/revision-control/" target="_blank">Revision Control</a></strong> <span style="font-weight:bold;color:red">new</span><br />
+刪除或是限制每篇文章會備份的多版本文章<br />
+每更新一次就給我留一篇文章也太超過<br />
+用這個整理吧~~~</p>
+<p><strong><a style="font-size:15px" href="http://www.ilfilosofo.com/blog/wp-db-backup/" target="_blank">WP-DB-Backup</a></strong> <span style="font-weight:bold;color:red">new</span><br />
+備份整個wp的資料 備份永遠不嫌晚XD 以備不時之需阿！</p>
+<p><strong><a style="font-size:15px" href="http://semperfiwebdesign.com/portfolio/wordpress/wordpress-plugins/all-in-one-seo-pack/" target="_blank">All in One SEO Pack</a></strong><br />
+對標題作最佳化<br />
+<a href="http://www.wmfield.idv.tw/486" target="_blank">正體中文語系檔</a></p>
+<p><strong><a style="font-size:15px" href="http://wordpress.org/extend/plugins/wordpresscom-stats-helper/" target="_blank">WordPress.com Stats Helper</a></strong><br />
+要先裝下面的stats 然後可以在站上顯示資訊(熱門文章、瀏覽人數)<br />
+裝完可以直接在模組裡增加至側邊欄</p>
+<p><strong><a style="font-size:15px" href="http://wordpress.org/extend/plugins/stats/" target="_blank">WordPress.com Stats</a></strong><br />
+wordpress官方提供的流量統計</p>
+<p><strong><a style="font-size:15px" href="http://www.arnebrachhold.de/redir/sitemap-home/" target="_blank">Google XML Sitemaps</a></strong><br />
+可以提交給google 增加搜尋的能力 歐耶</p>
+<p><strong><a style="font-size:15px" href="http://wordpress.org/extend/plugins/syntaxhighlighter/" target="_blank">SyntaxHighlighter</a></strong>高亮度程式碼<br />
+也是wordpress.com有在用的 也跟google提供的長得一樣</p>
+<p><del datetime="2008-12-24T14:51:43+00:00"><br />
+<strong><a style="font-size:15px" href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/" target="_blank">WP-CodeBox</a></strong>高亮度程式碼<br />
+</del><span style="color:#c3c3c3">(現在先不用了，等作者更新吧XD)</span><br />
+很容易就可以使用的高亮度工具<br />
+依照下面這樣使用就可以囉</p>
+<pre>
+&lt;pre lang="語言種類" line="開始行數"&gt;
+  程式碼
+&lt;/pre&gt;
+</pre>
+<p>example:</p>
+<pre>
+&lt;pre lang="javascript" line="1"&gt;
+  alert("Hello World!!");
+&lt;/pre&gt;
+</pre>
+<p>會長成下面這樣</p>
+<pre>
+  alert("Hello World!!");
+</pre>
+<p>不過目前只相容到wp2.5.1<br />
+所以現在2.7用的話<br />
+我有發現的問題是<br />
+使用ie6瀏覽時<br />
+如果程式碼超過寬度<br />
+他的行數會有問題<br />
+這就等作者來修正囉<br />
+我覺得還不會影響閱讀</p>
+<p>相關連結：<br />
+<a href="http://wordpress.org/extend/plugins/wp-codebox/" target="_blank">wordpress官網的wp-codebox首頁</a><br />
+<a href="http://blog.mukispace.com/2009/01/31/wordpress-plugin-daily-top-article/" target="_blank">側邊欄顯示今日熱門文章</a></p>
+]]></content:encoded>
+			</item>
+	</channel>
+</rss>

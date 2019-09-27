@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="UTF-8"><link rel="stylesheet" type="text/css" media="all" href="https://itisjoe.github.io/blog.hsin.tw/wp-content/themes/simplest/style.css"><title>jQuery in Action Ch.2 筆記 | [lifeIs: tooShort to: waste]</title><meta name="description" content="Ch.2 Creating the wrapped element set 第二章會詳細介紹$()的兩個常用的功能: selectors 跟 創建新的DOM elements 2.1 Selecting elements for manipulation 在操作任何動作前"><meta name="keywords" content="jquery,javascript,html,jia,lib"><link rel="dns-prefetch" href="//s.w.org"><style type="text/css" id="syntaxhighlighteranchor"></style></head><body class="post-template-default single single-post postid-231 single-format-standard">
+    <div id="container">
+      <div id="header">
+        <h1><a href="https://itisjoe.github.io/blog.hsin.tw">[lifeIs: tooShort to: waste]</a></h1>
+        <p id="description"></p>
+                  <ul></ul></div>
+<div style="text-align:center;margin:0 auto;">
+<script type="text/javascript" src="//js1.bloggerads.net/ShowBanner.aspx?blogid=20090103000284"></script></div>
+      <div id="content">
+                  <div class="post-231 post type-post status-publish format-standard hentry category-jquery tag-html tag-javascript tag-jquery">
+            <h2><a href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch2-creating-the-wrapped-element-set/">jQuery in Action Ch.2 筆記</a></h2>
+            <h3>2009-05-13</h3>
+            <p>Ch.2 Creating the wrapped element set<br><span id="more-231"></span></p>
+<style>
+.method{background-color:#ffffcc;color:#000000;margin:10px;width:200px;text-align:center;}
+.title{background-color:#dddddd;color:#000000;margin-top:25px;}
+.subtitle{background-color:#eeeeee;color:#000000;;margin-top:10px;}
+</style><p>第二章會詳細介紹$()的兩個常用的功能: selectors 跟 創建新的DOM elements</p>
+<div class="title">2.1 Selecting elements for manipulation</div>
+<p>在操作任何動作前 都必須要先會取得自己需要操作的elements<br>
+這邊有提供一個可以下載來練習selectors的Selectors Lab網頁<br>
+可以在<a href="http://www.manning.com/bibeault/" target="_blank">原文版的首頁下載得到</a><br>
+(找到一個名字為Source code的連結下載)</p>
+<div class="subtitle">2.1.1 Using basic CSS selectors</div>
+<p>一開始先講解幾個基本的css selectors<br>
+這可以<a href="http://www.google.com.tw/search?q=css+%E9%81%B8%E6%93%87%E5%99%A8&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:zh-TW:official&client=firefox-a" target="_blank">咕狗研究一下</a><br>
+而jQuery就是在$()裡使用selectors</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//這個就是取得<p>中有class=specialClass的<a>
+$("p a.specialClass")
+</pre>
+<div class="subtitle">2.1.2 Using child, container, and attribute selectors</div>
+<p>而當需要取得更精細更複雜的selectors 時<br>
+就可以用到jQuery內建的功能</p>
+<p>首先以child selectors來說<br>
+大意就是說 如果要取得特定的elements<br>
+ul.mylist > li > a 可以比 ul.mylist li a取得更精確的elements<br>
+有包含 > 的是指有上下層關係(也就是parents跟child的關係) li一定在ul下面一層 而a一定在li下面一層<br>
+沒有 > 的就是指所有包在裡面的都算在內 不管隔了幾層</p>
+<p>而attribute selectors就是<br>
+可以對各tag的屬性再做篩選 挑出所需要的elements</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//所有<a>中 屬性href的開頭為http://的<a>
+a[href^=http://]
+//所以這邊使用 ^ 來代表字的開頭的意思 跟正規表達式的一樣
+</pre>
+<p>以下是幾個用法</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得所有 type=text的<input>
+input[type=text]
+
+//取得所有 title的開頭為my的<div>
+div[title^=my]
+
+//取得所有 href的結尾為.pdf的<a> (這也與正規表達式的 $ 一樣)
+a[href$=.pdf]
+
+//取得所有 href的值中有包含jquery.com字串的<a>
+a[href*=jquery.com]
+</pre>
+<p>而container selector指的是有包含所指定的selector</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得 含有<a>的<li>
+li:has(a)
+
+//但是要注意這個只能夠使用一層 如果是下面這樣
+foo:not(bar:has(baz))
+//或是
+foo:not(bar:has(baz:eq(2)))
+//都是無法使用的
+</pre>
+<p>然後書中有附一張簡表 說明各用法<br>
+也可以在<a href="http://docs.jquery.com/Selectors" target="_blank">官網的documentation</a>中找得到</p>
+<div class="subtitle">2.1.3 Selecting by position</div>
+<p>jQuery也可以依據elements間的位置關係取得所需要的elements</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得 第一個<a>
+a:first
+
+//取得 所有奇數的<p> (也就是第1,3,5,7 ...個的<p>)
+p:odd
+//當然也可以取得偶數的
+p:even
+
+//取得 <li>中最後一個child element (也就是<li>下一層中 最後一個element)
+li:last-child
+</pre>
+<p>這邊也有附一個簡表 詳情請看<a href="http://docs.jquery.com/Selectors" target="_blank">官網的documentation</a></p>
+<p>而這邊有一點要注意的是<br>
+使用:nth-child(n)的時候 這個n是從1開始算起 (1-based)<br>
+而其他的如 :eq(n) 或是 :gt(n) 這些是從0開始算起 (0-based)<br>
+所以使用:nth-child(2)會等於使用:eq(1)</p>
+<div class="subtitle">2.1.4 Using custom jQuery selectors</div>
+<p>這小節主要是介紹除了css中可以使用的selectors之外<br>
+jQuery自己內建的filter selectors<br>
+(filter就是過濾器、過濾、篩選的意思)<br>
+這邊也有附一個簡表 詳情請看<a href="http://docs.jquery.com/Selectors" target="_blank">官網的documentation</a></p>
+<p>這些filter selectors大部分都是跟form有關的<br>
+下面舉幾個例子</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得正在作特效(animations and effects)的elements
+:animated
+
+//取得checkbox (這裡就等於input[type=checkbox])
+:checkbox
+
+//取得內容有child elements(只有文字也算)的elements (也就是還有下一層)
+:parent
+
+//這些selectors也可以連著用
+:checkbox:checked:enabled
+</pre>
+<p>如果想要選擇與selectors的規則相反的filter<br>
+可以使用:not</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得不是checkbox的input
+input:not(:checkbox)
+</pre>
+<p>:not這個filter selector中 只能放filter</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//例如下面這樣是不行的
+div :not(p:hidden)
+
+//而這樣是ok的
+div p:not(:hidden)
+</pre>
+<div class="title">2.2 Generating new HTML</div>
+<p>建立新的html elements<br>
+這裡還有提到一個簡略的方法<br>
+如果是要建立一個空的element</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//這個的用法
+$("<div>")
+//會與下面這兩個一樣
+$("<div></div>")
+$("<div/>")
+</pre>
+<div class="title">2.3 Managing the wrapped element set</div>
+<p>操作取得的elements<br>
+這邊提供了另一個Selectors Lab可以練習<br>
+可以在<a href="http://www.manning.com/bibeault/" target="_blank">原文版的首頁下載得到</a><br>
+(找到一個名字為Source code的連結下載)</p>
+<div class="subtitle">2.3.1 Determining the size of the wrapped set</div>
+<div class="method">size()</div>
+<p>取得selector所會操作的elements個數 使用size()</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+$('a').size()
+</pre>
+<p>例如取得頁面上有幾個連結(也就是<a>)</p>
+<div class="subtitle">2.3.2 Obtaining elements from the wrapped set</div>
+<div class="method">get()</div>
+<p>因為jQuery可以把一個取得的elements當作一個array來使用<br>
+所以如果要取得特定的element 可以依照他的index獲得<br>
+例如要取得第一個element</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//可以使用
+$('img[alt]')[0]
+//而如果要用method來取得的話 可以使用get()
+$('img[alt]').get(0)
+</pre>
+<p>如果沒有填入index值的話 則會返回一個含有所有的elements的array</p>
+<div class="method">index()</div>
+<p>而要取得某一個element在 一個selector中取得的elements 裡的index<br>
+(也就是排序的位置 第一個就是0 第二個就是1)<br>
+可以使用index()</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得 bid=findMe的<img> 在所有<img>中的index
+var n = $('img').index($('img#findMe')[0]);
+</pre>
+<p>如果要取得index的element不在這些elements裡 則會返回-1</p>
+<div class="subtitle">2.3.3 Slicing and dicing the wrapped element set</div>
+<div class="method">add()</div>
+<p>在已經取得的elements之外 再取得另外的elements一起作操作</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//對含有alt屬性的<img>操作
+$('img[alt]')
+//除了含有alt的<img>之外 再加上含有title的<img> 再一起對這些符合條件的elements操作
+$('img[alt]').add('img[title]')
+//當然在這個例子中 如果使用下面這樣也是可以
+$('img[alt],img[title]')
+//但是如果要先對含有alt的<img>操作 再對這兩種elements操作
+//就必須要用到add()了
+//
+//在add()裡也可以加入新建立的html elements(像是2.2講的那樣)
+$('p').add('<div>Hi there!</div>')
+</pre>
+<div class="method">not()</div>
+<p>可以加入特定的elements 同樣的也是可以減少<br>
+這邊使用的not() 有點類似前面講的:not<br>
+而這個not()的使用的方法就跟add()一樣</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得有title屬性 但是title值不包含puppy這個字串的<img>
+$('img[title]').not('[title*=puppy]')
+</pre>
+<div class="method">filter()</div>
+<p>除了add()跟not()之外<br>
+如果需要更多條件來挑出需要的elements<br>
+可以使用filter()</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得所有innerHTML為數字的<td>
+$('td').filter(function(){return this.innerHTML.match(/^d+$/)})
+</pre>
+<p>filter()跟not()的用法有點類似<br>
+但是條件剛好是相反的</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//這裡是指篩選出title值含有dog字串的
+$('img').addClass('seeThrough').filter('[title*=dog]').addClass('thickBorder')
+//但如果是not() 就是把title值含有dog字串的拿掉
+$('img').addClass('seeThrough').not('[title*=dog]').addClass('thickBorder')
+</pre>
+<p>add()、not()、filter()三種method可以很靈活的增減所需要的elements</p>
+<div class="method">slice(begin,end)</div>
+<p>取得elements中特定的index的element(例如index為2~5的elements)<br>
+slice()有兩個參數 型態都是數字 皆由0開始算(zero-based)<br>
+第1個參數begin 為開始取得的index值 如果為負數就是由尾巴開始取值<br>
+第2個參數end 就是要取到第幾個為止 如果省略的話就是取到最後(這個參數所指的該index不會被取得 只會到前一個)</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得頁面上前4個elements
+$('*').slice(0,4);
+//取得頁面上除了前4個elements之外的elements 也就是從第5個element開始取得 到最後1個
+$('*').slice(4);
+</pre>
+<div class="subtitle">2.3.4 Getting wrapped sets using relationships</div>
+<p>這邊有一個簡表列出其他可以篩選出elements的methods<br>
+詳情請看<a href="http://docs.jquery.com/Traversing" target="_blank">官網的documentation</a><br>
+這些methods返回的都是新的一組elements 不會影響到原本的elements<br>
+下面舉幾個例子</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得該elements所有的child elements
+children()
+//取得該elements的下一個同一層的element
+next()
+//取得該elements之後所有同一層的elements
+nextAll()
+//取得該elements的所有同一層不重複的elements
+siblings()
+</pre>
+<p>這些methods除了contents()之外 其他的都可以再在裡面用字串來篩選出elements</p>
+<div class="subtitle">2.3.5 Even more ways to use a wrapped set</div>
+<div class="method">find()</div>
+<p>對一組已經篩選出的elements作另一個selectors的篩選</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得在<p>中的<span>
+$("p").find("span")
+</pre>
+<p>雖然上面這個例子跟$(‘p span’)的用法一樣<br>
+但是如果需要在chains中使用 就必須用到find()</p>
+<div class="method">contains()</div>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//取得在<p>中有包含'Lorem ipsum'這個字串的elements
+$('p').contains('Lorem ipsum')
+</pre>
+<p>對一組已經篩選出的elements作字串的篩選</p>
+<div class="method">is()</div>
+<p>對一組已經篩選出的elements作另一個selectors的查找 是否有包含此selectors</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+//檢查頁面上是否有至少一個<img>
+var hasImage = $('*').is('img');
+</pre>
+<p>返回值是個boolean<br>
+如果有找到就是返回true 反之則是false</p>
+<div class="subtitle">2.3.6 Managing jQuery chains</div>
+<p>這小節會說明2個在chain中變換<b>可以操作的elements</b>的method</p>
+<div class="method">end()</div>
+<p>在一個chain中如果先變換了操作的elements<br>
+但是在後面又要操作原本的elements<br>
+就要使用到end()<br>
+(clone()在ch3會講 這是一個複製elements的method)</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+$('img').clone().appendTo('#somewhere').end().addClass('beenCloned');
+</pre>
+<p>先對所有的<img>作複製<br>
+再把這些複製的elements加到id=somewhere的element中<br>
+而因為要再對原本的elements(所有<img>)加上class=beenCloned<br>
+所以加上end()後再加上addClass(‘beenCloned’)<br>
+如果沒有end() 而直接加addClass(‘beenCloned’)<br>
+那就是會加到複製的elements上 而不是原本的elements</p>
+<div class="method">andSelf()</div>
+<p>在一個chain中如果先變換了操作的elements<br>
+但是在後面又要對原本的elements一起操作<br>
+就要使用到andSelf()</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+$("div").find("p").andSelf().addClass("border");
+</pre>
+<p>如果沒有加上andSelf() 就是只有<div>中的<p>會加上class=border<br>
+如果加上了 就是 <div> 跟 <div>中的<p> 都會加上class=border</p>
+                                      <div class="pagination"></div>
+                        <div class="clear"> </div>
+          </div>
+                      <div class="meta">
+              <p>Posted by <a href="https://itisjoe.github.io/blog.hsin.tw/author/hsin/" title="由 hsin 發表" rel="author">hsin</a>              on <a href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch2-creating-the-wrapped-element-set/">2009 年 05 月 13 日</a>
+              in <a href="https://itisjoe.github.io/blog.hsin.tw/category/jquery/" rel="category tag">jquery</a>, <a href="https://itisjoe.github.io/blog.hsin.tw/tag/html/" rel="tag">html</a>, <a href="https://itisjoe.github.io/blog.hsin.tw/tag/javascript/" rel="tag">javascript</a>, <a href="https://itisjoe.github.io/blog.hsin.tw/tag/jquery/" rel="tag">jquery</a></p>
+            </div>
+                                                <div class="left"><a href="https://itisjoe.github.io/blog.hsin.tw">« Home page</a></div>
+                <div style="clear:both;margin: 100px;"> </div>
+                  <div class="widgets"><div class="widget"><h4>標籤</h4><div class="tagcloud"><a href="https://itisjoe.github.io/blog.hsin.tw/tag/addon/" class="tag-cloud-link tag-link-49 tag-link-position-1" style="font-size: 8pt;" aria-label="addon (1 個項目)">addon</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/admob/" class="tag-cloud-link tag-link-47 tag-link-position-2" style="font-size: 8pt;" aria-label="admob (1 個項目)">admob</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/apache/" class="tag-cloud-link tag-link-27 tag-link-position-3" style="font-size: 9.9236641221374pt;" aria-label="apache (2 個項目)">apache</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/bookmarklet/" class="tag-cloud-link tag-link-12 tag-link-position-4" style="font-size: 11.206106870229pt;" aria-label="bookmarklet (3 個項目)">bookmarklet</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/checkbox/" class="tag-cloud-link tag-link-13 tag-link-position-5" style="font-size: 8pt;" aria-label="checkbox (1 個項目)">checkbox</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ckeditor/" class="tag-cloud-link tag-link-36 tag-link-position-6" style="font-size: 8pt;" aria-label="ckeditor (1 個項目)">ckeditor</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/cocos2d/" class="tag-cloud-link tag-link-46 tag-link-position-7" style="font-size: 11.206106870229pt;" aria-label="Cocos2D (3 個項目)">Cocos2D</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/codeigniter/" class="tag-cloud-link tag-link-29 tag-link-position-8" style="font-size: 12.274809160305pt;" aria-label="Codeigniter (4 個項目)">Codeigniter</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/cpanel/" class="tag-cloud-link tag-link-39 tag-link-position-9" style="font-size: 8pt;" aria-label="cPanel (1 個項目)">cPanel</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/css/" class="tag-cloud-link tag-link-3 tag-link-position-10" style="font-size: 14.946564885496pt;" aria-label="css (8 個項目)">css</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/excel/" class="tag-cloud-link tag-link-23 tag-link-position-11" style="font-size: 8pt;" aria-label="excel (1 個項目)">excel</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/exif/" class="tag-cloud-link tag-link-30 tag-link-position-12" style="font-size: 8pt;" aria-label="exif (1 個項目)">exif</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/facebook/" class="tag-cloud-link tag-link-28 tag-link-position-13" style="font-size: 9.9236641221374pt;" aria-label="facebook (2 個項目)">facebook</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/firefox/" class="tag-cloud-link tag-link-4 tag-link-position-14" style="font-size: 13.129770992366pt;" aria-label="firefox (5 個項目)">firefox</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/git/" class="tag-cloud-link tag-link-63 tag-link-position-15" style="font-size: 9.9236641221374pt;" aria-label="git (2 個項目)">git</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/gmail/" class="tag-cloud-link tag-link-22 tag-link-position-16" style="font-size: 8pt;" aria-label="gmail (1 個項目)">gmail</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/gps/" class="tag-cloud-link tag-link-31 tag-link-position-17" style="font-size: 8pt;" aria-label="gps (1 個項目)">gps</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/html/" class="tag-cloud-link tag-link-14 tag-link-position-18" style="font-size: 20.290076335878pt;" aria-label="html (27 個項目)">html</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/iad/" class="tag-cloud-link tag-link-48 tag-link-position-19" style="font-size: 8pt;" aria-label="iAD (1 個項目)">iAD</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/instagram/" class="tag-cloud-link tag-link-50 tag-link-position-20" style="font-size: 8pt;" aria-label="instagram (1 個項目)">instagram</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ios/" class="tag-cloud-link tag-link-40 tag-link-position-21" style="font-size: 21.251908396947pt;" aria-label="iOS (34 個項目)">iOS</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/iosdev/" class="tag-cloud-link tag-link-62 tag-link-position-22" style="font-size: 13.129770992366pt;" aria-label="iosdev (5 個項目)">iosdev</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ipad/" class="tag-cloud-link tag-link-44 tag-link-position-23" style="font-size: 15.480916030534pt;" aria-label="iPad (9 個項目)">iPad</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/iphone/" class="tag-cloud-link tag-link-43 tag-link-position-24" style="font-size: 19.541984732824pt;" aria-label="iPhone (23 個項目)">iPhone</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/javascript/" class="tag-cloud-link tag-link-5 tag-link-position-25" style="font-size: 21.251908396947pt;" aria-label="javascript (34 個項目)">javascript</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/jquery/" class="tag-cloud-link tag-link-6 tag-link-position-26" style="font-size: 17.404580152672pt;" aria-label="jquery (14 個項目)">jquery</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/laravel/" class="tag-cloud-link tag-link-52 tag-link-position-27" style="font-size: 19.541984732824pt;" aria-label="laravel (23 個項目)">laravel</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/mac/" class="tag-cloud-link tag-link-34 tag-link-position-28" style="font-size: 13.129770992366pt;" aria-label="mac (5 個項目)">mac</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/php/" class="tag-cloud-link tag-link-7 tag-link-position-29" style="font-size: 22pt;" aria-label="php (40 個項目)">php</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/plugin/" class="tag-cloud-link tag-link-15 tag-link-position-30" style="font-size: 13.129770992366pt;" aria-label="plugin (5 個項目)">plugin</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/redirect/" class="tag-cloud-link tag-link-26 tag-link-position-31" style="font-size: 8pt;" aria-label="redirect (1 個項目)">redirect</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/rss/" class="tag-cloud-link tag-link-8 tag-link-position-32" style="font-size: 9.9236641221374pt;" aria-label="rss (2 個項目)">rss</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/select/" class="tag-cloud-link tag-link-16 tag-link-position-33" style="font-size: 9.9236641221374pt;" aria-label="select (2 個項目)">select</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/server/" class="tag-cloud-link tag-link-24 tag-link-position-34" style="font-size: 13.129770992366pt;" aria-label="server (5 個項目)">server</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/shopping/" class="tag-cloud-link tag-link-37 tag-link-position-35" style="font-size: 8pt;" aria-label="shopping (1 個項目)">shopping</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/ubuntu/" class="tag-cloud-link tag-link-33 tag-link-position-36" style="font-size: 8pt;" aria-label="ubuntu (1 個項目)">ubuntu</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/website/" class="tag-cloud-link tag-link-51 tag-link-position-37" style="font-size: 8pt;" aria-label="website (1 個項目)">website</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/wordpress/" class="tag-cloud-link tag-link-9 tag-link-position-38" style="font-size: 16.656488549618pt;" aria-label="wordpress (12 個項目)">wordpress</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/xcode/" class="tag-cloud-link tag-link-41 tag-link-position-39" style="font-size: 14.412213740458pt;" aria-label="Xcode (7 個項目)">Xcode</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/xml/" class="tag-cloud-link tag-link-17 tag-link-position-40" style="font-size: 9.9236641221374pt;" aria-label="xml (2 個項目)">xml</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/zeus/" class="tag-cloud-link tag-link-25 tag-link-position-41" style="font-size: 8pt;" aria-label="zeus (1 個項目)">zeus</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/zip/" class="tag-cloud-link tag-link-18 tag-link-position-42" style="font-size: 9.9236641221374pt;" aria-label="zip (2 個項目)">zip</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/%e7%80%8f%e8%a6%bd%e5%99%a8/" class="tag-cloud-link tag-link-19 tag-link-position-43" style="font-size: 18.473282442748pt;" aria-label="瀏覽器 (18 個項目)">瀏覽器</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/%e7%95%ab%e7%95%ab/" class="tag-cloud-link tag-link-58 tag-link-position-44" style="font-size: 11.206106870229pt;" aria-label="畫畫 (3 個項目)">畫畫</a>
+<a href="https://itisjoe.github.io/blog.hsin.tw/tag/%e8%bb%9f%e9%ab%94/" class="tag-cloud-link tag-link-11 tag-link-position-45" style="font-size: 12.274809160305pt;" aria-label="軟體 (4 個項目)">軟體</a></div>
+</div><div class="widget"><h4>分類</h4>		<ul><li class="cat-item cat-item-38"><a href="https://itisjoe.github.io/blog.hsin.tw/category/buy/">buy</a> (1)
+</li>
+	<li class="cat-item cat-item-29"><a href="https://itisjoe.github.io/blog.hsin.tw/category/codeigniter/">Codeigniter</a> (3)
+</li>
+	<li class="cat-item cat-item-3"><a href="https://itisjoe.github.io/blog.hsin.tw/category/css/">css</a> (2)
+</li>
+	<li class="cat-item cat-item-23"><a href="https://itisjoe.github.io/blog.hsin.tw/category/excel/">excel</a> (1)
+</li>
+	<li class="cat-item cat-item-4"><a href="https://itisjoe.github.io/blog.hsin.tw/category/firefox/">firefox</a> (4)
+</li>
+	<li class="cat-item cat-item-66"><a href="https://itisjoe.github.io/blog.hsin.tw/category/git-usage/">Git-Usage</a> (2)
+</li>
+	<li class="cat-item cat-item-22"><a href="https://itisjoe.github.io/blog.hsin.tw/category/gmail/">gmail</a> (1)
+</li>
+	<li class="cat-item cat-item-70"><a href="https://itisjoe.github.io/blog.hsin.tw/category/gulp/">gulp</a> (1)
+</li>
+	<li class="cat-item cat-item-42"><a href="https://itisjoe.github.io/blog.hsin.tw/category/ios-dev/">iOS Dev</a> (33)
+</li>
+	<li class="cat-item cat-item-43"><a href="https://itisjoe.github.io/blog.hsin.tw/category/iphone/">iPhone</a> (5)
+</li>
+	<li class="cat-item cat-item-5"><a href="https://itisjoe.github.io/blog.hsin.tw/category/javascript/">javascript</a> (30)
+</li>
+	<li class="cat-item cat-item-6"><a href="https://itisjoe.github.io/blog.hsin.tw/category/jquery/">jquery</a> (13)
+</li>
+	<li class="cat-item cat-item-55"><a href="https://itisjoe.github.io/blog.hsin.tw/category/laravel-php/">laravel</a> (23)
+</li>
+	<li class="cat-item cat-item-59"><a href="https://itisjoe.github.io/blog.hsin.tw/category/life/">Life</a> (3)
+</li>
+	<li class="cat-item cat-item-57"><a href="https://itisjoe.github.io/blog.hsin.tw/category/linux/">Linux</a> (1)
+</li>
+	<li class="cat-item cat-item-35"><a href="https://itisjoe.github.io/blog.hsin.tw/category/mac-2/">MAC</a> (5)
+</li>
+	<li class="cat-item cat-item-45"><a href="https://itisjoe.github.io/blog.hsin.tw/category/mobile-app/">Mobile App</a> (6)
+</li>
+	<li class="cat-item cat-item-21"><a href="https://itisjoe.github.io/blog.hsin.tw/category/mymanager-tw/">mymanager.tw</a> (2)
+</li>
+	<li class="cat-item cat-item-32"><a href="https://itisjoe.github.io/blog.hsin.tw/category/oneshot-tw/">oneshot.tw</a> (1)
+</li>
+	<li class="cat-item cat-item-7"><a href="https://itisjoe.github.io/blog.hsin.tw/category/php/">php</a> (32)
+</li>
+	<li class="cat-item cat-item-8"><a href="https://itisjoe.github.io/blog.hsin.tw/category/rss/">rss</a> (1)
+</li>
+	<li class="cat-item cat-item-24"><a href="https://itisjoe.github.io/blog.hsin.tw/category/server/">server</a> (5)
+</li>
+	<li class="cat-item cat-item-68"><a href="https://itisjoe.github.io/blog.hsin.tw/category/woocommerce/">woocommerce</a> (6)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://itisjoe.github.io/blog.hsin.tw/category/wordpress/">wordpress</a> (6)
+</li>
+	<li class="cat-item cat-item-10"><a href="https://itisjoe.github.io/blog.hsin.tw/category/nothing/">沒什麼好說的</a> (7)
+</li>
+	<li class="cat-item cat-item-19"><a href="https://itisjoe.github.io/blog.hsin.tw/category/%e7%80%8f%e8%a6%bd%e5%99%a8/">瀏覽器</a> (5)
+</li>
+	<li class="cat-item cat-item-20"><a href="https://itisjoe.github.io/blog.hsin.tw/category/%e7%9f%a5%e8%ad%98or%e5%b8%b8%e8%ad%98/">知識(or常識?)</a> (1)
+</li>
+	<li class="cat-item cat-item-11"><a href="https://itisjoe.github.io/blog.hsin.tw/category/%e8%bb%9f%e9%ab%94/">軟體</a> (4)
+</li>
+		</ul></div></div>
+          <div style="clear:both;"></div>
+                <div class="clear"> </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://itisjoe.github.io/blog.hsin.tw/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js"></script><script type="text/javascript" src="https://itisjoe.github.io/blog.hsin.tw/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js"></script><script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://itisjoe.github.io/blog.hsin.tw/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://itisjoe.github.io/blog.hsin.tw/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeEclipse.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-6753542-1', 'auto');
+  ga('send', 'pageview');
+
+</script></body></html>

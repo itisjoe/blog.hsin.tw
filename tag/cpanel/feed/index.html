@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>cPanel &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/cpanel/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[cPanel] 建立軟連結(symbolic link)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/cpanel-create-symbolic-link/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/cpanel-create-symbolic-link/#respond</comments>
+		<pubDate>Fri, 30 Mar 2012 03:19:09 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[cPanel]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=514</guid>
+		<description><![CDATA[雖然有先問了該虛擬主機的客服 得知不行做這個動作 但是!! 這麼一個簡單的動作也不行做 真的不太妥吧 還好待我 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>雖然有先問了該虛擬主機的客服<span id="more-514"></span><br />
+得知不行做這個動作</p>
+<p>但是!!<br />
+這麼一個簡單的動作也不行做<br />
+真的不太妥吧<br />
+還好待我咕狗後的結果<br />
+可以用cron job來完成這個任務！！！<br />
+(如果cPanel是中文的 那是寫[工作排程])</p>
+<p>好吧 我在找cPanel裡哪裡可能可以做的時候<br />
+的確有瞄到cron job<br />
+也在想那邊應該可以吧 應該可以吧<br />
+後來還是先咕狗確認了</p>
+<p>好 那順便記一下軟連結怎麼寫<del datetime="2012-03-30T03:10:22+00:00"> (絕對不是怕忘記)</del><br />
+ln -s 原目錄 要建立軟連結的目錄</p>
+<p>ex:<br />
+ln -s /tmp/photo /home/hsin/photo<br />
+這樣到了/home/hsin/photo的目錄時<br />
+看到的實際是/tmp/photo裡的東西</p>
+<p>ref: <a href="http://kb.siteground.com/article/How_can_I_create_symbolic_link.html">http://kb.siteground.com/article/How_can_I_create_symbolic_link.html</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/cpanel-create-symbolic-link/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

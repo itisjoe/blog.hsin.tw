@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="https://itisjoe.github.io/blog.hsin.tw/wp-content/plugins/google-sitemap-generator/sitemap.xsl"?><!-- generator="wordpress/2.8" --><!-- sitemap-generator-url="http://www.arnebrachhold.de" sitemap-generator-version="3.1.4" --><!-- generated-on="2009 年 07 月 06 日 16:16:21" --><!-- Debug: Total comment count: 22 --><urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/</loc>
+		<lastmod>2009-07-06T08:14:46+00:00</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
+<!-- Debug: Start Postings --><!-- Debug: Priority report of postID 117: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin/</loc>
+		<lastmod>2009-07-06T08:14:46+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 297: Comments: 1 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch5/</loc>
+		<lastmod>2009-07-02T05:40:00+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 337: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action/</loc>
+		<lastmod>2009-06-30T10:11:55+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 316: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch-7/</loc>
+		<lastmod>2009-06-30T09:51:04+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 304: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch-6/</loc>
+		<lastmod>2009-06-30T09:49:31+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 272: Comments: 1 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch4/</loc>
+		<lastmod>2009-06-30T09:31:13+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 246: Comments: 1 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch3/</loc>
+		<lastmod>2009-06-30T09:25:25+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 231: Comments: 1 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch2-creating-the-wrapped-element-set/</loc>
+		<lastmod>2009-06-30T09:16:09+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 190: Comments: 2 of 22 = 0.1 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/</loc>
+		<lastmod>2009-06-30T09:00:57+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 323: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch8/</loc>
+		<lastmod>2009-06-30T02:13:14+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 262: Comments: 2 of 22 = 0.1 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/plane/</loc>
+		<lastmod>2009-06-27T03:16:48+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 140: Comments: 3 of 22 = 0.1 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/php-get-method-fsockopen/</loc>
+		<lastmod>2009-06-26T03:57:46+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 109: Comments: 1 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/php-post-method-fsockopen/</loc>
+		<lastmod>2009-06-22T07:35:47+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/blogrolls/</loc>
+		<lastmod>2009-06-16T01:45:26+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+<!-- Debug: Priority report of postID 288: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/css-float-left-float-right/</loc>
+		<lastmod>2009-06-13T16:26:18+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 39: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/wordpress-plugins/</loc>
+		<lastmod>2009-06-11T10:11:38+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 256: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/bookmarklet-chinese-translate/</loc>
+		<lastmod>2009-06-06T02:03:35+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 228: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/javascript-ignore-ie-error/</loc>
+		<lastmod>2009-05-11T10:01:16+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 225: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/php-pad-a-string/</loc>
+		<lastmod>2009-05-11T07:25:30+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 221: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/new-server/</loc>
+		<lastmod>2009-05-05T14:14:56+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 218: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/php-pass-session-data-between-subdomains/</loc>
+		<lastmod>2009-04-23T02:09:33+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 210: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/javascript-clean-calendar/</loc>
+		<lastmod>2009-04-12T13:43:45+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 183: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/software-taskix-reorder-buttons-in-your-windows-taskbar/</loc>
+		<lastmod>2009-03-25T13:45:46+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 181: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/css-ie6position-fixed/</loc>
+		<lastmod>2009-03-23T11:35:22+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 178: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/javascript-foreach/</loc>
+		<lastmod>2009-03-20T06:53:18+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 160: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/rss-note/</loc>
+		<lastmod>2009-03-05T06:08:04+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 158: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/dictionary3in1/</loc>
+		<lastmod>2009-03-04T10:40:15+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 152: Comments: 1 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/bookmarklet/</loc>
+		<lastmod>2009-03-02T15:41:51+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 150: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/javascript-getselection/</loc>
+		<lastmod>2009-03-01T16:05:46+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 146: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin-greasemonkey/</loc>
+		<lastmod>2009-02-26T12:03:24+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 113: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2009/regular-expression-library/</loc>
+		<lastmod>2009-02-08T08:57:16+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 101: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/php-parse-xml/</loc>
+		<lastmod>2008-12-29T15:52:18+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 98: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-horizontal-menu/</loc>
+		<lastmod>2008-12-28T14:28:49+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 91: Comments: 3 of 22 = 0.1 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-vertical-carousel-menu/</loc>
+		<lastmod>2008-12-26T16:50:00+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 83: Comments: 4 of 22 = 0.2 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-vertical-carousel/</loc>
+		<lastmod>2008-12-25T14:18:12+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 30: Comments: 2 of 22 = 0.1 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-table-add-remove-row/</loc>
+		<lastmod>2008-12-21T12:12:48+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 28: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/php-pclzip/</loc>
+		<lastmod>2008-12-21T12:04:42+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 24: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-form-radio/</loc>
+		<lastmod>2008-12-21T11:57:31+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 22: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-form-input/</loc>
+		<lastmod>2008-12-21T11:49:47+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 15: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-select-option/</loc>
+		<lastmod>2008-12-21T10:30:46+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: Priority report of postID 5: Comments: 0 of 22 = 0 points -->	<url>
+		<loc>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-checkbox/</loc>
+		<lastmod>2008-12-20T17:29:38+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.2</priority>
+	</url>
+<!-- Debug: End Postings --><!-- Debug: Start Custom Pages --><!-- Debug: End Custom Pages --><!-- Debug: Start additional URLs --><!-- Debug: End additional URLs --></urlset>

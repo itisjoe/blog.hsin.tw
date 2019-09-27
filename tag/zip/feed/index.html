@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>zip &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/zip/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>gmail不能收含有執行檔的zip檔</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2010/gmail-zip-file-blocked/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2010/gmail-zip-file-blocked/#comments</comments>
+		<pubDate>Mon, 08 Feb 2010 12:25:06 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[gmail]]></category>
+		<category><![CDATA[zip]]></category>
+		<category><![CDATA[瀏覽器]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=383</guid>
+		<description><![CDATA[剛剛使用ASUS的線上客服 要請他寄驅動程式給我 寄了兩次都沒收到 第三次才跟他說我換aol的信箱收 這樣才收 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>剛剛使用ASUS的線上客服<br />
+<span id="more-383"></span><br />
+要請他寄驅動程式給我<br />
+寄了兩次都沒收到<br />
+第三次才跟他說我換aol的信箱收<br />
+這樣才收到</p>
+<p>剛剛找了一下原因<br />
+原來Gmail如果寄的zip裡面含有exe檔案(可執行檔)<br />
+(這是google的說明頁： <a href="http://mail.google.com/support/bin/answer.py?answer=6590" target="_blank">某些檔案類型遭到封鎖</a>)<br />
+就會自動擋下來<br />
+而且還不會跟收件人說= =<br />
+害我以為ASUS的客服偷懶也偷太嚴重了吧<br />
+錯怪他了XD</p>
+<p>所以下次用gmail寄附件為壓縮檔的時候要記得<br />
+看是改壓成rar(不過收件者不一定可以解 沒有另外裝軟體的話 windows內建的解不了)<br />
+或是zip壓縮兩次(比較麻煩一點)<br />
+或是改副檔名成別的 像是txt(也是有點麻煩 還要請收件者再把副檔名改回來)<br />
+最後大絕招是放在隨身碟裡再放進信封 丟進郵筒給他 (誤</p>
+<p>以上記一下以免下次又遇到</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2010/gmail-zip-file-blocked/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>php 解壓縮zip 使用pclzip</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2008/php-pclzip/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2008/php-pclzip/#respond</comments>
+		<pubDate>Sun, 21 Dec 2008 12:04:42 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[php]]></category>
+		<category><![CDATA[zip]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=28</guid>
+		<description><![CDATA[前幾天為了要讓人上傳壓縮檔所以咕狗了一下 然後就找到了這個pclZip，是一個class，所以很好使用，inc [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>前幾天為了要讓人上傳壓縮檔所以咕狗了一下<br />
+<span id="more-28"></span><br />
+然後就找到了這個<a href="http://www.phpconcept.net/pclzip/man/en/index.php" target="_blank">pclZip</a>，是一個class，所以很好使用，include檔案就可以用了。<br />
+其實他也可以壓縮檔案，只是我還用不到，所以下面講的都比較有關解壓縮。</p>
+<p>這是最基本的用法：</p>
+<pre class="brush: php; title: ; notranslate">
+  require_once('pclzip.lib.php');
+  $archive = new PclZip('archive.zip');
+  $archive-&gt;extract();
+</pre>
+<p>
+這樣就可以把archive.zip這個檔案解壓縮到當前目錄！傷當的簡單阿！<br />
+不過記得解壓縮到的目錄的權限要可以寫入，不然會卡住，我因為這個卡很久阿&#8230;很笨=..=</p>
+<p>他每個method還可以加上許多的參數，可以讓壓縮檔更帥&#8230;(什麼鬼)<br />
+下面是我把官網上有寫的參數都翻一下，<a href="http://www.phpconcept.net/pclzip/man/en/index.php?options" target="_blank">細節可以自己到這裡研究看看</a></p>
+<table style="font-size:12px;" width="550" border=1 cellspacing=1 cellpadding=3 bgcolor="#6e6e6e">
+<tr bgcolor="#dedede">
+<th width="200">參數</th>
+<th width="200">引數</th>
+</tr>
+<tr bgcolor="#dedede">
+<th width="400" colspan="2">說明</th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_PATH</td>
+<td>字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+      要解壓縮到哪的路徑。可用於extract()、extractByIndex()。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_ADD_PATH</td>
+<td>字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+      增加一個目錄。可用於create()、add()、extract()。(使用於create()時，是把要壓縮的檔案放進這個目錄中再壓縮，使用於extract()時，是在要解壓縮的路徑中增加此目錄，並解壓縮到此目錄中)。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_REMOVE_PATH</td>
+<td>字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+移除部份的目錄路徑，例如原本檔案所在的目錄為aa/bb/cc/test.test.txt，但是希望壓縮或解壓縮後的路徑為cc/test.txt，就可以使用PCLZIP_OPT_REMOVE_PATH,&#8221;aa/bb&#8221;。可用於create()、add()、extract()、extractByIndex()。(與PCLZIP_OPT_REMOVE_ALL_PATH一起用的時候會被自動忽略)
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_REMOVE_ALL_PATH</td>
+<td>--</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+移除所有檔案的目錄，所有檔案都會被解壓縮或壓縮到當前或是指定的目錄中，請注意如果有不同目錄的相同名稱檔案，使用此參數時會被覆蓋，此參數不需要引數。可用於create()、add()、extract()、extractByIndex()。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_SET_CHMOD</td>
+<td>CHMOD值</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+設定解壓縮出來的檔案的CHMOD值。可用於extract()、extractByIndex()。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_BY_NAME</td>
+<td>檔案名稱</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+僅解壓縮引數中所指定的檔案，檔案名稱可以用陣列或是逗號隔開表示。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_BY_EREG</td>
+<td>RegEx字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+僅解壓縮引數中正規表達式比對檔名正確的檔案，使用php中的ereg()函式比對。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_BY_PREG</td>
+<td>RegEx字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+僅解壓縮引數中正規表達式比對檔名正確的檔案，使用php中的preg_match()函式比對。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_BY_INDEX</td>
+<td>陣列</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+僅解壓縮引數陣列中各元素所指定順序的檔案。(這個我還不太懂是照什麼順序，似乎不是照字母排)
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_EXTRACT_AS_STRING</td>
+<td>--</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+將一個檔案的內容解壓縮成一個字串，通常可能用於只需要看readme檔案的情況。請注意如果一次解壓縮太多檔案，有可能會將記憶體耗盡。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_EXTRACT_IN_OUTPUT</td>
+<td>--</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+將一個檔案的內容解壓縮並直接輸出(即類似直接echo此結果)。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_NO_COMPRESSION</td>
+<td>--</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+將一個檔案加入此壓縮檔內，此檔案不會被壓縮，僅是放入同一個壓縮檔中。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_COMMENT</td>
+<td>字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+建立壓縮檔時增加一個註解，如果原本已經有註解的話，將會直接覆蓋過去。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_ADD_COMMENT</td>
+<td>字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+建立壓縮檔時增加一個註解，如果原本已經有註解的話，將會接在後面。
+    </td>
+</tr>
+<tr bgcolor="#dedede">
+<th colspan="2"></th>
+</tr>
+<tr bgcolor="#ffffff">
+<td>PCLZIP_OPT_PREPEND_COMMENT</td>
+<td>字串</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2">
+建立壓縮檔時增加一個註解，如果原本已經有註解的話，將會把原先的註解接在此字串的後面。
+    </td>
+</tr>
+</table>
+<p>
+下面這些是範例，其實就跟官網的user manual內容一樣：</p>
+<pre class="brush: php; title: ; notranslate">
+//解壓縮到extract/folder/這個目錄中
+$list = $archive-&gt;extract(PCLZIP_OPT_PATH, &quot;extract/folder/&quot;);
+
+//增加這個目錄在壓縮檔中，完成以後壓縮檔裡面會有backup這個目錄，backup裡面會有這兩個檔案
+$list = $archive-&gt;create(&quot;file.txt,image.gif&quot;,PCLZIP_OPT_ADD_PATH, &quot;backup&quot;);
+
+//去掉部份的路徑，這裡完成後會變成test/file.txt
+$list = $archive-&gt;add(&quot;/usr/local/user/test/file.txt&quot;,PCLZIP_OPT_REMOVE_PATH, &quot;/usr/local/user&quot;);
+
+//把所有路徑都去掉，這個壓縮檔建立完後，裡面就只會有file.txt跟image.gif，不會有目錄了
+$list = $archive-&gt;create(&quot;data/file.txt images/image.gif&quot;,PCLZIP_OPT_REMOVE_ALL_PATH);
+
+//把解壓縮出來的檔案的CHMOD設成0777
+$list = $archive-&gt;extract(PCLZIP_OPT_SET_CHMOD, 0777);
+
+//解壓縮部份的檔案，這個參數是使用檔案名稱判別
+//引數可以用下面這樣的陣列
+$rule_list[0] = 'test/aaa.txt';
+$rule_list[1] = 'test/ddd.txt';
+//或是下面這樣，一個字串中，用逗號分隔每個要解壓縮的檔案
+$rule_list = &quot;test/aaa.txt,test/ddd.txt&quot;;
+$list = $archive-&gt;extract(PCLZIP_OPT_BY_NAME,$rule_list);
+
+//解壓縮部份的檔案，使用php的ereg()函式，檔案名稱有比對成功的都會被解壓縮
+$list = $archive-&gt;extract(PCLZIP_OPT_BY_EREG, &quot;aa&quot;);
+
+//解壓縮部份的檔案，使用php的preg_match()函式，檔案名稱有比對成功的都會被解壓縮
+$list = $archive-&gt;extract(PCLZIP_OPT_BY_PREG, &quot;/^bb/&quot;);
+//上面這兩個函式如果不懂的話，請先研究正規表示法(Regular Expression)
+
+//依照陣列中元素的索引解壓縮，可是我不太懂index啥 = =a
+$list = $archive-&gt;extract(PCLZIP_OPT_BY_INDEX, array('0-1','6-7'));
+
+//將一個檔案內容解壓縮成一個字串
+$list = $archive-&gt;extract(PCLZIP_OPT_BY_NAME, &quot;data/readme.txt&quot;,PCLZIP_OPT_EXTRACT_AS_STRING);
+
+//將一個檔案內容解壓縮完後直接輸出(echo)
+$list = $archive-&gt;extract(PCLZIP_OPT_BY_NAME, &quot;data/readme.txt&quot;,PCLZIP_OPT_EXTRACT_IN_OUTPUT);
+
+//將一個檔案加入一個壓縮檔中，但不會對此檔案壓縮
+$list = $archive-&gt;add(&quot;data/file.txt&quot;, PCLZIP_OPT_NO_COMPRESSION);
+
+//對此壓縮檔增加一個註解，如果原本就有註解的話會被覆蓋掉
+$list = $archive-&gt;create(&quot;data&quot;, PCLZIP_OPT_COMMENT, &quot;Add a comment&quot;);
+
+//對此壓縮檔增加一個註解，如果原本就有註解的話會接在後面
+$list = $archive-&gt;add(&quot;data&quot;, PCLZIP_OPT_ADD_COMMENT, &quot;Add a comment after the existing one&quot;);
+
+//對此壓縮檔增加一個註解，如果原本就有註解的話會放在原本的註解前面
+$list = $archive-&gt;add(&quot;data&quot;, PCLZIP_OPT_PREPEND_COMMENT, &quot;Add a comment before the existing one&quot;);
+</pre>
+<p>這個是官網中extract()的範例：</p>
+<pre class="brush: php; title: ; notranslate">
+  include('pclzip.lib.php');
+  $archive = new PclZip('archive.zip');
+  if ($archive-&gt;extract(PCLZIP_OPT_PATH, 'data',
+                        PCLZIP_OPT_REMOVE_PATH, 'install/release') == 0) {
+    //當有錯誤的時候，可以用這個顯示錯誤訊息
+    die(&quot;Error : &quot;.$archive-&gt;errorInfo(true));
+  }
+</pre>
+<p>就我剛剛的研究，目前還不行建立有密碼的壓縮檔<br />
+不過還是很夠用了～ 推～</p>
+<p>參考資訊：<br />
+<a href="http://www.phpconcept.net/pclzip/man/en/index.php" target="_blank">PclZip</a> <br />
+<a href="http://support.oss.org.tw/?q=node/147" target="_blank">PclZip 簡介與使用</a> <br />
+<a href="http://wiki.oss.org.tw/index.php/Php_pclzip_1" target="_blank">TechWiki:PclZip</a> </p>
+<p></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2008/php-pclzip/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

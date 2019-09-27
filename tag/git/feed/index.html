@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>git &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/git/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[Git] 將 GitBook 發佈到 GitHub Pages</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/git-%e5%b0%87-gitbook-%e7%99%bc%e4%bd%88%e5%88%b0-github-pages/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/git-%e5%b0%87-gitbook-%e7%99%bc%e4%bd%88%e5%88%b0-github-pages/#respond</comments>
+		<pubDate>Sun, 24 Apr 2016 07:25:32 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Git-Usage]]></category>
+		<category><![CDATA[git]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1070</guid>
+		<description><![CDATA[最近在使用 GitBook 撰寫一個 Swift 入門的電子書 這幾天寫到一個段落 可以進行其他部分 其中一點 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>最近在使用 <a href="https://www.gitbook.com/">GitBook</a> 撰寫一個 Swift 入門的電子書<br />
+<span id="more-1070"></span></p>
+<p>這幾天寫到一個段落 可以進行其他部分</p>
+<p>其中一點就是將電子書發佈到 GitHub Pages 上</p>
+<h2>▼ 匯入到 GitHub</h2>
+<p>首先要先從 GitBook 把電子書 export 到 GitHub</p>
+<p>在 GitBook 裡 找到<strong> SETTINGS &gt; GitHub </strong>並點擊<strong>[Export to GitHub]</strong></p>
+<p>接著按照他的步驟進行 最後會在 GitHub 新建好一個 repository</p>
+<h2>▼ 建立書籍</h2>
+<p>因為原始檔案都是一個一個的 .md 檔案 必須做轉換才可以直接在網頁上看</p>
+<p>我是在 Mac 本機上做這個操作(需要 npm ,如果還沒有的話要先安裝 nodejs )</p>
+<p>先使用 npm 安裝 gitbook-cli</p>
+<pre class="brush: plain; title: ; notranslate">
+$ npm install -g gitbook-cli
+</pre>
+<p>接著找好要放置的目錄並將前一步驟新建好的 repository clone 回本機</p>
+<p>(這邊使用 SwiftGo 電子書做範例)</p>
+<pre class="brush: plain; title: ; notranslate">
+$ git clone https://github.com/itisjoe/swiftgo.git
+</pre>
+<p>然後在該目錄裡使用 gitbook 指令來建立書籍</p>
+<pre class="brush: plain; title: ; notranslate">
+$ gitbook build
+</pre>
+<p>如果建立成功的話 目錄底下會多出一個 <strong>_book</strong> 目錄</p>
+<p>這裡面就是已經轉換好的電子書網頁內容</p>
+<h2>▼ 建立 gh-pages branch</h2>
+<p>如果要可以在 http://[帳號].github.io/[repository 名稱] 看到專案內容</p>
+<p>必須建立一個名為 gh-pages 的 branch (使用 --orphan 參數, 這樣會建立一個沒有 parent 的 branch)</p>
+<pre class="brush: plain; title: ; notranslate">
+$ git checkout --orphan gh-pages
+</pre>
+<p>接著將目錄內不需要的檔案都刪除掉 (僅留 _book 就好, 其他原始檔案在 master branch 裡, 不用擔心)</p>
+<pre class="brush: plain; title: ; notranslate">
+$ git rm --cached -r .
+$ git clean -df
+$ rm -rf *~
+</pre>
+<p>接著可以建立 .gitignore 檔案 (也可以省略這個步驟, 看使用習慣)</p>
+<pre class="brush: plain; title: ; notranslate">
+$ echo &quot;*~&quot; &gt; .gitignore
+$ echo &quot;_book&quot; &gt;&gt; .gitignore
+$ git add .gitignore
+$ git commit -m &quot;ignore files&quot;
+</pre>
+<p>然後將電子書內容(在 _book 裡)移到這個目錄下</p>
+<pre class="brush: plain; title: ; notranslate">
+$ cp -r _book/* .
+$ git add .
+$ git commit -m &quot;publish&quot;
+</pre>
+<h2>▼ 發佈書籍內容到 GitHub</h2>
+<p>最後將修改後的 branch 推送回 GitHub (目前位於 gh-pages 這個 branch 下)</p>
+<pre class="brush: plain; title: ; notranslate">
+$ git push -u origin gh-pages
+</pre>
+<p>現在就會有兩個 branch 了 ( master 跟 gh-pages )</p>
+<p>稍等幾秒鐘到一兩分鐘 即可在網頁上看到內容 如下</p>
+<p><a href="http://itisjoe.github.io/swiftgo/">http://itisjoe.github.io/swiftgo/</a></p>
+<p>ref:<br />
+http://www.chengweiyang.cn/gitbook/github-pages/README.html</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/git-%e5%b0%87-gitbook-%e7%99%bc%e4%bd%88%e5%88%b0-github-pages/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Git] 使用方法筆記</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/git-usage-note/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/git-usage-note/#respond</comments>
+		<pubDate>Fri, 08 Jan 2016 13:22:48 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Git-Usage]]></category>
+		<category><![CDATA[git]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1058</guid>
+		<description><![CDATA[沒有規律性 完全就是怕以後忘記 所以用過的就筆記一下 git branch 顯示目前本地端的 branch g [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>沒有規律性 完全就是怕以後忘記 所以用過的就筆記一下<br />
+<span id="more-1058"></span></p>
+<table width="100%">
+<tbody>
+<tr>
+<td width="50%">git branch</td>
+<td>顯示目前本地端的 branch</td>
+</tr>
+<tr>
+<td width="50%">git branch [new_branch_name]</td>
+<td>建立本地 branch</td>
+</tr>
+<tr>
+<td width="50%">git checkout [branch_name]</td>
+<td>切換 branch</td>
+</tr>
+<tr>
+<td width="50%">git checkout -b [branch_name]</td>
+<td>建立本地 branch 並立即 checkout 切換過去</td>
+</tr>
+<tr>
+<td>git branch -d <em>deleted_branch_name</em></td>
+<td>刪除本地端的 branch</td>
+</tr>
+<tr>
+<td>git remote show <em>origin</em></td>
+<td>顯示遠端及本地端的 branch</td>
+</tr>
+<tr>
+<td>git remote -v</td>
+<td>顯示遠端 branch 跟 git 的 url </td>
+</tr>
+<tr>
+<td>git push <em>origin</em> --delete <em>deleted_branch_name</em></td>
+<td>刪除遠端的 branch</td>
+</tr>
+<tr>
+<td>git push <em>origin</em> :<em>deleted_branch_name</em></td>
+<td>刪除遠端的 branch (與樓上的擇一使用即可)</td>
+</tr>
+<tr>
+<td>git remote prune <em>origin</em></td>
+<td>移除掉遠端已被砍掉但本地端還有的 branch</td>
+</tr>
+<tr>
+<td>git log</td>
+<td>顯示 log</td>
+</tr>
+<tr>
+<td>git cherry-pick <em>some_one_commit</em></td>
+<td>僅合併某次或某幾次 commit 的內容 (可用 git log 查詢 commit, 合併多個的話要加上 -n ) 還是可能有 conflict</td>
+</tr>
+</tbody>
+</table>
+<p>不定期更新</p>
+<p>參考：<br />
+<a href="https://github.com/521xueweihan/git-tips">https://github.com/521xueweihan/git-tips Git的奇技淫巧</a></p>
+<p>ref:<br />
+http://blog.csdn.net/xhl_will/article/details/8450193<br />
+http://stackoverflow.com/questions/2003505/delete-a-git-branch-both-locally-and-remotely<br />
+http://blog.winwu.today/2013/04/git-cherry-pick.html</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/git-usage-note/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

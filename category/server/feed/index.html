@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>server &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/server/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>使用 Let’s Encrypt 為網站加上 SSL 憑證</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/%e4%bd%bf%e7%94%a8-lets-encrypt-%e7%82%ba%e7%b6%b2%e7%ab%99%e5%8a%a0%e4%b8%8a-ssl-%e6%86%91%e8%ad%89/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/%e4%bd%bf%e7%94%a8-lets-encrypt-%e7%82%ba%e7%b6%b2%e7%ab%99%e5%8a%a0%e4%b8%8a-ssl-%e6%86%91%e8%ad%89/#respond</comments>
+		<pubDate>Tue, 27 Sep 2016 07:05:09 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[ssl]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1152</guid>
+		<description><![CDATA[Let’s Encrypt 官方推薦使用 certbot 來申請，步驟已經簡化到相當簡單，先在 certbot [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://letsencrypt.org/">Let’s Encrypt</a><br />
+<span id="more-1152"></span></p>
+<p>官方推薦使用 <a href="https://certbot.eff.org/">certbot</a> 來申請，步驟已經簡化到相當簡單，先在 <a href="https://certbot.eff.org/">certbot</a> 網頁中 選擇使用的 Webserver 及 OS ，接著就會告訴你怎麼申請。</p>
+<p>我的主機規格為 Apache 和 Ubuntu 14.04 。</p>
+<p>一直到<strong> Get Started </strong>階段，這邊記錄一下我卡到的點(雖然很簡單，但還是卡住了&#8230;)。</p>
+<p>先說卡住的點與解決的辦法：<br />
+1. 使用 apache plugin 申請時， Apache 的 VirtualHost 設定必須每個網址各別設定在一個獨立的 .conf 檔案。<br />
+2. 同網域、但不同子網域的網址要申請憑證時，要一個一個申請，後面的申請時會擴展( expand )前面申請好的憑證。</p>
+<p>以下則是較碎念的解釋。</p>
+<p>官方有幾種 plugin 可供選擇來申請憑證，我因為是使用 Apache Webserver ，所以就直接選擇 --apache 的 plugin：</p>
+<pre class="brush: plain; title: ; notranslate">
+$ ./path/to/certbot-auto --apache
+</pre>
+<p>第一次使用時會額外問一些資料，像是 Email 等等(有點忘了還有啥，跟著填下去就是了)。</p>
+<p>接著進到申請憑證階段(或是之後再度申請時)，會先讓你選擇要為哪個網址加上 SSL 憑證，這個部分要記得，<span style="color:red">在 Apache 的 VirtualHost 設定，必須每個網址各別設定一個 conf 檔案</span>， certbot 的 apache plugin 才抓得到你有使用的 VirtualHost 。</p>
+<p>像是我原本是把所有 VirtualHost 設定都放在 /etc/apache2/sites-available/000-default.conf ( hsin.tw, blog.hsin.tw, demo.hsin.tw 等等)中，所以 certbot 一直跟我說抓不到可以設定的網址，直到我將 VirtualHost 設定分別獨立成 000-default-main.conf , 000-default-blog.conf , 000-default-demo.conf 檔案(檔名應該沒限制)，才可以正常選擇得到。 <a href="https://community.letsencrypt.org/t/no-vhost-exists-with-servername-or-alias-of/15477/2">REF.</a></p>
+<p>再來就沒什麼困難點，但申請完成並手動重啟 Apache 後，Apache 吃不到這些個別檔案的 VirtualHost 設定，所以我又將這些個別檔案中的 VirtualHost 設定(將 port 80 的 Rewrite 去 https 的規則)塞回原本的 000-default.conf ，重啟後才可以正常吃得到。</p>
+<p>可能是我的 Apache 及主機的問題，不確定。</p>
+<p>接著另一個卡住的點是，我要為同網域、但不同子網域的網址(www.hsin.tw, blog.hsin.tw 類似這樣)分別申請憑證，一開始我將所有網址一起申請，結果變成只有一個網址，其他都是 alias 到前面那個網址(可能改一下還是可行，但一時找不到辦法)。</p>
+<p>所以其實應該是一次申請一個網址的憑證，像我先申請的是 blog.hsin.tw (進入到設定畫面時選擇網址)，都設定完成後，接著再申請 hsin.tw ，這時 certbot 會告訴你已經有同網域的憑證，要不要 expand 就好，選擇 expand 後就會使用同一個憑證來申請。最後我還再申請了 demo.hsin.tw 的憑證，不過就都放在同一個憑證中。(不知道是不是誤打誤撞，如果有更簡單的方式請不吝告訴我～)</p>
+<h2>更新憑證</h2>
+<p>Let’s Encrypt 的 SSL 憑證 90 天就會到期，但只有在到期前 30 天內才可以更新憑證，所以可以設定 cronjob 來定時更新，先寫一個用來更新的檔案 /path/to/certbot_renew.sh ：</p>
+<pre class="brush: plain; title: ; notranslate">
+#!/bin/sh
+/path/to/certbot-auto renew --quiet --no-self-upgrade
+</pre>
+<p>然後加入到 crontab 中：</p>
+<pre class="brush: plain; title: ; notranslate">
+30 5 * * 1 /path/to/certbot_renew.sh
+</pre>
+<p>每週一的早上 05:30 會進行更新。 <a href="http://edp.idv.tw/%E4%BD%BF%E7%94%A8certbot%E5%AE%9A%E6%99%82%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0-lets-encrypt-ssl-%E6%86%91%E8%AD%89.html">REF.</a></p>
+<p>備註： /path/to/ 指的是安裝 certbot-auto 的路徑。</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/%e4%bd%bf%e7%94%a8-lets-encrypt-%e7%82%ba%e7%b6%b2%e7%ab%99%e5%8a%a0%e4%b8%8a-ssl-%e6%86%91%e8%ad%89/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[cPanel] 建立軟連結(symbolic link)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/cpanel-create-symbolic-link/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/cpanel-create-symbolic-link/#respond</comments>
+		<pubDate>Fri, 30 Mar 2012 03:19:09 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[cPanel]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=514</guid>
+		<description><![CDATA[雖然有先問了該虛擬主機的客服 得知不行做這個動作 但是!! 這麼一個簡單的動作也不行做 真的不太妥吧 還好待我 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>雖然有先問了該虛擬主機的客服<span id="more-514"></span><br />
+得知不行做這個動作</p>
+<p>但是!!<br />
+這麼一個簡單的動作也不行做<br />
+真的不太妥吧<br />
+還好待我咕狗後的結果<br />
+可以用cron job來完成這個任務！！！<br />
+(如果cPanel是中文的 那是寫[工作排程])</p>
+<p>好吧 我在找cPanel裡哪裡可能可以做的時候<br />
+的確有瞄到cron job<br />
+也在想那邊應該可以吧 應該可以吧<br />
+後來還是先咕狗確認了</p>
+<p>好 那順便記一下軟連結怎麼寫<del datetime="2012-03-30T03:10:22+00:00"> (絕對不是怕忘記)</del><br />
+ln -s 原目錄 要建立軟連結的目錄</p>
+<p>ex:<br />
+ln -s /tmp/photo /home/hsin/photo<br />
+這樣到了/home/hsin/photo的目錄時<br />
+看到的實際是/tmp/photo裡的東西</p>
+<p>ref: <a href="http://kb.siteground.com/article/How_can_I_create_symbolic_link.html">http://kb.siteground.com/article/How_can_I_create_symbolic_link.html</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/cpanel-create-symbolic-link/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>ubuntu 顯示中文</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/ubuntu-zh_tw/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/ubuntu-zh_tw/#comments</comments>
+		<pubDate>Wed, 13 Apr 2011 05:16:49 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=433</guid>
+		<description><![CDATA[昨天買了linode主機一年份 他預設選項是ubuntu 所以就照他的用了 因為我也沒有習慣常用的 然後裝了才 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>昨天買了linode主機一年份<br />
+<span id="more-433"></span><br />
+他預設選項是ubuntu<br />
+所以就照他的用了<br />
+因為我也沒有習慣常用的</p>
+<p>然後裝了才發現中文沒辦法正常顯示<br />
+原本以為是pietty的問題<br />
+但是編碼選UTF-8了還是亂碼<br />
+後來終於找到網路上有人有相同的問題<br />
+雖然是幾年前的了<br />
+但是有用就好</p>
+<p>主機是 Ubuntu 10.04 LTS 64bit<br />
+首先檢查系統是否有 zh_TW.UTF-8 </p>
+<pre class="brush: plain; title: ; notranslate">
+locale -a
+</pre>
+<p>不過通常是沒有 不然就不會沒辦法顯示中文了<br />
+接著在/var/lib/locales/supported.d/底下新建檔案local<br />
+裡面新填上一行</p>
+<pre class="brush: plain; title: ; notranslate">
+zh_TW.UTF-8 UTF-8
+</pre>
+<p>我找到的資料 都說該目錄下已經有一個叫local的檔案<br />
+但是我的沒有耶XD 只有一個叫en的檔案<br />
+不管他 還是自己加上去<br />
+存檔出來後 接著執行</p>
+<pre class="brush: plain; title: ; notranslate">
+locale-gen
+</pre>
+<p>最後把下面這行加到/etc/environment這隻檔案裡</p>
+<pre class="brush: plain; title: ; notranslate">
+export LC_CTYPE=zh_TW.UTF-8
+</pre>
+<p>重新登入後<br />
+這樣就可以正常顯示中文囉<br />
+ya~</p>
+<p>from<br />
+<a target="_blank" href="http://zgod.pixnet.net/blog/post/6979614">[Ubuntu]初建置的中文環境</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/ubuntu-zh_tw/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Apache 多站點 Virtual Host 設定</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/apache-virtual-host/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/apache-virtual-host/#respond</comments>
+		<pubDate>Wed, 09 Feb 2011 08:17:53 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[apache]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=410</guid>
+		<description><![CDATA[咕狗了許久 結果發現Apache文件裡就有寫了 我需要的是 多個不同的網址 可以連到同一個IP的不同目錄上 N [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>咕狗了許久<br />
+<span id="more-410"></span><br />
+結果發現Apache文件裡就有寫了<br />
+我需要的是 多個不同的網址 可以連到同一個IP的不同目錄上<br />
+<a href="http://httpd.apache.org/docs/current/vhosts/name-based.html">Name-based Virtual Host Support</a><br />
+目前是Apache 2.2的</p>
+<p>在 /etc/httpd/conf.d/ 目錄中<br />
+建立一個新的檔案 檔名隨意 副檔名必須是.conf<br />
+(我是設定vhost.conf)<br />
+將以下的碼寫進去</p>
+<p>或是</p>
+<p>直接在 /etc/httpd/conf/httpd.conf 檔案最後面加上以下的碼</p>
+<pre class="brush: plain; title: ; notranslate">
+NameVirtualHost *:80
+
+&lt;VirtualHost *:80&gt;
+	ServerName www.domain.tld
+	ServerAlias domain.tld *.domain.tld
+	DocumentRoot /www/domain
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+	ServerName www.otherdomain.tld
+	DocumentRoot /www/otherdomain
+&lt;/VirtualHost&gt;
+</pre>
+<p>ServerName 當然就是網址<br />
+ServerAlias 其他網址也可以連到同一個目錄<br />
+DocumentRoot 目錄的位置</p>
+<p>加完記得重新啟動Apache<br />
+( /etc/init.d/httpd restart )</p>
+<p>如果啟動的過程中有[warn]說 什麼has no VirtualHost<br />
+可以在 /etc/httpd/conf/httpd.conf 裡面找找看<br />
+有沒有一行是<br />
+NameVirtualHost *:80<br />
+將這行註解起來 再重新啟動一次</p>
+<p>參考資料：<br />
+<a href="http://httpd.apache.org/docs/current/vhosts/name-based.html">http://httpd.apache.org/docs/current/vhosts/name-based.html</a><br />
+<a href="http://linux.vbird.org/linux_server/0360apache.php">http://linux.vbird.org/linux_server/0360apache.php</a><br />
+<a href="http://freebsd.lab.mlc.edu.tw/apache/VirtualHost.shtml">http://freebsd.lab.mlc.edu.tw/apache/VirtualHost.shtml</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/apache-virtual-host/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Zeus Request Rewriting : 301 redirect</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2010/zeus-request-rewriting-301-redirect/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2010/zeus-request-rewriting-301-redirect/#respond</comments>
+		<pubDate>Thu, 03 Jun 2010 08:02:10 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[php]]></category>
+		<category><![CDATA[redirect]]></category>
+		<category><![CDATA[zeus]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=401</guid>
+		<description><![CDATA[這次的目標是把 http://myid.domainaaa.com 這個網址 轉到 http://www.do [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這次的目標是把<br />
+<span id="more-401"></span><br />
+http://<span style="color:#000099;">myid</span><span style="color:#009900;">.domainaaa.com</span><br />
+這個網址<br />
+轉到<br />
+http://www<span style="color:#990000;">.domainbbb.com</span>/<span style="color:#000099;">myid</span><br />
+以下就是要寫在Request Rewriting裡的</p>
+<pre class="brush: plain; title: ; notranslate">
+RULE_0_START:
+match IN:Host into $ with ^([0-9a-zA-Z]{1,30})\.domainaaa\.com
+if not matched then goto RULE_0_END
+if matched
+	set URL= http://www.domainbbb.com/$1
+	set RESPONSE = 301
+	set OUT:Location = %{URL}
+	set BODY = &lt;a href=&quot;%{URL}&quot;&gt;go&lt;/a&gt; \n
+endif
+goto END
+RULE_0_END:
+</pre>
+<p>[0-9a-zA-Z]{1,30}可以自己替換正規表示式的條件<br />
+這裡是挑出1~30個字的大小寫英文或數字<br />
+如果符合的話才會轉過去</p>
+<p>參考資料： (好多XD)<br />
+<a href="http://www.codingforums.com/showthread.php?t=156570">http://www.codingforums.com/showthread.php?t=156570</a><br />
+<a href="http://support.zeus.com/zws/examples/2006/03/07/rewrite_redirecting">http://support.zeus.com/zws/examples/2006/03/07/rewrite_redirecting</a><br />
+<a href="http://www.register365.com/knowledge/scripting/rewrite_scripts/528-zeus_rewrite_rules_user_guide.html">http://www.register365.com/knowledge/scripting/rewrite_scripts/528-zeus_rewrite_rules_user_guide.html</a><br />
+<a href="http://www.chinazeus.com/read.php?tid=6">http://www.chinazeus.com/read.php?tid=6</a></p>
+<p><del datetime="2010-06-03T07:14:43+00:00">銅廠加印</del> 同場加映<br />
+php header的301 redirect方法</p>
+<pre class="brush: php; title: ; notranslate">
+header(&quot;Location: http://www.domainbbb.com&quot;,TRUE,301);
+exit;
+</pre>
+<p>怎麼php的簡潔很多XD</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2010/zeus-request-rewriting-301-redirect/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

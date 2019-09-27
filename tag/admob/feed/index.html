@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>admob &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/admob/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[iOS Dev] Google AdMob 6.4.2 無法正常顯示在iphone模擬器上</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-admob-display-in-simulator/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-admob-display-in-simulator/#respond</comments>
+		<pubDate>Mon, 24 Jun 2013 10:07:27 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[admob]]></category>
+		<category><![CDATA[iOS]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=732</guid>
+		<description><![CDATA[目前遇到狀況的版本是 6.4.2 未來的版本可能會更新這個問題 (這個問題大概蠢到都懶得更正?) 所有東西都照 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>目前遇到狀況的版本是 6.4.2 <span id="more-732"></span><br />
+未來的版本可能會更新這個問題<br />
+(這個問題大概蠢到都懶得更正?)</p>
+<p>所有東西都照步驟做好 要在模擬器上跑的時候卻跑不出來<br />
+console 出現下面這個提示</p>
+<pre class="brush: cpp; title: ; notranslate">
+//
+&lt;Google&gt; To get test ads on this device, call: request.testDevices = [NSArray arrayWithObjects:@&quot;GAD_SIMULATOR_ID&quot;, nil];
+//
+</pre>
+<p>但照他寫的碼做 仍然跑不出來<br />
+因為他寫錯了&#8230;<br />
+其實是下面這樣 這個GAD_SIMULATOR_ID 應該是個定義好的常數才對</p>
+<pre class="brush: cpp; title: ; notranslate">
+//
+request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
+//
+</pre>
+<p>改成這樣後 測試的AD就會出現在模擬器上<br />
+但那個提示仍然會出現&#8230; (眼神死)<br />
+不過這樣其實就ok了</p>
+<p>ref: <a href="http://www.xhaleera.com/index.php/2013/05/04/google-admob-6-4-1-testing-devices-with-ios-6/" target="_blank">google-admob-6-4-1-testing-devices-with-ios-6</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-admob-display-in-simulator/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

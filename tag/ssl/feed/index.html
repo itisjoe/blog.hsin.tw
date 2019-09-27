@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ssl &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/ssl/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>使用 Let’s Encrypt 為網站加上 SSL 憑證</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/%e4%bd%bf%e7%94%a8-lets-encrypt-%e7%82%ba%e7%b6%b2%e7%ab%99%e5%8a%a0%e4%b8%8a-ssl-%e6%86%91%e8%ad%89/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/%e4%bd%bf%e7%94%a8-lets-encrypt-%e7%82%ba%e7%b6%b2%e7%ab%99%e5%8a%a0%e4%b8%8a-ssl-%e6%86%91%e8%ad%89/#respond</comments>
+		<pubDate>Tue, 27 Sep 2016 07:05:09 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[ssl]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1152</guid>
+		<description><![CDATA[Let’s Encrypt 官方推薦使用 certbot 來申請，步驟已經簡化到相當簡單，先在 certbot [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://letsencrypt.org/">Let’s Encrypt</a><br />
+<span id="more-1152"></span></p>
+<p>官方推薦使用 <a href="https://certbot.eff.org/">certbot</a> 來申請，步驟已經簡化到相當簡單，先在 <a href="https://certbot.eff.org/">certbot</a> 網頁中 選擇使用的 Webserver 及 OS ，接著就會告訴你怎麼申請。</p>
+<p>我的主機規格為 Apache 和 Ubuntu 14.04 。</p>
+<p>一直到<strong> Get Started </strong>階段，這邊記錄一下我卡到的點(雖然很簡單，但還是卡住了&#8230;)。</p>
+<p>先說卡住的點與解決的辦法：<br />
+1. 使用 apache plugin 申請時， Apache 的 VirtualHost 設定必須每個網址各別設定在一個獨立的 .conf 檔案。<br />
+2. 同網域、但不同子網域的網址要申請憑證時，要一個一個申請，後面的申請時會擴展( expand )前面申請好的憑證。</p>
+<p>以下則是較碎念的解釋。</p>
+<p>官方有幾種 plugin 可供選擇來申請憑證，我因為是使用 Apache Webserver ，所以就直接選擇 --apache 的 plugin：</p>
+<pre class="brush: plain; title: ; notranslate">
+$ ./path/to/certbot-auto --apache
+</pre>
+<p>第一次使用時會額外問一些資料，像是 Email 等等(有點忘了還有啥，跟著填下去就是了)。</p>
+<p>接著進到申請憑證階段(或是之後再度申請時)，會先讓你選擇要為哪個網址加上 SSL 憑證，這個部分要記得，<span style="color:red">在 Apache 的 VirtualHost 設定，必須每個網址各別設定一個 conf 檔案</span>， certbot 的 apache plugin 才抓得到你有使用的 VirtualHost 。</p>
+<p>像是我原本是把所有 VirtualHost 設定都放在 /etc/apache2/sites-available/000-default.conf ( hsin.tw, blog.hsin.tw, demo.hsin.tw 等等)中，所以 certbot 一直跟我說抓不到可以設定的網址，直到我將 VirtualHost 設定分別獨立成 000-default-main.conf , 000-default-blog.conf , 000-default-demo.conf 檔案(檔名應該沒限制)，才可以正常選擇得到。 <a href="https://community.letsencrypt.org/t/no-vhost-exists-with-servername-or-alias-of/15477/2">REF.</a></p>
+<p>再來就沒什麼困難點，但申請完成並手動重啟 Apache 後，Apache 吃不到這些個別檔案的 VirtualHost 設定，所以我又將這些個別檔案中的 VirtualHost 設定(將 port 80 的 Rewrite 去 https 的規則)塞回原本的 000-default.conf ，重啟後才可以正常吃得到。</p>
+<p>可能是我的 Apache 及主機的問題，不確定。</p>
+<p>接著另一個卡住的點是，我要為同網域、但不同子網域的網址(www.hsin.tw, blog.hsin.tw 類似這樣)分別申請憑證，一開始我將所有網址一起申請，結果變成只有一個網址，其他都是 alias 到前面那個網址(可能改一下還是可行，但一時找不到辦法)。</p>
+<p>所以其實應該是一次申請一個網址的憑證，像我先申請的是 blog.hsin.tw (進入到設定畫面時選擇網址)，都設定完成後，接著再申請 hsin.tw ，這時 certbot 會告訴你已經有同網域的憑證，要不要 expand 就好，選擇 expand 後就會使用同一個憑證來申請。最後我還再申請了 demo.hsin.tw 的憑證，不過就都放在同一個憑證中。(不知道是不是誤打誤撞，如果有更簡單的方式請不吝告訴我～)</p>
+<h2>更新憑證</h2>
+<p>Let’s Encrypt 的 SSL 憑證 90 天就會到期，但只有在到期前 30 天內才可以更新憑證，所以可以設定 cronjob 來定時更新，先寫一個用來更新的檔案 /path/to/certbot_renew.sh ：</p>
+<pre class="brush: plain; title: ; notranslate">
+#!/bin/sh
+/path/to/certbot-auto renew --quiet --no-self-upgrade
+</pre>
+<p>然後加入到 crontab 中：</p>
+<pre class="brush: plain; title: ; notranslate">
+30 5 * * 1 /path/to/certbot_renew.sh
+</pre>
+<p>每週一的早上 05:30 會進行更新。 <a href="http://edp.idv.tw/%E4%BD%BF%E7%94%A8certbot%E5%AE%9A%E6%99%82%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0-lets-encrypt-ssl-%E6%86%91%E8%AD%89.html">REF.</a></p>
+<p>備註： /path/to/ 指的是安裝 certbot-auto 的路徑。</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/%e4%bd%bf%e7%94%a8-lets-encrypt-%e7%82%ba%e7%b6%b2%e7%ab%99%e5%8a%a0%e4%b8%8a-ssl-%e6%86%91%e8%ad%89/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

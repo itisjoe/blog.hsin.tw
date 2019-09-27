@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>xml &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/xml/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>rss note</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/rss-note/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/rss-note/#respond</comments>
+		<pubDate>Thu, 05 Mar 2009 06:08:04 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[rss]]></category>
+		<category><![CDATA[html]]></category>
+		<category><![CDATA[php]]></category>
+		<category><![CDATA[xml]]></category>
+		<category><![CDATA[瀏覽器]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=160</guid>
+		<description><![CDATA[一些關於rss的東西 RSS 2.0 Specification( RSS2.0规范 、 RSS2.0技术规范 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>一些關於rss的東西<br />
+<span id="more-160"></span><br />
+<a href="http://www.rssboard.org/rss-specification" target="_blank">RSS 2.0 Specification</a>( <a href="http://www.irsser.com/article.asp?id=33" target="_blank">RSS2.0规范</a> 、 <a href="http://www.cnbruce.com/blog/showlog.asp?log_id=949&amp;cat_id=34" target="_blank">RSS2.0技术规范摘录</a> )<br />
+<a href="http://plog.longwin.com.tw/programming/2008/04/24/php_rss_atom_date_format_generator_2008" target="_blank">PHP 產生 RSS/ATOM pubDate/created 所需格式</a><br />
+<a href="http://www.ajaxray.com/blog/2008/03/08/php-universal-feed-generator-supports-rss-10-rss-20-and-atom/" target="_blank">PHP Universal Feed Generator (supports RSS 1.0, RSS 2.0 and ATOM)</a></p>
+<p>讓瀏覽器偵測到rss feed<br />
+要在&lt;head&gt;&lt;/head&gt;裡面加上這行<br />
+&lt;link rel=&#8221;alternate&#8221; type=&#8221;application/rss+xml&#8221; title=&#8221;標題&#8221; href=&#8221;rss路徑&#8221; /&gt;<br />
+可以有不只一個feed<br />
+有幾個寫幾行</p>
+<p><a href="http://msdn.microsoft.com/zh-tw/library/ms256076(VS.80).aspx" target="_blank">CDATA 區段 [XML 標準]</a><br />
+加上&lt;![CDATA[ 內容 ]]&gt; 這段的不會被XML解析</p>
+<p>在<a href="http://www.php.net/date" target="_blank">PHP的date()函數</a>中可使用date(&#8220;r&#8221;)來表示rss規範中的時間<br />
+rss規範裡的日期是依照<a href="http://asg.web.cmu.edu/rfc/rfc822.html" target="_blank">RFC 822</a>的格式<br />
+而date(&#8220;r&#8221;)是依照<a class="link external" href="http://www.faqs.org/rfcs/rfc2822" target="_blank">RFC 2822</a><br />
+兩者對於時間的差異是在年份<br />
+前者是顯示兩位數 後者是顯示四位數<br />
+所以可以直接使用date(&#8220;r&#8221;)</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/rss-note/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>php 解析xml</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2008/php-parse-xml/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2008/php-parse-xml/#respond</comments>
+		<pubDate>Mon, 29 Dec 2008 15:52:18 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[php]]></category>
+		<category><![CDATA[xml]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=101</guid>
+		<description><![CDATA[php本身就有函數可以處理xml 這邊以本站的rss feed作例子 startElement、endElem [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>php本身就有函數可以處理xml<br />
+<span id="more-101"></span><br />
+這邊以本站的rss feed作例子</p>
+<pre class="brush: php; title: ; notranslate">
+//取得xml檔
+$xml_file='https://itisjoe.github.io/blog.hsin.tw/feed/';
+//必須使用fopen開啟 不能直接用喔
+$fp = fopen($xml_file,'r');
+//這是php官網介紹使用外部連結時的fread方法
+$contents = '';
+while (!feof($fp)) {
+  $contents .= fread($fp, 8192);
+}
+//首先建立一個解析器，編碼不是必要的，這邊設定utf-8
+$xp = xml_parser_create('utf-8');
+//建立起始和終止元素處理器 下面函式的地方會講
+xml_set_element_handler($xp,&quot;startElement&quot;,&quot;endElement&quot;);
+//建立資料處理器 下面函式的地方會講
+xml_set_character_data_handler($xp,&quot;characterData&quot;);
+//開始解析xml檔
+$result = xml_parse($xp,$contents);
+//我是處理成以標籤為索引、內容為值的陣列，以print_r印出來看結果
+print_r($_request);
+//起始元素處理器
+//當遇到xml檔裡面的每個標籤&lt;tag&gt;時，就會開始呼叫這個函式處理
+//我這裡是把每個標籤名稱都換成小寫，待會給資料處理器使用
+function startElement($parser,$tag,$atts)
+{
+	global $_i,$_x,$_request;
+	$_x = strtolower($tag);
+  if($_x=='item')
+    ++$_i;
+}
+//終止元素處理器
+//當遇到xml檔裡面的每個標籤&lt;/tag&gt;結束時，就會開始呼叫這個函式處理
+//我這裡沒有作任何處理
+function endElement($parser,$tag)
+{}
+//資料處理器
+//會對每個標籤中的內容作處理
+//這裡是把標籤名稱設為索引、內容設為值
+function characterData($parser,$d)
+{
+	global $_i,$_x,$_request;
+	if(trim($d)!='')
+	{
+  	$_request[$_i][$_x]=$d;
+  }
+}
+</pre>
+<p>startElement、endElement、characterData<br />
+三個函式的名稱都可以自己訂喔<br />
+不是固定的</p>
+<p><a href="http://ex.hsin.tw/index.php?type=php&#038;act=p01" target="_blank">按這裡可以看範例</a></p>
+<p>相關連結：<a href="http://www.zishu.cn/blogview.asp?logID=383" target="_blank">用PHP解析XML</a></p>
+<p>update:<br />
+使用php5以上的朋友可以試試這兩個函式<a href="http://tw.php.net/simplexml_load_string" target="_blank">simplexml_load_string</a> <a href="http://tw.php.net/simplexml_load_file" target="_blank">simplexml_load_file</a>喔，方便很多～</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2008/php-parse-xml/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

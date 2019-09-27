@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>facebook &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/facebook/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[Codeigniter] Facebook SDK getUser 一直只回傳0</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/codeigniter-facebook-sdk-getuser-returns-0/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/codeigniter-facebook-sdk-getuser-returns-0/#comments</comments>
+		<pubDate>Wed, 07 Nov 2012 12:49:27 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Codeigniter]]></category>
+		<category><![CDATA[facebook]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=668</guid>
+		<description><![CDATA[我在 mymanager 有作過一次 facebook login 了 但這次仍然在一開始就卡住 我也忘了那時 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>我在 <a href="http://www.mymanager.tw">mymanager</a> 有作過一次 facebook login 了<br />
+<span id="more-668"></span><br />
+但這次仍然在一開始就卡住<br />
+我也忘了那時候是怎麼解決這個問題的<br />
+所以我決定這次記錄一下XD</p>
+<p>=====請注意文章發表時間 facebook SDK 的東西變化很快 此文章說明可能會失效=====</p>
+<p>其實就是少了一行而已 that&#8217;s all !<br />
+請在使用 facebook SDK 前加上這行</p>
+<pre class="brush: php; title: ; notranslate">
+parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
+</pre>
+<p>因為CI會自動過濾掉 $_REQUEST 的東西<br />
+但 facbebook SDK 提供的檔案 是利用這個來處理的<br />
+就&#8230; 沒辦法用了<br />
+所以要手動把 $_REQUEST 加回去</p>
+<p>這樣應該是不會有安全上的問題(?)</p>
+<p>那就是這樣了<br />
+收工</p>
+<p>ref : <a href="http://www.galalaly.me/index.php/2012/04/using-facebook-php-sdk-3-with-codeigniter-2-1/">Using Facebook PHP SDK 3 with CodeIgniter 2.1</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/codeigniter-facebook-sdk-getuser-returns-0/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>修正 IE無法顯示Facebook的Social Plugins</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/fix-ie-facebook-social-plugin-not-showing/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/fix-ie-facebook-social-plugin-not-showing/#respond</comments>
+		<pubDate>Thu, 10 Feb 2011 03:09:52 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[瀏覽器]]></category>
+		<category><![CDATA[facebook]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=415</guid>
+		<description><![CDATA[IE真是歹倒叮 測到一半發現IE怎麼都出不來 解法只需要加個東西 在&#60;html>中加入 xmlns:fb [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>IE真是歹倒叮<br />
+<span id="more-415"></span><br />
+測到一半發現IE怎麼都出不來<br />
+解法只需要加個東西<br />
+在&lt;html>中加入<br />
+xmlns:fb=&#8221;http://www.facebook.com/2008/fbml&#8221;<br />
+完整的樣子是下面這樣</p>
+<pre class="brush: plain; title: ; notranslate">
+&lt;html xmlns:fb=&quot;http://www.facebook.com/2008/fbml&quot;&gt;
+...
+&lt;/html&gt;
+</pre>
+<p>這樣就可以正常顯示了</p>
+<p>參考資料：<br />
+<a href="http://digitizor.com/2010/07/06/fix-facebook-connect-xfbml-not-showing-ie/">http://digitizor.com/2010/07/06/fix-facebook-connect-xfbml-not-showing-ie/</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/fix-ie-facebook-social-plugin-not-showing/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

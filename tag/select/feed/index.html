@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>select &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/select/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>javascript 取得滑鼠選取(反白)的值</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/javascript-getselection/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/javascript-getselection/#respond</comments>
+		<pubDate>Sun, 01 Mar 2009 16:05:46 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[select]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=150</guid>
+		<description><![CDATA[對於獲得滑鼠反白的值每個瀏覽器好像都有不同的使用方法 這邊用的方法可以讓大部份的瀏覽器都可以正確取得反白的值  [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>對於獲得滑鼠反白的值每個瀏覽器好像都有不同的使用方法<br />
+<span id="more-150"></span><br />
+這邊用的方法可以讓大部份的瀏覽器都可以正確取得反白的值</p>
+<pre class="brush: jscript; title: ; notranslate">
+function getselecttext(){
+  var t='';
+  if(window.getSelection){t=window.getSelection();}
+  else if(document.getSelection){t=document.getSelection();}
+  else if(window.document.selection){t=window.document.selection.createRange().text;}
+  if(t!='') alert(t);
+}
+</pre>
+<p>至於使用時機呢<br />
+目前我看到的方法是配合<a href="http://en.wikipedia.org/wiki/Bookmarklet" target="_blank">bookmarlet</a>使用<br />
+還滿好用的~~~<br />
+之後會po一些bookmarklet的文章~</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/javascript-getselection/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>javascript 增加表單中select的option</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-select-option/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-select-option/#respond</comments>
+		<pubDate>Sun, 21 Dec 2008 10:30:46 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[html]]></category>
+		<category><![CDATA[select]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=15</guid>
+		<description><![CDATA[利用javascript增加form中select的option 其實不會很難(爆) 這是js的部份 這是ht [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>利用javascript增加form中select的option<br />
+<span id="more-15"></span></p>
+<p>其實不會很難(爆)</p>
+<p>這是js的部份</p>
+<pre class="brush: jscript; title: ; notranslate">
+function add_option()
+{
+//先用getElementById取得select的id
+var s = document.getElementById('go');
+//這兩個可以用其他方式取得，端看怎麼使用
+var t = document.getElementById('t').value;
+var v = document.getElementById('v').value;
+var ori_count = s.length;
+//其實重點只有下面這兩行XD
+var new_option = new Option(t,v);
+s.options.add(new_option);
+var new_count = s.length;
+//這邊只是要驗證是不是有增加成功
+//新的option個數會比原本的個數多
+if( new_count &gt; ori_count )
+alert('新增成功');
+else
+alert('新增失敗');
+}
+</pre>
+<p>這是html的部份</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;select name=&quot;go&quot; id=&quot;go&quot;&gt;
+&lt;option value=&quot;&quot;&gt;請選擇&lt;/option&gt;
+&lt;option value=&quot;apple&quot; selected&gt;蘋果&lt;/option&gt;
+&lt;option value=&quot;banana&quot; &gt;香蕉&lt;/option&gt;
+&lt;/select&gt;
+&lt;br /&gt;
+值：&lt;input type=&quot;text&quot; name=&quot;v&quot; id=&quot;v&quot;&gt;&lt;br /&gt;
+文字：&lt;input type=&quot;text&quot; name=&quot;t&quot; id=&quot;t&quot;&gt;&lt;br /&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;add_option()&quot; value=&quot;新增option&quot;&gt;
+</pre>
+<p><a href="http://ex.hsin.tw/exp02.php" target="_blank">這裡可以看範例</a></p>
+<p>我是配合ajax來使用這個功能</p>
+<p>good~</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2008/javascript-select-option/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

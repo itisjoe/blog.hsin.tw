@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>vue.js &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/vue-js/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>Vue.js 線上看綜藝 播放清單 來源自 youtube 及 bilibili</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/vue-js-online-tv-collection-source-from-youtube-bilibili/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/vue-js-online-tv-collection-source-from-youtube-bilibili/#comments</comments>
+		<pubDate>Tue, 25 Jul 2017 10:11:22 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[vue.js]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1238</guid>
+		<description><![CDATA[使用 Vue.js 作一個簡單的線上看綜藝播放列表 這裡請 https://hsin.tw/tv 原始碼放在  [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>使用 Vue.js 作一個簡單的線上看綜藝播放列表<br />
+<span id="more-1238"></span></p>
+<p><a href="https://hsin.tw/tv">這裡請 https://hsin.tw/tv</a></p>
+<p>原始碼放在 <a href="https://github.com/itisjoe/tv-collection">github</a> </p>
+<p>原本想要放在 github page<br />
+結果因為 bilibili 沒有現成在前端可以用 javascript 取得的 api<br />
+所以還是得靠一部分後端的功能才能完成 bilibili 部分<br />
+( Youtube 部分倒是全部前端即可完成)</p>
+<p>Youtube 取得播放列表有官方的 API<br />
+不過也就需要<a href="http://console.developers.google.com/">申請 api key http://console.developers.google.com/ </a><br />
+主要用到兩個 api<br />
+1. 取得播放列表的資訊<br />
+<a href="https://developers.google.com/youtube/v3/guides/implementation/playlists">https://developers.google.com/youtube/v3/guides/implementation/playlists</a><br />
+2. 取得播放列表清單<br />
+<a href="https://developers.google.com/youtube/v3/docs/playlistItems/list">https://developers.google.com/youtube/v3/docs/playlistItems/list</a></p>
+<p>bilibili 沒有官方的 API<br />
+所以就是看他網頁怎麼接收資訊的<br />
+不過竟然沒有防外部連線<br />
+是滿意外的 哈<br />
+(但有防的話 我也就沒辦法寫這部份了)</p>
+<p>以下是有用到的套件或工具 由衷感謝</p>
+<p><a href="https://vuejs.org/">Vue.js</a><br />
+<a href="https://github.com/SortableJS/Vue.Draggable">Vue.Draggable</a><br />
+<a href="https://github.com/mzabriskie/axios">axios</a><br />
+<a href="https://github.com/marcuswestin/store.js/">store.js</a><br />
+<a href="https://github.com/dzwillia/vue-simple-spinner">vue-simple-spinner</a><br />
+<a href="https://github.com/necolas/normalize.css">normalize.css</a><br />
+<a href="http://fontawesome.io">Font Awesome</a><br />
+<a href="https://github.com/rmccue/Requests">Requests</a><br />
+<a href="http://gulpjs.com/">Gulp</a><br />
+<a href="http://lesscss.org/">less</a></p>
+<p>一開始想做這東西是因為手機上看 youtube app 的播放列表<br />
+標題都太短了 (他們很愛在標題前面加廣告什麼的)<br />
+害我都看不出來每一期的標題或是不是重播<br />
+再加上還沒用 Vue.js 寫過什麼專案<br />
+就一起加進來試試看了</p>
+<p>做完發現還要貼上網址<br />
+好像有點不方便&#8230;<br />
+不過就先這樣吧</p>
+<p><a href="https://hsin.tw/tv">線上看綜藝 這裡請 https://hsin.tw/tv</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/vue-js-online-tv-collection-source-from-youtube-bilibili/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

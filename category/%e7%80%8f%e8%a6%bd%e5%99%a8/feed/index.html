@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>瀏覽器 &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/%e7%80%8f%e8%a6%bd%e5%99%a8/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[NOTE] 在Google Reader跟iGoogle關門之後</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/after-google-reader-and-igoogle-closed/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/after-google-reader-and-igoogle-closed/#respond</comments>
+		<pubDate>Thu, 25 Apr 2013 06:57:20 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[瀏覽器]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[rss]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=707</guid>
+		<description><![CDATA[做個筆記 以免之後忘記 剛得知iGoogle要關的時候 還滿不爽的 但後來想想其實我iGoogle上擺的東西也 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>做個筆記 以免之後忘記<br />
+<span id="more-707"></span><br />
+剛得知iGoogle要關的時候 還滿不爽的<br />
+但後來想想其實我iGoogle上擺的東西也不多<br />
+要轉換好像滿快的</p>
+<p>▼ Google Bookmarks<br />
+希望他不要太早關掉阿= = 雖然這真的一副就是要領便當的樣子<br />
+<a href="https://chrome.google.com/webstore/detail/google-bookmarks/nfieeekinhmpmgnonkgbmklfdheojoni">Chrome套件 : Google bookmarks</a></p>
+<p>▼ Gmail<br />
+<a href="https://chrome.google.com/webstore/detail/google-mail-checker/mihcahmgecmbnbcchbopgniflfhgnkff">Chrome套件 : Google Mail Checker</a></p>
+<p>▼ Google Reader<br />
+接續在iGoogle不久之後也宣布要關門 WT&#8230;__<br />
+網路上有很多前輩分享了可以搬家到哪的建議<br />
+我有試過<a href="http://theoldreader.com/">the old reader</a><br />
+但他真的&#8230; 太慢了&#8230; 換個分類要五秒<br />
+不然他的介面真的很ok</p>
+<p>後來選擇了<a href="http://www.feedly.com/home">feedly</a><br />
+我一定要說 他的css寫得真的打算弄瞎所有人吧<br />
+白底又灰字的 演哪齣阿！！！</p>
+<p>原本裝了 <a href="http://userstyles.org/">Chrome套件 : stylish</a> 要改成不瞎眼的樣式<br />
+但！！！ title的字竟然不能改css WT&#8230;__<br />
+大概是把css寫在inline吧 反正重整頁面沒辦法 一定要stylish裡面再按一次才吃得到<br />
+字體又小又灰 我要瞎了</p>
+<p>後來是又裝了 <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Chrome套件 : Tampermonkey</a><br />
+先裝 <a href="http://userscripts.org/scripts/show/162237">Readly: make Feedly look like Google Reader</a><br />
+讓他長得順眼一點<br />
+再自己改一點css</p>
+<pre class="brush: jscript; title: ; notranslate">
+//
+
+// 這行是拉開間距 不然把字變大會很擠
+// 擺在他一堆要加的css style堆裡
+    /* MORE SPACES CUSTOM*/
+    'div.u0Entry {font-size:20px;margin:15px 0px;}' +
+
+// 這部份是把title的字體變大 比較好閱讀
+// 因為上面那種方法不能改 只好用javascript改了
+// make bigger title
+(function makeBiggerTitle() {
+	var titles = document.querySelectorAll('a.title');
+	var i = 0, l = titles.length;
+	for (; i &lt; l; i += 1) {
+		titles[i].style.fontSize = '20px';
+	}
+	setTimeout(makeBiggerTitle, 1500);
+}());
+
+//
+</pre>
+<p>▼ 時鐘跟氣象及其他<br />
+好像都沒在看 就不再用了XD<br />
+(那我寫幹嘛)</p>
+<p>以上<br />
+Google Reader &amp; iGoogle R.I.P.</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/after-google-reader-and-igoogle-closed/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[IE] 版本8以下不支援indexOf</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/ie-8-indexof-not-work/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/ie-8-indexof-not-work/#respond</comments>
+		<pubDate>Mon, 22 Apr 2013 10:48:42 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[瀏覽器]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=702</guid>
+		<description><![CDATA[IE8以下不支援indexOf 所以自己加個prototype吧 [NOTE] IE8使用 for 時 也會撈 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>IE8以下不支援indexOf<br />
+<span id="more-702"></span><br />
+所以自己加個prototype吧</p>
+<pre class="brush: jscript; title: ; notranslate">
+if (!Array.prototype.indexOf)
+{
+  Array.prototype.indexOf = function(elt /*, from*/)
+  {
+    var len = this.length &gt;&gt;&gt; 0;
+
+    var from = Number(arguments[1]) || 0;
+    from = (from &lt; 0)
+         ? Math.ceil(from)
+         : Math.floor(from);
+    if (from &lt; 0)
+      from += len;
+
+    for (; from &lt; len; from++)
+    {
+      if (from in this &amp;&amp;
+          this[from] === elt)
+        return from;
+    }
+    return -1;
+  };
+}
+</pre>
+<p>[NOTE]<br />
+IE8使用 for 時 也會撈出這個indexOf的function 請注意一下</p>
+<pre class="brush: jscript; title: ; notranslate">
+// items 是個array或object
+for(var k in items) {
+    // IE8會出現該function 請注意一下
+    alert(items[k]);
+}
+</pre>
+<p>這邊開放講髒話嗎<br />
+不行喔?<br />
+那我無話可說<br />
+以上</p>
+<p>ref:<br />
+<a href="http://stackoverflow.com/questions/3629183/why-doesnt-indexof-work-on-an-array-ie8">http://stackoverflow.com/questions/3629183/why-doesnt-indexof-work-on-an-array-ie8<br />
+</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/ie-8-indexof-not-work/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>修正 IE無法顯示Facebook的Social Plugins</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/fix-ie-facebook-social-plugin-not-showing/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/fix-ie-facebook-social-plugin-not-showing/#respond</comments>
+		<pubDate>Thu, 10 Feb 2011 03:09:52 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[瀏覽器]]></category>
+		<category><![CDATA[facebook]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=415</guid>
+		<description><![CDATA[IE真是歹倒叮 測到一半發現IE怎麼都出不來 解法只需要加個東西 在&#60;html>中加入 xmlns:fb [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>IE真是歹倒叮<br />
+<span id="more-415"></span><br />
+測到一半發現IE怎麼都出不來<br />
+解法只需要加個東西<br />
+在&lt;html>中加入<br />
+xmlns:fb=&#8221;http://www.facebook.com/2008/fbml&#8221;<br />
+完整的樣子是下面這樣</p>
+<pre class="brush: plain; title: ; notranslate">
+&lt;html xmlns:fb=&quot;http://www.facebook.com/2008/fbml&quot;&gt;
+...
+&lt;/html&gt;
+</pre>
+<p>這樣就可以正常顯示了</p>
+<p>參考資料：<br />
+<a href="http://digitizor.com/2010/07/06/fix-facebook-connect-xfbml-not-showing-ie/">http://digitizor.com/2010/07/06/fix-facebook-connect-xfbml-not-showing-ie/</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/fix-ie-facebook-social-plugin-not-showing/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Google Chrome可以用Greasemonkey囉</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2010/google-chrome-greasemonkey/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2010/google-chrome-greasemonkey/#respond</comments>
+		<pubDate>Tue, 02 Feb 2010 02:44:41 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[瀏覽器]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=377</guid>
+		<description><![CDATA[在Chrome 4.0還是測試版的時候 要用greasemonkey的功能還必須自己加參數才能使用 現在已經正 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>在Chrome 4.0還是測試版的時候 要用greasemonkey的功能還必須自己加參數才能使用<br />
+<span id="more-377"></span><br />
+現在已經正式可以使用啦~<br />
+真是令人雀躍的消息 XD<br />
+只要在<a href="http://Userscripts.org" target="_blank">Userscripts.org</a>裡找到要使用的script<br />
+直接按下 install<br />
+Chrome就會自動將這個script轉換成擴充套件<br />
+這樣就可以使用囉<br />
+不過目前有15%到25%的script還不能用<br />
+但是也夠多了 XD<br />
+enjoy it~</p>
+<p>from: <a href="http://mashable.com/2010/02/01/google-chrome-greasemonkey-2/" target="_blank">Google Chrome Gets Greasemonkey Support</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2010/google-chrome-greasemonkey/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>在IE中看iframe嵌入不同網域的網頁時 會無法使用cookie的問題</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2010/ie-blocking-iframe-cookie/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2010/ie-blocking-iframe-cookie/#respond</comments>
+		<pubDate>Thu, 14 Jan 2010 10:33:09 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[瀏覽器]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=374</guid>
+		<description><![CDATA[有些問題真的是不遇到就真的不知道會這樣阿~ 這幾天遇到這個問題 iframe如果嵌入了不同網域的網頁 則以IE [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>有些問題真的是不遇到就真的不知道會這樣阿~<br />
+<span id="more-374"></span><br />
+這幾天遇到這個問題<br />
+iframe如果嵌入了不同網域的網頁<br />
+則以IE看這網頁時 會無法使用cookie<br />
+應該是某些安全性的問題<br />
+但是只有IE會這樣就&#8230;&#8230;&#8230;&#8230;&#8230;|||</p>
+<p>所幸經過咕狗大神的提點之後<br />
+在這裡找到了解決的辦法<br />
+<a href="http://adamyoung.net/IE-Blocking-iFrame-Cookies" target="_blank">IE Blocking iFrame Cookies</a></p>
+<p>以php的解決方法來說<br />
+只要在每個會嵌入在iframe中的頁面裡加上這行</p>
+<pre class="brush: php; title: ; notranslate">
+header('P3P:CP=&quot;IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT&quot;');
+</pre>
+<p>就可以囉</p>
+<p>其他還有<br />
+ASP.NET、Django、JSP的寫法就去原始頁面看囉</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2010/ie-blocking-iframe-cookie/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

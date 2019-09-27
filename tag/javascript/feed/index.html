@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>javascript &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/javascript/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>Gulp 筆記</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2017/gulp-note/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2017/gulp-note/#respond</comments>
+		<pubDate>Fri, 14 Jul 2017 10:36:54 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[gulp]]></category>
+		<category><![CDATA[javascript]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1231</guid>
+		<description><![CDATA[一些關於 gulp 的筆記 Gulp 入門教學 -- 安裝 Gulp.js 前端自動化神器 Gulp 架設簡易 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>一些關於 gulp 的筆記<br />
+<span id="more-1231"></span></p>
+<p><a href="http://abgne.tw/web/gulp/gulp-tuts-install-gulp-js.html">Gulp 入門教學 -- 安裝 Gulp.js</a></p>
+<p><a href="https://blog.ccjeng.com/2015/08/Gulp.html">前端自動化神器 Gulp</a></p>
+<p><a href="https://dotblogs.com.tw/hellodeveloper/2017/03/01/150434">架設簡易開發用的WEB SERVER</a></p>
+<p><a href="http://www.oxxostudio.tw/articles/201601/css-less-01.html">用 LESS 寫 CSS ( 入門、Import、變數 )</a></p>
+<p>在專案目錄中 依序執行下列命令 (要先安裝 npm, gulp-cli)</p>
+<pre class="brush: plain; title: ; notranslate">
+// 初始化 node.js
+npm init
+
+// 安裝所需的 gulp 套件
+npm install gulp gulp-less gulp-webserver --save-dev
+
+// 執行 gulp 任務
+gulp
+
+</pre>
+<p>gulpfile.js 的內容 (需要手動建立 gulpfile.js 檔案)</p>
+<pre class="brush: jscript; title: ; notranslate">
+var gulp = require('gulp');
+var less = require('gulp-less');
+var webserver = require('gulp-webserver');
+
+gulp.task('less',function(){
+    gulp.src('./src/less/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('./build/css/'))
+});
+
+gulp.task('watch',function(){
+    gulp.watch('./src/less/*.less',['less']);
+});
+
+gulp.task('webserver', function() {
+  gulp.src('./build/')
+    .pipe(webserver({
+      port:3000,
+      livereload: true,
+      directoryListing: false,
+      open: true
+  }));
+});
+
+gulp.task('default',['less','watch','webserver']);
+</pre>
+<p>專案目錄設定為</p>
+<ul>
+<li>
+        node_modules/</p>
+<ul>
+<li>所需套件</li>
+</ul>
+</li>
+<li>
+        src/</p>
+<ul>
+<li>
+                less/</p>
+<ul>
+<li>style.less</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+        build/</p>
+<ul>
+<li>
+                css/</p>
+<ul>
+<li>style.css</li>
+</ul>
+</li>
+<li>index.html</li>
+</ul>
+</li>
+<li>package.json</li>
+<li>gulpfile.js</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2017/gulp-note/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[jQuery] picTags 在圖片上加標籤 (像是 Facebook 相片)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2016/jquery-pictags-like-facebook-photo/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2016/jquery-pictags-like-facebook-photo/#respond</comments>
+		<pubDate>Tue, 01 Mar 2016 05:14:52 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1063</guid>
+		<description><![CDATA[jQeury picTags 為圖片加上標示用的標籤 (像是 Facebook 的照片) 最近業務上的需要找到 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>jQeury picTags 為圖片加上標示用的標籤 (像是 Facebook 的照片)<br />
+<span id="more-1063"></span></p>
+<p>最近業務上的需要找到 <a href="https://timseverien.com/taggd/">taggd</a><br />
+但功能不完全符合我的需求<br />
+所以將程式更新後<br />
+放到 <a href="https://github.com/itisjoe/picTags">github</a> 上</p>
+<p>主要修改四個地方<br />
+1. 個別資訊可以設定相對於點點的位置<br />
+2. ID 屬性一定要填寫<br />
+3. 新增一個更新資料的方法 updateInfo<br />
+4. 刪除了 delete 按鈕 現在需要手動刪除</p>
+<p><a href="https://github.com/itisjoe/picTags">https://github.com/itisjoe/picTags</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2016/jquery-pictags-like-facebook-photo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[NOTE] 在Google Reader跟iGoogle關門之後</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/after-google-reader-and-igoogle-closed/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/after-google-reader-and-igoogle-closed/#respond</comments>
+		<pubDate>Thu, 25 Apr 2013 06:57:20 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[瀏覽器]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[rss]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=707</guid>
+		<description><![CDATA[做個筆記 以免之後忘記 剛得知iGoogle要關的時候 還滿不爽的 但後來想想其實我iGoogle上擺的東西也 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>做個筆記 以免之後忘記<br />
+<span id="more-707"></span><br />
+剛得知iGoogle要關的時候 還滿不爽的<br />
+但後來想想其實我iGoogle上擺的東西也不多<br />
+要轉換好像滿快的</p>
+<p>▼ Google Bookmarks<br />
+希望他不要太早關掉阿= = 雖然這真的一副就是要領便當的樣子<br />
+<a href="https://chrome.google.com/webstore/detail/google-bookmarks/nfieeekinhmpmgnonkgbmklfdheojoni">Chrome套件 : Google bookmarks</a></p>
+<p>▼ Gmail<br />
+<a href="https://chrome.google.com/webstore/detail/google-mail-checker/mihcahmgecmbnbcchbopgniflfhgnkff">Chrome套件 : Google Mail Checker</a></p>
+<p>▼ Google Reader<br />
+接續在iGoogle不久之後也宣布要關門 WT&#8230;__<br />
+網路上有很多前輩分享了可以搬家到哪的建議<br />
+我有試過<a href="http://theoldreader.com/">the old reader</a><br />
+但他真的&#8230; 太慢了&#8230; 換個分類要五秒<br />
+不然他的介面真的很ok</p>
+<p>後來選擇了<a href="http://www.feedly.com/home">feedly</a><br />
+我一定要說 他的css寫得真的打算弄瞎所有人吧<br />
+白底又灰字的 演哪齣阿！！！</p>
+<p>原本裝了 <a href="http://userstyles.org/">Chrome套件 : stylish</a> 要改成不瞎眼的樣式<br />
+但！！！ title的字竟然不能改css WT&#8230;__<br />
+大概是把css寫在inline吧 反正重整頁面沒辦法 一定要stylish裡面再按一次才吃得到<br />
+字體又小又灰 我要瞎了</p>
+<p>後來是又裝了 <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Chrome套件 : Tampermonkey</a><br />
+先裝 <a href="http://userscripts.org/scripts/show/162237">Readly: make Feedly look like Google Reader</a><br />
+讓他長得順眼一點<br />
+再自己改一點css</p>
+<pre class="brush: jscript; title: ; notranslate">
+//
+
+// 這行是拉開間距 不然把字變大會很擠
+// 擺在他一堆要加的css style堆裡
+    /* MORE SPACES CUSTOM*/
+    'div.u0Entry {font-size:20px;margin:15px 0px;}' +
+
+// 這部份是把title的字體變大 比較好閱讀
+// 因為上面那種方法不能改 只好用javascript改了
+// make bigger title
+(function makeBiggerTitle() {
+	var titles = document.querySelectorAll('a.title');
+	var i = 0, l = titles.length;
+	for (; i &lt; l; i += 1) {
+		titles[i].style.fontSize = '20px';
+	}
+	setTimeout(makeBiggerTitle, 1500);
+}());
+
+//
+</pre>
+<p>▼ 時鐘跟氣象及其他<br />
+好像都沒在看 就不再用了XD<br />
+(那我寫幹嘛)</p>
+<p>以上<br />
+Google Reader &amp; iGoogle R.I.P.</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/after-google-reader-and-igoogle-closed/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] 出現EXC_BAD_ACCESS 如何de</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-exc_bad_access-debug/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-exc_bad_access-debug/#respond</comments>
+		<pubDate>Fri, 25 Jan 2013 02:25:59 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPhone]]></category>
+		<category><![CDATA[javascript]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=684</guid>
+		<description><![CDATA[第一次遇到 花了我一個晚上 一開始寫 Objctive-C 就用 ARC 了 所以對於記憶體管理 整個是不熟  [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>第一次遇到 花了我一個晚上<br />
+<span id="more-684"></span><br />
+一開始寫 Objctive-C 就用 ARC 了<br />
+所以對於記憶體管理 整個是不熟<br />
+現在用了 cocos2D 基本上是不支援 ARC<br />
+呃 該來的還是要來</p>
+<p>一開始跳 EXC_BAD_ACCESS 真是嚇死我的毛<br />
+看不懂阿 咕狗後才知道要怎麼追</p>
+<p>Xcode 4 要依照路徑: Product -&gt; Edit Scheme -&gt; Arguments -&gt; Environment variables<br />
+在這裡面加 NSZombieEnabled 並設為 YES<br />
+再編譯一次 log地方就會跳出比較看得動的錯誤了<br />
+我這次遇到的是 message sent to deallocated instance<br />
+當然每次應該都不太一樣</p>
+<p>依照搜尋到的文章 內容如下<br />
+MallocStackLogging YES<br />
+MallocStackLoggingNoCompact YES<br />
+第一項可監控deallocated的記憶體，給更多的錯誤訊息<br />
+第二項可開啟MallocStack，就知道記憶體在程式運行中被配置的歷史<br />
+第三項可以更清楚顯示指定的MallocStack狀況</p>
+<p>然後這次大概就這樣吧= =|||</p>
+<p>ref:<br />
+<a href="http://bbs.csdn.net/topics/390336337?page=1#post-393378940">http://bbs.csdn.net/topics/390336337?page=1#post-393378940</a><br />
+<a href="http://kenobiluh.blogspot.tw/2011/04/message-sent-to-deallocated-instance.html">http://kenobiluh.blogspot.tw/2011/04/message-sent-to-deallocated-instance.html</a><br />
+<a href="http://www.cnblogs.com/zilongshanren/archive/2011/08/08/2131140.html">http://www.cnblogs.com/zilongshanren/archive/2011/08/08/2131140.html</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-exc_bad_access-debug/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[jquery] 不懂javascript的網頁設計師也可以輕鬆上手的jquery</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/#comments</comments>
+		<pubDate>Thu, 19 Apr 2012 17:35:33 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=565</guid>
+		<description><![CDATA[既然有人問了 那就簡單整理一下 有哪邊不懂的歡迎提出 STEP.1 引入jquery檔案 這邊使用google [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>既然有人問了<span id="more-565"></span><br />
+那就簡單整理一下<br />
+有哪邊不懂的歡迎提出</p>
+<p><span style="font-size:36px;font-family:bold">STEP.1 引入jquery檔案</span><br />
+這邊使用google托管的檔案<br />
+就不用另外放一支jquery的檔案在自己的目錄下<br />
+如果他去的別的網站也有用 也就不用再load一次</p>
+<p>▼將這行放在head標籤裡面</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;head&gt;
+&lt;!-- 一些其他的東西 --&gt;
+&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;!-- 一些其他的東西 --&gt;
+&lt;/head&gt;
+</pre>
+<div style="font-size:36px;font-family:bold;margin-top:100px;margin-bottom:25px">STEP.2 jquery的碼要擺在&#8230;</div>
+<p>除了function以外的碼 (看不懂function的意思 就先不用在意他了)<br />
+通通都放在下面這兩個其中一個裡(任選一個 兩個是一樣的)<br />
+再把整段script標籤放在body標籤裡<br />
+▼將所有jquery的碼放在這裡面</p>
+<pre class="brush: jscript; title: ; notranslate">
+&lt;script&gt;
+$(document).ready(function(){
+    //通通放在這裡面
+    //通通放在這裡面
+});
+// 或是 下面這樣
+$(function(){
+    //通通放在這裡面
+    //通通放在這裡面
+});
+&lt;/script&gt;
+</pre>
+<div style="font-size:36px;font-family:bold;margin-top:100px;margin-bottom:25px">STEP.3 選擇器怎麼用</div>
+<p>你要操作哪一個標籤的東西<br />
+就把他放在 $(裡面)<br />
+用法就跟css的選擇器 幾乎完全一樣<br />
+記得用單引號 &#8216; 或是 雙引號 &#8221; 前後包起來<br />
+更多請看<a href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/">我之前寫的筆記</a>或是<a href="http://api.jquery.com/category/selectors/">官方文件(英文的)</a><br />
+▼ 幾個範例</p>
+<pre class="brush: jscript; title: ; notranslate">
+// 如果是內建的標籤 (後面的.attr(&quot;name&quot;)下一個STEP會講)
+// $(&quot;div&quot;)
+$(&quot;div&quot;).attr(&quot;name&quot;);
+$(&quot;a&quot;).attr(&quot;name&quot;);
+
+// 如果是id的話
+// $(&quot;#myform&quot;)
+$(&quot;#myform&quot;).attr(&quot;name&quot;);
+$(&quot;#content&quot;).attr(&quot;name&quot;);
+
+//如果是class的話
+// $(&quot;.btn&quot;)
+$(&quot;.btn&quot;).attr(&quot;name&quot;);
+$(&quot;.hint&quot;).attr(&quot;name&quot;);
+
+//當然也可以結合
+$(&quot;div.hint&quot;).attr(&quot;name&quot;);
+$(&quot;a#content&quot;).attr(&quot;name&quot;);
+
+</pre>
+<div style="font-size:36px;font-family:bold;margin-top:100px;margin-bottom:25px">STEP.4 對標籤做操作</div>
+<p>這邊只有介紹些許功能<br />
+更多請看<a href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch3/">我之前的筆記</a>或是<a href="http://api.jquery.com/category/css/">官方文件</a></p>
+<p>▼ html標籤的屬性</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;a id=&quot;content&quot; name=&quot;myaaa&quot;&gt;這是個a標籤&lt;/a&gt;
+</pre>
+<p>▼操作上面這個a標籤</p>
+<pre class="brush: jscript; title: ; notranslate">
+$(&quot;a#content&quot;).attr(&quot;name&quot;);
+//會得到name屬性的值 也就是myaaa
+
+//要修改name呢 則是
+$(&quot;a#content&quot;).attr(&quot;name&quot;,&quot;mynewbbb&quot;);
+// 這樣就會將name從myaaa改成mynewbbb
+</pre>
+<p>▼ style(也就是css)</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;div id=&quot;content&quot; style=&quot;color:#3c3c3c;background-color:#ffffff;&quot;&gt;這是個div&lt;/div&gt;
+</pre>
+<p>▼ 操作上面這個div標籤</p>
+<pre class="brush: jscript; title: ; notranslate">
+$(&quot;#content&quot;).css(&quot;color&quot;);
+//會得到color的值 也就是#3c3c3c
+
+//要修改呢 則是
+$(&quot;a#content&quot;).css(&quot;backgroundColor&quot;,&quot;#cc00ff&quot;);
+// 這樣就會將background-color從#ffffff改成#cc00ff
+
+// 這邊有另一個重點是 如果css有橫線- 則是改成去掉橫線 橫線後面的第一個字母大寫
+// background-color 就要寫成 backgroundColor 
+</pre>
+<p>▼增加及減少class</p>
+<pre class="brush: jscript; title: ; notranslate">
+// 增加hint這個classname
+$(&quot;#content&quot;).addClass(&quot;hint&quot;);
+
+// 減少hint這個classname
+$(&quot;#content&quot;).removeClass(&quot;hint&quot;);
+</pre>
+<div style="font-size:36px;font-family:bold;margin-top:100px;margin-bottom:25px">STEP.5 怎麼觸發jquery神奇的功能</div>
+<p>這邊介紹常用的click,mouseover,mouseout<br />
+更多請看<a href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch4/">我之前寫的筆記</a>或是<a href="http://api.jquery.com/category/events/">官方文件</a><br />
+在上一個step知道怎麼操作了之後<br />
+當然還需要做一些觸發的動作 來去操作<br />
+▼ click</p>
+<pre class="brush: jscript; title: ; notranslate">
+// 按到id=content的標籤時 將他的背景色改為紅色
+$(&quot;#content&quot;).click(function(){
+    $(&quot;#content&quot;).css(&quot;backgroundColor&quot;,&quot;red&quot;);
+});
+</pre>
+<p>▼ mouseover,mouseout</p>
+<pre class="brush: jscript; title: ; notranslate">
+// 游標移到id=content的標籤上時 為他增加一個class
+$(&quot;#content&quot;).mouseover(function(){
+    $(&quot;#content&quot;).addClass(&quot;hint&quot;);
+});
+// 游標離開id=content的標籤上時 將一個class移除
+$(&quot;#content&quot;).mouseout(function(){
+    $(&quot;#content&quot;).removeClass(&quot;hint&quot;);
+});
+</pre>
+<div style="font-size:36px;font-family:bold;margin-top:100px;margin-bottom:25px"></div>
+<p>以上五點希望可以給未接觸過jquery的朋友了解一下jquery的用法<br />
+當然他可以做的事還非常的多<br />
+要深入請再研讀官方文件<br />
+或咕狗咕狗<br />
+有問題也可以發問<br />
+我會的會盡量回答</p>
+<p>jquery真的很好用窩~~~</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/jquery-easy-steps/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>[CKEditor] 增加上傳圖片功能</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/ckeditor-upload-image/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/ckeditor-upload-image/#comments</comments>
+		<pubDate>Fri, 16 Dec 2011 06:59:24 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[ckeditor]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=481</guid>
+		<description><![CDATA[現在這個版本(3.x)的上傳圖片功能預設是沒有打開的 工具列[影像]點進去後 裡面原本只會有 [影像資訊] [ [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>現在這個版本(3.x)的上傳圖片功能預設是沒有打開的<br />
+<span id="more-481"></span><br />
+工具列[影像]點進去後<br />
+裡面原本只會有 [影像資訊] [超連結] [進階]<br />
+如果順利完成的話 會在[進階]左邊 出現一個[上傳]</p>
+<p>[START]</p>
+<p>▼ 首先當然是引入ckeditor檔案 跟Form</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;script src=&quot;/js/ckeditor/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;!-- textarea記得加上class=&quot;ckeditor&quot; 這樣就可以使用預設的ckeditor了 --&gt;
+&lt;form id=&quot;form1&quot; name=&quot;form1&quot; action=&quot;/goupdate&quot; method=&quot;post&quot;&gt;
+&lt;textarea id=&quot;editor1&quot; name=&quot;editor1&quot; class=&quot;ckeditor&quot;&gt;&lt;/textarea&gt;
+&lt;input type=&quot;submit&quot; value=&quot;送出&quot;&gt;
+&lt;/form&gt;
+</pre>
+<p>▼ javascript需要加上一行</p>
+<pre class="brush: jscript; title: ; notranslate">
+//接著就是寫上server端接收上傳圖片的路徑 -&gt; 這邊就是/upload
+CKEDITOR.replace('editor1'
+    ,{filebrowserImageUploadUrl : '/upload'}
+);
+</pre>
+<p>▼ server端(這裡使用PHP)接收上傳圖片部分 也就是上面說的/upload</p>
+<pre class="brush: php; title: ; notranslate">
+// 檔案的name預設是upload (我不知道去哪改耶XD 有人知道嗎?)
+$fileNameLong = $_FILES['upload']['name'];
+//
+//  作了一些對圖片的處理後
+//
+$pathToSave = '/var/www/htdoc/photo/myimage.jpg';
+move_uploaded_file($_FILES['upload']['tmp_name'],  $pathToSave);
+// 再做一些處理後
+// 如果上傳成功就是沒有錯誤訊息
+$errorMsg = '';
+// 這邊記得回傳給ckeditor
+echo &quot;&lt;script&gt;&quot;;
+if($errorMsg==''){
+    // CKEditor 的編號
+    $CKEditorFuncNum = isset($_GET['CKEditorFuncNum']) ? $_GET['CKEditorFuncNum'] : 2;
+    // $fileUrl是圖片網址 就自己先處理好吧
+    $fileUrl = &quot;http://www.mysite.com/photo/myimage.jpg&quot;;
+    echo &quot;window.parent.CKEDITOR.tools.callFunction(&quot;. $CKEditorFuncNum .&quot;,'&quot; . $fileUrl . &quot;','');&quot;;
+} else {
+    echo &quot;alert('&quot;.$errorMsg.&quot;');&quot;;
+}
+echo &quot;&lt;/script&gt;&quot;;
+</pre>
+<p>都順利的話 最後回傳給ckeditor後<br />
+會帶入到工具列[影像]裡面的[影像資訊]頁籤<br />
+他會把URL跟圖片預覽都帶進去<br />
+再自己做處理囉<br />
+接著再按確定<br />
+就會插入進文章了</p>
+<p>[END]</p>
+<p>[UPDATE 20130620]<br />
+當一個頁面要放2個以上的 CKEDITOR 時<br />
+需要獲得 CKEDITOR 的編號<br />
+其實上傳時有同時傳了一個 GET 參數 CKEditorFuncNum<br />
+所以回傳時要用到這個參數<br />
+上面的文章內容已更新成可以動作了<br />
+ref : <a href="http://stackoverflow.com/questions/1498628/how-can-you-integrate-a-custom-file-browser-uploader-with-ckeditor" title="how-can-you-integrate-a-custom-file-browser-uploader-with-ckeditor" target="_blank">http://stackoverflow.com/questions/1498628/how-can-you-integrate-a-custom-file-browser-uploader-with-ckeditor</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/ckeditor-upload-image/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Codeigniter開啟csrf protection時 傳送表單(or ajax)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-csrf-protection-form-ajax/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-csrf-protection-form-ajax/#comments</comments>
+		<pubDate>Wed, 18 May 2011 10:37:42 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[Codeigniter]]></category>
+		<category><![CDATA[php]]></category>
+		<category><![CDATA[javascript]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=449</guid>
+		<description><![CDATA[在CI 2.0中有一個csrf(Cross Site Request Forgery) protection的 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>在CI 2.0中有一個csrf(Cross Site Request Forgery) protection的功能<br />
+<span id="more-449"></span><br />
+如果打開這個功能的話<br />
+post表單給server 會吐 error 500<br />
+An Error Was Encountered<br />
+The action you have requested is not allowed.<br />
+會無法執行<br />
+這時候要在表單傳送的數值中加入一個token的值<br />
+才能正常使用表單功能</p>
+<p>可以在application/config/config.php中找到下面這幾行</p>
+<pre class="brush: php; title: ; notranslate">
+$config['csrf_protection'] = TRUE;
+$config['csrf_token_name'] = 'csrf_test_name';
+$config['csrf_cookie_name'] = 'csrf_cookie_name';
+$config['csrf_expire'] = 7200;
+</pre>
+<p>原本$config[&#8216;csrf_protection&#8217;]預設是FALSE 改成TRUE就可以打開了<br />
+開啟之後 會自動幫你在cookie中存一個值<br />
+cookie的name在上面說的config.php中可以設定<br />
+之後傳送表單就要連這個token一起傳才行</p>
+<p>以下用jquery的ajax功能示範</p>
+<pre class="brush: jscript; title: ; notranslate">
+$(function(){
+    $('#btn').click(function(){
+	    $.ajax({
+	        type:'POST'
+	        ,url:'/ajax' //ajax接收的server端
+	        ,data:$('#form').serialize()+'&amp;csrf_test_name='+ getCookie('csrf_test_name')
+	        ,success:function(data){
+			alert(data.msg);
+	        }
+	        ,dataType:'json'
+	    });
+    });
+});
+
+function getCookie(name){
+    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;));
+    if(arr != null) return unescape(arr[2]); return null;
+}
+</pre>
+<p>getCookie()是用js取出cookie的值<br />
+這是在網路上找到的 可以直接拿去用</p>
+<p>而csrf_test_name就是在config.php中可以設定的參數<br />
+將這個cookie抓出來一起送出表單<br />
+就可以正常使用了</p>
+<p>有任何指教歡迎留言~</p>
+<p>referer : <a href="http://ericlbarnes.com/blog/post/codeigniter_csrf_protection_with_ajax">http://ericlbarnes.com/blog/post/codeigniter_csrf_protection_with_ajax</a></p>
+<p>==================<br />
+update<br />
+==================<br />
+依據這頁<a href="http://codeigniter.com/forums/viewthread/163976/">http://codeigniter.com/forums/viewthread/163976/</a> 某樓提供的方法<br />
+可以使用以下方法取得token_name以及值</p>
+<pre class="brush: php; title: ; notranslate">
+&lt;input type=&quot;hidden&quot; name=&quot;&lt;?php echo $this-&gt;security-&gt;csrf_token_name?&gt;&quot; value=&quot;&lt;?php echo $this-&gt;security-&gt;csrf_hash?&gt;&quot; /&gt;
+</pre>
+<p>滿方便的<br />
+另外還有一點就是<br />
+如果是用CI內建的form helper<br />
+在開啟csrf_protection時 會自動幫你加入這個token的值<br />
+我本身是沒有在用啦<br />
+如果有在用的人 就會比較方便囉 (或許根本就不會發現這個問題XD)<br />
+==================<br />
+以上是update的資訊<br />
+==================</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/codeigniter-csrf-protection-form-ajax/feed/</wfw:commentRss>
+		<slash:comments>14</slash:comments>
+		</item>
+		<item>
+		<title>jquery .trigger()的用法</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/jquery-trigger-howtouse/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/jquery-trigger-howtouse/#respond</comments>
+		<pubDate>Tue, 10 May 2011 04:55:56 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[jquery]]></category>
+		<category><![CDATA[javascript]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=441</guid>
+		<description><![CDATA[到今天才知道trigger()的用法 ._. 今天用這個jquery輪播的plugin http://jque [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>到今天才知道trigger()的用法 ._.<br />
+<span id="more-441"></span></p>
+<p>今天用這個jquery輪播的plugin<br />
+<a href="http://jqueryfordesigners.com/jquery-infinite-carousel/" target="_blank">http://jqueryfordesigners.com/jquery-infinite-carousel/</a><br />
+他裡面有bind()了一個跳頁數的method<br />
+但是我折騰了一兩個小時 都不知道怎麼用阿！！！NO！！！</p>
+<p>上個廁所突然豁然開朗 原來是要用trigger()阿！！！(摸鬍子)<br />
+以下是剪貼<a href="http://api.jquery.com/trigger/" target="_blank">官網</a>的範例</p>
+<pre class="brush: jscript; title: ; notranslate">
+$('#foo').bind('custom', function(event, param1, param2) {
+    alert(param1 + &quot;\n&quot; + param2);
+});
+$('#foo').trigger('custom', ['Custom', 'Event']);
+</pre>
+<p>首先當然是bind一個新的method<br />
+可以是click, focus 這些javascript原本就有的<br />
+或是自己取名字也行~ (上面的例子就是custom)</p>
+<p>要觸發 就是用.trigger()囉<br />
+有參數的話 後面第二個參數用一個陣列帶入！<br />
+收工！<br />
+不錯不錯<br />
+希望不會再忘了</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/jquery-trigger-howtouse/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>jQuery Plugin : ClockPick 選取時間</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-plugin-clockpick/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-plugin-clockpick/#comments</comments>
+		<pubDate>Sat, 19 Sep 2009 06:14:14 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[plugin]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=368</guid>
+		<description><![CDATA[網路上可以找到很多月曆的js程式 但是選取時間的程式相對少很多 前陣子找到了這個基於jquery的選取時間程式 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>網路上可以找到很多月曆的js程式<span id="more-368"></span><br />
+但是選取時間的程式相對少很多<br />
+前陣子找到了這個基於jquery的選取時間程式<a target="_blank" href="http://www.jnathanson.com/index.cfm?page=jquery/clockpick/ClockPick">ClockPick</a><br />
+使用的方法很直覺<br />
+也有數個參數可以設定以達到自己的需求<br />
+demo就直接去該網頁看囉</p>
+<p><a href="http://ex.hsin.tw/files/clockpick.zip">範例下載</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-plugin-clockpick/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>jQuery in Action</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action/#respond</comments>
+		<pubDate>Wed, 01 Jul 2009 11:54:43 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[css]]></category>
+		<category><![CDATA[html]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=337</guid>
+		<description><![CDATA[這些只是我大概記一下的內容 要詳細閱讀跟學習jQuery還是買本書比較實在喔~ 原文書網址：jQuery in [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這些只是我大概記一下的內容<br />
+<span id="more-337"></span><br />
+要詳細閱讀跟學習jQuery還是買本書比較實在喔~<br />
+原文書網址：<a href="http://www.manning.com/bibeault/" target="_blank">jQuery in Action</a><br />
+中文版：<a href="http://findbook.tw/book/9789861816388/basic" target="_blank">jQuery實戰手冊</a><br />
+原文電子書版本：<a href="http://tinyurl.com/d3tbsq" target="_blank">咕狗&#8221;jquery in action ebook&#8221;</a></p>
+<p><a href="http://jquery.com/" target="_blank">http://jquery.com/</a><br />
+這本書是以jQuery 1.2.1版為基礎</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch1-introuducing-jquery/">ch.1 Introuducing jQuery</a>&nbsp;<br />
+jQuery概略介紹</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch2-creating-the-wrapped-element-set/">ch.2 Creating the wrapped element set</a>&nbsp;<br />
+建立elements set</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch3/">ch.3 Bringing pages to life with jQuery</a>&nbsp;<br />
+讓頁面上的東西更生動</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch4/">ch.4 Events are where it happens!</a>&nbsp;<br />
+events的操作</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch5/">ch.5 Sprucing up with animations and effects</a>&nbsp;<br />
+動畫及效果</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch-6/">ch.6 jQuery utility functions</a>&nbsp;<br />
+通用函式</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch-7/">ch.7 Extending jQuery with custom plugins</a>&nbsp;<br />
+自訂擴充plugin</p>
+<p><a style="font-weight:bold;" target="_blank" href="https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action-ch8/">ch.8 Talk to the server with Ajax</a>&nbsp;<br />
+ajax介紹</p>
+<p><b>ch.9 Prominent, powerful,and practical plugins</b><br />
+plugin介紹<br />
+<a href="http://docs.jquery.com/Plugins" target="_blank">http://docs.jquery.com/Plugins</a>&nbsp;<br />
+<a href="http://jquery.com/plugins/most_popular" target="_blank">http://jquery.com/plugins/most_popular</a>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/jquery-in-action/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

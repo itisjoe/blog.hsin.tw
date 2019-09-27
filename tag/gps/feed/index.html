@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>gps &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/gps/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>PHP 取得EXIF中GPS的經緯度</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/#comments</comments>
+		<pubDate>Sat, 12 Feb 2011 02:31:32 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[php]]></category>
+		<category><![CDATA[exif]]></category>
+		<category><![CDATA[gps]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=422</guid>
+		<description><![CDATA[在php4.2之後有一個函數可以取得EXIF的內容 exif_read_data() 只可以用在JPG跟TIF [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>在php4.2之後有一個函數可以取得EXIF的內容<br />
+<span id="more-422"></span><br />
+<a href="http://php.net/manual/en/function.exif-read-data.php">exif_read_data()</a><br />
+只可以用在JPG跟TIFF的圖片<br />
+餵其他類型的會絡賽</p>
+<p>首先當然就是先取得EXIF的內容<br />
+第一個欄位是檔案 第二個欄位是要取哪些項目(可以去文件看)的資訊<br />
+第三個是將各項目的值以array返回</p>
+<pre class="brush: php; title: ; notranslate">
+$exif = exif_read_data('my.jpg', 0, true);
+//緯度
+$latitude = $exif['GPS']['GPSLatitude'];
+//經度
+$longitude = $exif['GPS']['GPSLongitude'];
+</pre>
+<p>都是各有三個元素的array 各代表度,分,秒<br />
+但是他們都長得怪怪的 會是分數的形式<br />
+所以需要再將他們解析<br />
+找到一篇解法<br />
+<a href="http://stackoverflow.com/questions/2526304/php-extract-gps-exif-data">PHP extract GPS EXIF data</a><br />
+把兩個值丟進去就可以了</p>
+<pre class="brush: php; title: ; notranslate">
+//Pass in GPS.GPSLatitude or GPS.GPSLongitude or something in that format
+function getGps($exifCoord)
+{
+  $degrees = count($exifCoord) &gt; 0 ? gps2Num($exifCoord[0]) : 0;
+  $minutes = count($exifCoord) &gt; 1 ? gps2Num($exifCoord[1]) : 0;
+  $seconds = count($exifCoord) &gt; 2 ? gps2Num($exifCoord[2]) : 0;
+
+  //normalize
+  $minutes += 60 * ($degrees - floor($degrees));
+  $degrees = floor($degrees);
+
+  $seconds += 60 * ($minutes - floor($minutes));
+  $minutes = floor($minutes);
+
+  //extra normalization, probably not necessary unless you get weird data
+  if($seconds &gt;= 60)
+  {
+    $minutes += floor($seconds/60.0);
+    $seconds -= 60*floor($seconds/60.0);
+  }
+
+  if($minutes &gt;= 60)
+  {
+    $degrees += floor($minutes/60.0);
+    $minutes -= 60*floor($minutes/60.0);
+  }
+
+  return array('degrees' =&gt; $degrees, 'minutes' =&gt; $minutes, 'seconds' =&gt; $seconds);
+}
+
+function gps2Num($coordPart)
+{
+  $parts = explode('/', $coordPart);
+
+  if(count($parts) &lt;= 0)
+    return 0;
+  if(count($parts) == 1)
+    return $parts[0];
+
+  return floatval($parts[0]) / floatval($parts[1]);
+}
+</pre>
+<p>也就是這樣</p>
+<p>$latitude = getGps($latitude);<br />
+$longitude = getGps($longitude);<br />
+/*<br />
+output:<br />
+緯度<br />
+度：$latitude[&#039;degrees&#039;]<br />
+分：$latitude[&#039;minutes&#039;]<br />
+秒：$latitude[&#039;seconds&#039;]<br />
+經度<br />
+度：$longitude[&#039;degrees&#039;]<br />
+分：$longitude[&#039;minutes&#039;]<br />
+秒：$longitude[&#039;seconds&#039;]<br />
+*/</p>
+<p>就可以再做之後的應用啦<br />
+可以用google map確認一下對不對<br />
+<a href="http://maps.google.com.tw/?q=25 2 52.8,121 33 58.2">http://maps.google.com.tw/?q=25 2 52.8,121 33 58.2</a></p>
+<p>===update===<br />
+發現還要判斷南北半球 東西半球</p>
+<pre class="brush: php; title: ; notranslate">
+//這會出現S或是N 也就是南北半球
+$exif['GPS']['GPSLatitudeRef'];
+//如果是S的話 緯度還要乘-1喔
+
+//這會出現W或是E 也就是東西半球
+$exif['GPS']['GPSLongitudeRef'];
+//如果是W的話 經度還要乘-1喔
+
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/php-exif-gps-latitude-longitude/feed/</wfw:commentRss>
+		<slash:comments>16</slash:comments>
+		</item>
+	</channel>
+</rss>

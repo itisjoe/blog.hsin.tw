@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>軟體 &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/%e8%bb%9f%e9%ab%94/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[PHP] PhpStorm 熱鍵設定</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/php-phpstorm-hot-key/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/php-phpstorm-hot-key/#respond</comments>
+		<pubDate>Wed, 25 Mar 2015 07:04:41 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[php]]></category>
+		<category><![CDATA[軟體]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=926</guid>
+		<description><![CDATA[https://www.jetbrains.com/phpstorm/ 在看 Laravel 5 fundam [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://www.jetbrains.com/phpstorm/">https://www.jetbrains.com/phpstorm/</a><br />
+<span id="more-926"></span><br />
+在看 <a href="https://laracasts.com/series/laravel-5-fundamentals">Laravel 5 fundamentals</a> 的時候 講者極力推薦的一個 IDE<br />
+看他用真的很快 所以就再去了解了一下 laracasts 上同一個講者<a href="https://laracasts.com/series/how-to-be-awesome-in-phpstorm">講解 PhpStorm 的影片</a> </p>
+<p>雖然這是一個付費軟體<br />
+但他有提供學生免費的 license : <a href="https://www.jetbrains.com/student/">https://www.jetbrains.com/student/</a><br />
+只要提供學校 Email 即可收到註冊碼 (通常就是含有 edu 或 edu.tw 的 Email )<br />
+所以有學校 Email 的朋友不要錯過這個方式<br />
+官網上是寫說 license 一次發一年 到期了要再申請一次 但不確定可不可以用同一個 Email 申請<br />
+( Is a free Student License perpetual? No, the license is valid for one year. After one year you will need to apply again. )</p>
+<p>=&gt; 表示熱鍵可以更改為後者</p>
+<p>▼ 快速尋找 action , option name<br />
+shift + cmd + a</p>
+<p>▼ 開啟關閉左側 sidebar<br />
+cmd + 1</p>
+<p>▼ 開啟最近打開過的檔案 (可快速切換前一個開啟的檔案)<br />
+cmd + e</p>
+<p>▼ 快速開啟任意檔案<br />
+shift + cmd + o &nbsp;&nbsp;=&gt;&nbsp;&nbsp; cmd + p</p>
+<p>▼ 快速前往目前檔案的指定 method<br />
+cmd + F12 &nbsp;&nbsp;=&gt;&nbsp;&nbsp; cmd + r</p>
+<p>▼ 快速前往指定的 method (所有檔案都可以找)<br />
+cmd + opt + o</p>
+<p>▼ 開啟目錄結構<br />
+cmd + 上 (可使用方向鍵進入後退各目錄 並配合 cmd + n 建立新檔案)</p>
+<p>▼ format code style (可以在設定的 Code Style 修改自己要的 style )<br />
+cmd + opt + l</p>
+<p>▼ refactor<br />
+ctrl + t<br />
+反白一段程式 : 可以轉換成 method<br />
+一個變數 : 可以更改名稱<br />
+一個 method : 可以拉( pull up )到上一層 class<br />
+一個 class : 可以轉換成一個 interface<br />
+給字串一個變數( variable ) 或是 將變數合併( inline ) 如下 1 跟 2 互換</p>
+<pre class="brush: php; title: ; notranslate">
+// 1.
+$level = 'success';
+$this-&gt;message($level);
+
+// 2.
+$this-&gt;message('success');
+
+</pre>
+<p>▼ 快速選擇同一個字 (一次往下選擇一個 選完可以一起改)<br />
+ctrl + g &nbsp;&nbsp;=&gt;&nbsp;&nbsp; cmd + d</p>
+<p>▼ 快速選擇這個檔案所有的同一個字<br />
+ctrl + cmd + g</p>
+<p>▼ split 分割畫面<br />
+原本沒熱鍵<br />
+建立 ctrl + v for vertical<br />
+ctrl + h for horizontal<br />
+(使用 cmd + w 關閉其中一個畫面)</p>
+<p>▼ Generating a PHPDoc block for a method or a function<br />
+打 /** 後按 enter</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/php-phpstorm-hot-key/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Website] 線上抽獎機 Slots</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/website-slots/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/website-slots/#respond</comments>
+		<pubDate>Wed, 04 Feb 2015 12:23:09 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[軟體]]></category>
+		<category><![CDATA[website]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=821</guid>
+		<description><![CDATA[http://hsin.tw/tools/slots 昨天在 ptt 看到有人有這個需求 覺得還滿有趣的 今天 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://hsin.tw/tools/slots">http://hsin.tw/tools/slots</a><br />
+<span id="more-821"></span></p>
+<p>昨天在 ptt 看到有人有這個需求<br />
+覺得還滿有趣的<br />
+今天就花了一些時間寫<br />
+畫面比較簡單<br />
+使用純 cookie<br />
+沒有用到後端資料庫</p>
+<p>原始碼放在 github<br />
+<a href="https://github.com/itisjoe/slotsWebsite">https://github.com/itisjoe/slotsWebsite</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/website-slots/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>我的portable apps</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2010/my-portable-apps/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2010/my-portable-apps/#respond</comments>
+		<pubDate>Wed, 03 Feb 2010 11:25:17 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[軟體]]></category>
+		<category><![CDATA[firefox]]></category>
+		<category><![CDATA[瀏覽器]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=380</guid>
+		<description><![CDATA[最近NB要重灌了 想說就把一些軟體放在USB裡 以後就不用灌一次就裝一次了 我用的apps menu是PSta [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>最近NB要重灌了<br />
+<span id="more-380"></span><br />
+想說就把一些軟體放在USB裡<br />
+以後就不用灌一次就裝一次了<br />
+我用的apps menu是PStart<br />
+因為找了很久 可以滑到螢幕邊緣按右鍵才顯示面板的<br />
+好像就只有PStart了<br />
+其他都是滑過去就顯示或是放在系統列裡什麼的<br />
+有時候很不乖的跳出來 會讓我很焦慮XD<br />
+所以就是PStart了 雖然他的畫面簡單了點 ok的</p>
+<p>下面就是我目前有裝的軟體<br />
+不過有些我已經忘了是哪裡找到的<br />
+所以可能不是當初我下載的版本<br />
+我也不確定到底是不是安全的<br />
+我自己是都有用掃木馬軟體掃過一次<br />
+擔心的話就也是裝完再掃過一次囉</p>
+<style>.hint{color:#c3c3c3;}</style>
+<p><b>PSPad</b><br />
+文字編輯器<br />
+一直都是用這款 所以第一個就找免安裝版來用<br />
+<a href="http://azo-freeware.blogspot.com/2007/11/pspad-4532291.html" target="_blank">PSPad 4.5.4.2356 免安裝中文版</a> from <a href="http://azo-freeware.blogspot.com/" target="_blank">阿榮福利味</a><br />
+<span class="hint">當有更新的版本時 標題可能會不一樣</span></p>
+<p>
+<b>Notepad++</b><br />
+文字編輯器<br />
+當檔案太大的時候 用PSPad開都會很卡很卡 就改用Notepad++來開 會順很多<br />
+官網就有免安裝的版本(.zip)可以下載<br />
+<a href="http://notepad-plus.sourceforge.net/tw/site.htm" target="_blank">Notepad++</a></p>
+<p>
+<b>Firefox</b><br />
+瀏覽器<br />
+被制約太深了 所以用別的瀏覽器都不順手<br />
+<a href="http://azo-freeware.blogspot.com/2006/10/firefox-20.html" target="_blank">[火狐瀏覽器] Firefox Portable 3.6 阿榮版 (2010.01.28)</a> from <a href="http://azo-freeware.blogspot.com/" target="_blank">阿榮福利味</a><br />
+<span class="hint">當有更新的版本時 標題可能會不一樣</span></p>
+<p>
+<b>PCMan</b><br />
+BBS軟體<br />
+官網就有免安裝的版本(.zip)可以下載<br />
+<a href="http://pcman.openfoundry.org/" target="_blank">PCMan</a></p>
+<p>
+<b>Foobar2000</b><br />
+音樂播放軟體<br />
+我是裝1.0英文版的<br />
+<a href="http://azo-freeware.blogspot.com/2006/10/foobar2000-0941.html" target="_blank">Foobar2000 0.9.6.9 免安裝中文版 (1.0 免安裝英文版)</a> from <a href="http://azo-freeware.blogspot.com/" target="_blank">阿榮福利味</a><br />
+<span class="hint">當有更新的版本時 標題可能會不一樣</span></p>
+<p>
+<b>音樂轉檔精靈</b><br />
+音樂轉檔軟體<br />
+<a href="http://hola.idv.tw/" target="_blank">紅淚網 HolaNet</a></p>
+<p>
+<b>PieTTY</b><br />
+Telnet/SSH 安全遠端連線程式<br />
+<a href="http://www.csie.ntu.edu.tw/~piaip/pietty/" target="_blank">pietty</a></p>
+<p>
+<b>µTorrent</b><br />
+BT下載軟體<br />
+<a href="http://azo-freeware.blogspot.com/2006/10/torrent-16474.html" target="_blank">[迷你種子] µTorrent 2.0 .17427 Beta 阿榮版</a> from <a href="http://azo-freeware.blogspot.com/" target="_blank">阿榮福利味</a><br />
+<span class="hint">當有更新的版本時 標題可能會不一樣</span></p>
+<p>
+<b>FileZilla</b><br />
+FTP軟體(client端)<br />
+<a href="http://portableapps.com/apps/internet/filezilla_portable" target="_blank">FileZilla Portable</a> from <a href="http://portableapps.com/" target="_blank">PortableApps</a></p>
+<p>
+<b>Taskix</b><br />
+windows工具列上的程式按鈕作排序的軟體<br />
+2.0的我找不到直接對捷徑設參數的功能 所以我是抓1.5的<br />
+<a href="https://itisjoe.github.io/blog.hsin.tw/2009/software-taskix-reorder-buttons-in-your-windows-taskbar" target="_blank">我之前寫的介紹</a><br />
+<a href="http://taskix.robustit.com/Taskix1.5_32.zip" target="_blank">Taskix 1.5下載連結(32bit)</a> from <a href="http://taskix.robustit.com/">官網</a></p>
+<p><b>CDBurnerXP</b><br />
+燒錄軟體<br />
+<a href="http://azo-freeware.blogspot.com/2007/09/cdburnerxp-40013220.html" target="_blank">CDBurnerXP 4.2.3.1110 免安裝中文版 (4.2.7.1849 中文版)</a> from <a href="http://azo-freeware.blogspot.com/" target="_blank">阿榮福利味</a><br />
+<span class="hint">當有更新的版本時 標題可能會不一樣</span></p>
+<p>
+<b>LevinISO</b><br />
+虛擬光碟軟體<br />
+是簡體中文的 而且好像沒有在更新了 不過很方便的工具 所以還是拿來用了<br />
+<a href="http://www.freegroup.org/2009/06/free-software-leviniso/" target="_blank">LevinISO -- 免費綠色版虛擬光碟，檔案小、無須安裝，支援超過20種映像檔格式！</a> from <a href="http://www.freegroup.org/" target="_blank">免費資源網路社群</a></p>
+<p>
+<b>LockHunter</b><br />
+解除被鎖定的檔案與資料夾軟體<br />
+<a href="http://portable.easylife.tw/1827" target="_blank">LockHunter 1.0 beta 3 -- 解除被鎖定的檔案與資料夾</a> from <a href="http://portable.easylife.tw/" target="_blank">綠色工廠 Easylife Blog</a></p>
+<p>
+<b>靈格斯詞霸</b><br />
+翻譯軟體<br />
+<a href="http://www.lingoes.cn/zh/translator/download.htm" target="_blank">下載靈格斯詞霸</a></p>
+<p>
+<b>7-Zip</b><br />
+解壓縮軟體<br />
+<a href="http://www.inote.tw/2007/07/7-zip-450-beta.html" target="_blank">7-Zip 4.65 / 9.10 Beta 中文免安裝版下載！(內附教學連結)</a> from <a href="http://www.inote.tw/" target="_blank">海芋小站</a></p>
+<p>
+<b>PhotoCap</b><br />
+圖片編輯軟體<br />
+<a href="http://tw.myblog.yahoo.com/pp-king/article?mid=10268" target="_blank">PhotoCap 5.0 繁中免安裝版[圖片編修]</a> from <a href="http://tw.myblog.yahoo.com/pp-king" target="_blank">PP熊</a></p>
+<p></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2010/my-portable-apps/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>taskix : 對windows工具列上的程式按鈕作排序的軟體</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/software-taskix-reorder-buttons-in-your-windows-taskbar/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/software-taskix-reorder-buttons-in-your-windows-taskbar/#comments</comments>
+		<pubDate>Wed, 25 Mar 2009 13:45:46 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[軟體]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=183</guid>
+		<description><![CDATA[原來這種軟體很早以前就有了 Taskix -- Reorder buttons in your Windows [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>原來這種軟體很早以前就有了<br />
+<span id="more-183"></span><br />
+<a href="http://taskix.robustit.com/" target="_blank">Taskix -- Reorder buttons in your Windows taskbar</a><br />
+我還是這幾天才發現的<br />
+真是相見恨晚~<br />
+因為常常有機會要在各視窗作切換操作<br />
+如果工作列上的兩個按鈕隔得很遠<br />
+按alt+tab要按很久<br />
+有時候會比滑鼠直接點工具列還慢<br />
+但是滑鼠點還是要左點右點的<br />
+怎麼作都是不順手<br />
+有幾次整個怒到所有視窗全關掉重排序XD<br />
+現在這個軟體很簡單就可以做到移動位置的功能囉</p>
+<p>這是一個免安裝的程式<br />
+下載完解完壓縮就可以直接用了<br />
+看是要就地使用或是拉去哪裡放都可以<br />
+開啟的畫面如下(圖片引用自<a target="_blank" href="http://taskix.robustit.com">http://taskix.robustit.com</a>)<br />
+<a href="http://taskix.robustit.com/" target="_blank"><img src="http://taskix.robustit.com/Taskix1.5.png" border="0"></a><br />
+上面可以勾的框框是設定要不要開機就啟動這個功能<br />
+下面兩個按鈕 左邊的Leave it active是啟動<br />
+右邊的Deactivate是關閉</p>
+<p>他也可以在捷徑的連結路徑後面加上參數<br />
+有三個參數start,stop跟toggle 分別是啟動,關閉跟切換<br />
+(切換就是目前是啟動狀態的話就關閉，目前是關閉狀態的話就啟動)<br />
+首先建立程式的捷徑後 對捷徑按右鍵點內容<br />
+內容裡捷徑標籤中的<strong>目標</strong>會是類似下面這樣的東西</p>
+<div>
+<input style="border:1px solid #3c3c3c;" size="35" type="text" value='"C:\Program Files\taskix\taskix.exe"' readonly>
+</div>
+<p>然後加上你要的參數(這裡加上toggle) 變成下面這樣</p>
+<div>
+<input style="border:1px solid #3c3c3c;" size="35" type="text" value='"C:\Program Files\taskix\taskix.exe" toggle' readonly>
+</div>
+<p>記得雙引號跟參數中間要有一個空格喔<br />
+這樣之後點捷徑就可以切換開啟關閉這個軟體囉<br />
+這個也是我目前使用的方式 如果有需要排序的時候再打開他<br />
+雖然這個程式佔用的記憶體很少 大概1MB上下<br />
+但是我電腦已經夠慢啦~能省則省<br />
+所以要用的時候再開 用完就關~</p>
+<p>是個好用方便的軟體<br />
+推薦給大家~<br />
+下面還有兩個類似功能的軟體<br />
+不過功能比較多~我用taskix這樣陽春的就夠了~<br />
+不然的話也是可以試試看的!<br />
+<a href="http://portable.easylife.tw/365" target="_blank">TaskbarEx</a><br />
+<a href="http://www.freewebs.com/nerdcave/taskbarshuffle.htm" target="_blank">Taskbar Shuffle</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/software-taskix-reorder-buttons-in-your-windows-taskbar/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

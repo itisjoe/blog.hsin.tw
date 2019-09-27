@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>php &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/php/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[PHP] PhpStorm 熱鍵設定</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/php-phpstorm-hot-key/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/php-phpstorm-hot-key/#respond</comments>
+		<pubDate>Wed, 25 Mar 2015 07:04:41 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[php]]></category>
+		<category><![CDATA[軟體]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=926</guid>
+		<description><![CDATA[https://www.jetbrains.com/phpstorm/ 在看 Laravel 5 fundam [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://www.jetbrains.com/phpstorm/">https://www.jetbrains.com/phpstorm/</a><br />
+<span id="more-926"></span><br />
+在看 <a href="https://laracasts.com/series/laravel-5-fundamentals">Laravel 5 fundamentals</a> 的時候 講者極力推薦的一個 IDE<br />
+看他用真的很快 所以就再去了解了一下 laracasts 上同一個講者<a href="https://laracasts.com/series/how-to-be-awesome-in-phpstorm">講解 PhpStorm 的影片</a> </p>
+<p>雖然這是一個付費軟體<br />
+但他有提供學生免費的 license : <a href="https://www.jetbrains.com/student/">https://www.jetbrains.com/student/</a><br />
+只要提供學校 Email 即可收到註冊碼 (通常就是含有 edu 或 edu.tw 的 Email )<br />
+所以有學校 Email 的朋友不要錯過這個方式<br />
+官網上是寫說 license 一次發一年 到期了要再申請一次 但不確定可不可以用同一個 Email 申請<br />
+( Is a free Student License perpetual? No, the license is valid for one year. After one year you will need to apply again. )</p>
+<p>=&gt; 表示熱鍵可以更改為後者</p>
+<p>▼ 快速尋找 action , option name<br />
+shift + cmd + a</p>
+<p>▼ 開啟關閉左側 sidebar<br />
+cmd + 1</p>
+<p>▼ 開啟最近打開過的檔案 (可快速切換前一個開啟的檔案)<br />
+cmd + e</p>
+<p>▼ 快速開啟任意檔案<br />
+shift + cmd + o &nbsp;&nbsp;=&gt;&nbsp;&nbsp; cmd + p</p>
+<p>▼ 快速前往目前檔案的指定 method<br />
+cmd + F12 &nbsp;&nbsp;=&gt;&nbsp;&nbsp; cmd + r</p>
+<p>▼ 快速前往指定的 method (所有檔案都可以找)<br />
+cmd + opt + o</p>
+<p>▼ 開啟目錄結構<br />
+cmd + 上 (可使用方向鍵進入後退各目錄 並配合 cmd + n 建立新檔案)</p>
+<p>▼ format code style (可以在設定的 Code Style 修改自己要的 style )<br />
+cmd + opt + l</p>
+<p>▼ refactor<br />
+ctrl + t<br />
+反白一段程式 : 可以轉換成 method<br />
+一個變數 : 可以更改名稱<br />
+一個 method : 可以拉( pull up )到上一層 class<br />
+一個 class : 可以轉換成一個 interface<br />
+給字串一個變數( variable ) 或是 將變數合併( inline ) 如下 1 跟 2 互換</p>
+<pre class="brush: php; title: ; notranslate">
+// 1.
+$level = 'success';
+$this-&gt;message($level);
+
+// 2.
+$this-&gt;message('success');
+
+</pre>
+<p>▼ 快速選擇同一個字 (一次往下選擇一個 選完可以一起改)<br />
+ctrl + g &nbsp;&nbsp;=&gt;&nbsp;&nbsp; cmd + d</p>
+<p>▼ 快速選擇這個檔案所有的同一個字<br />
+ctrl + cmd + g</p>
+<p>▼ split 分割畫面<br />
+原本沒熱鍵<br />
+建立 ctrl + v for vertical<br />
+ctrl + h for horizontal<br />
+(使用 cmd + w 關閉其中一個畫面)</p>
+<p>▼ Generating a PHPDoc block for a method or a function<br />
+打 /** 後按 enter</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/php-phpstorm-hot-key/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記20 Loose Ends and Wrapping Up</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note20-loose-ends-and-wrapping-up/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note20-loose-ends-and-wrapping-up/#respond</comments>
+		<pubDate>Wed, 18 Mar 2015 09:12:00 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=917</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/27">https://laracasts.com/series/laravel-5-fundamentals/episodes/27</a><br />
+<span id="more-917"></span></p>
+<p>這節把幾個東西補齊<br />
+首先先把 <a href="https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note08-forms-dates-mutators-and-scopes">筆記08</a> 寫死的日期更新</p>
+<p>▼ resources/views/articles/form.blade.php</p>
+<pre class="brush: xml; title: ; notranslate">
+    &lt;div class=&quot;form-group&quot;&gt;
+        {!! Form::label('published_at', 'Publish On:') !!}
+        &lt;!-- 將寫死的 date('Y-m-d') 改成取得 $article 的 published_at --&gt;
+        {!! Form::input('date', 'published_at', $article-&gt;published_at, ['class' =&gt; 'form-control']) !!}
+    &lt;/div&gt;
+</pre>
+<p>因為 create 頁面沒有 $article 所以要丟一個空的 article 進去<br />
+▼ resources/views/articles/create.blade.php</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;!-- 從 Form::open() 改成 Form::model() --&gt;
+{!! Form::model($article = new \App\Article, ['url'=&gt;'articles']) !!}
+
+    @include('articles.form',['submitButtonText'=&gt;'Add Article'])
+
+{!! Form::close() !!}
+</pre>
+<p>因為 published_at 是個 Carbon 物件 所以還要在 model Article.php 裡面處理<br />
+▼ app/Article.php</p>
+<pre class="brush: php; title: ; notranslate">
+    public function getPublishedAtAttribute($date)
+    {
+        // 解析 Carbon 並格式化成前台要的方式
+        return Carbon::parse($date)-&gt;format('Y-m-d');
+    }
+</pre>
+<p>這樣前面 form.blade.php 的 $article-&gt;published_at 即可直接獲得格式為 &#8216;Y-m-d&#8217; 的日期<br />
+&nbsp;&nbsp;</p>
+<p>接著要新增一個頁面 顯示 tags 的 articles<br />
+▼ app/Http/routes.php</p>
+<pre class="brush: php; title: ; notranslate">
+// 增加一行 route
+Route::get('tags/{tags}','TagsController@show');
+</pre>
+<p>建立 Controller</p>
+<pre class="brush: cpp; title: ; notranslate">
+php artisan make:controller TagsController --plain
+</pre>
+<p>設定 <a href="https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note14-route-model-binding/">筆記14</a> 寫的 Route Model Binding<br />
+▼ app/Providers/RouteServiceProvider.php</p>
+<pre class="brush: php; title: ; notranslate">
+public function boot(Router $router)
+{
+	parent::boot($router);
+
+	$router-&gt;bind('tags', function($name){
+            return \App\Tag::where('name', $name)-&gt;firstOrFail();
+	});
+}
+</pre>
+<p>顯示 tag 的 articles<br />
+▼ app/Http/Controllers/TagsController.php</p>
+<pre class="brush: php; title: ; notranslate">
+class TagsController extends Controller {
+
+    public function show(Tag $tag)
+    {
+    	// 前面有加上 model binding 所以這邊直接就是這個 tag 的 instance
+        //並加上 published() 限制時間到的 articles 才出現 這有寫 scope 在 app/Article.php 裡面
+    	$articles = $tag-&gt;articles()-&gt;published()-&gt;get();
+
+    	// 這邊跟 articles 共用 view  也可以另外建立 view
+    	return view('articles.index', compact('articles'));
+    }
+}
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note20-loose-ends-and-wrapping-up/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記19 The Service Container</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note19-the-service-container/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note19-the-service-container/#respond</comments>
+		<pubDate>Wed, 18 Mar 2015 07:35:15 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=915</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/26">https://laracasts.com/series/laravel-5-fundamentals/episodes/26</a><br />
+<span id="more-915"></span></p>
+<p>Laravel 會自動判斷對 route 的 closure 參數<br />
+或是對應的 controller 的 __construct() 參數<br />
+甚或是其中一個 method 的參數<br />
+作 injected dependent<br />
+如果有找到這一個參數的型別<br />
+會自動給出一個這個型別的 instance<br />
+▼ app/Http/routes.php</p>
+<pre class="brush: php; title: ; notranslate">
+// 這是一個自己建立的 class
+class Bar {}
+
+// closure 中
+Route::get('foo', function(Bar $bar){
+    // 因為有找到 Bar 這個 class 所以會生成一個 instance
+    dd($bar);
+});
+
+
+// 或者可以用 bind 的方法
+App::bind('Barbar',function(){
+    dd('fetching Barbar');
+});
+
+// 一樣可以找到
+Route::get('foofoo', function(Barbar $barbar){
+    dd($barbar);
+});
+
+</pre>
+<p>&nbsp;<br />
+另外也可以用 interface 的方法<br />
+只要固定傳入這個 interface 型別<br />
+之後如果有要修改 只要改這個 interface bind 到的內容即可<br />
+▼ app/Http/routes.php</p>
+<pre class="brush: php; title: ; notranslate">
+// 這是一個自己建立的 interface
+interface BarInterface {}
+// 這是一個自己建立的 class implements BarInterface
+class Bar implements BarInterface {}
+// 另一個自己建立的 class
+class SecondBar implements BarInterface {}
+
+// 使用 bind 的方法 連結到 Bar
+App::bind('BarInterface','bar');
+// 要修改的話 就 bind 到另一個 class SecondBar
+App::bind('BarInterface','SecondBar');
+
+// 如果有要修改 injected 的東西 這邊不用改 只要改上面講的 interface bind 的東西就好
+Route::get('bar', function(BarInterface $bar){
+    dd($bar);
+});
+// 或者另一個方法
+Route::get('bar', function(){
+    // 使用 make 取得 BarInterface 的 instance
+    $bar = App::make('BarInterface');
+
+    // 下面這 3 個是一樣的意思
+    $bar = app-&gt;make('BarInterface');
+    $bar = app()['BarInterface'];
+    $bar = app('BarInterface');
+
+    dd($bar);
+});
+
+</pre>
+<p>&nbsp;<br />
+就如同一開始講的<br />
+也可以在 Controller 的 __construct() 或是其中一個 method 使用 injection</p>
+<pre class="brush: php; title: ; notranslate">
+// 在 __construct() 中可以 injection
+class FooController extends Controller {
+    private $repository;
+
+    // FooRepository 是一個示範用的 class
+    public function __construct(FooRepository $repository)
+    {
+        $this-&gt;repository = $repository;
+    }
+
+    public function foo()
+    {
+        // get() 是示範用的 即 FooRepository 的一個 method
+        return $this-&gt;repository-&gt;get();
+    }
+}
+
+// 或是只有一個 method 需要的話 寫在 method 裡也可以 injection
+class FooController extends Controller {
+    public function foo(FooRepository $repository)
+    {
+        return $repository-&gt;get();
+    }
+}
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note19-the-service-container/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記18 When You Want a View Partial to Always Receive Data</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note18-when-you-want-a-view-partial-to-always-receive-data/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note18-when-you-want-a-view-partial-to-always-receive-data/#respond</comments>
+		<pubDate>Tue, 17 Mar 2015 13:35:38 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=908</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/25">https://laracasts.com/series/laravel-5-fundamentals/episodes/25</a><br />
+<span id="more-908"></span></p>
+<p>這節用一個放在 Navigation 上的東西 (最新發表的一篇 article )<br />
+示範怎麼獲得通用的資料 而不用每個 method 都寫一遍獲取的程式</p>
+<p>首先在 app.blade.php 上加上<br />
+▼ resources/views/app.blade.php</p>
+<pre class="brush: xml; title: ; notranslate">
+    &lt;li&gt;{!! link_to_action('ArticlesController@show', $latest-&gt;title, [$latest-&gt;id]) !!}&lt;/li&gt;
+</pre>
+<p>原本應該是要在每個需要顯示的 view 的 controller@method 寫</p>
+<pre class="brush: php; title: ; notranslate">
+$latest = \App\Article::latest()-&gt;first();
+</pre>
+<p>&nbsp;<br />
+現在可以在一個地方寫通用的方式<br />
+▼ app/Providers/AppServiceProvider.php</p>
+<pre class="brush: php; title: ; notranslate">
+// 寫在 boot() 裡面
+public function boot()
+{
+	view()-&gt;composer('app', function($view)
+	{
+    		$view-&gt;with('latest',\App\Article::latest()-&gt;first());
+	});
+}
+</pre>
+<p>&nbsp;<br />
+但為了怕之後越寫越多 所以可以自己另外建立一個 Provider 檔案</p>
+<pre class="brush: cpp; title: ; notranslate">
+php artisan make:provider ViewComposerServiceProvider
+</pre>
+<p>再把程式放在這隻檔案的 boot() 裡面<br />
+▼ app/Providers/ViewComposerServiceProvider.php</p>
+<pre class="brush: php; title: ; notranslate">
+public function boot()
+{
+        // 仍然是怕之後越寫越多會太雜 所以另外寫一個 private method
+        $this-&gt;composeNavigation();
+}
+ 
+private function composeNavigation()
+{
+	// 一樣的東西
+	view()-&gt;composer('app', function($view)
+	{
+    		$view-&gt;with('latest',\App\Article::latest()-&gt;first());
+	});
+
+	// 之後如果因為獲取的資料會太複雜 沒辦法在這邊簡單獲得的話
+	// 可以建立另外的檔案執行
+	view()-&gt;composer('app','App\Http\Composers\NavigationComposer');
+}
+</pre>
+<p>&nbsp;<br />
+建立另外的檔案執行 (不過這邊可以先不用 真的萬不得已的時候才這樣建立)<br />
+▼ app/Http/Composers/NavigationComposer.php</p>
+<pre class="brush: php; title: ; notranslate">
+&lt;?php namespace App\Http\Composers;
+
+class NavigationComposer {
+    // 預設執行的 method 名稱是 compose
+    public function compose($view)
+    {
+        // 這邊再做更多複雜的處理
+        $view-&gt;with('latest',\App\Article::latest()-&gt;first());
+    }
+}
+</pre>
+<p>&nbsp;<br />
+另外建立的 Provider 需要到 confing/app.php 裡面增加一行 才讀得到<br />
+▼ config/app.php</p>
+<pre class="brush: php; title: ; notranslate">
+return [
+	'providers' =&gt; [
+		/* something */
+
+		//增加這行自己新增的 Provider
+		'App\Providers\ViewComposerServiceProvider',
+	],
+];
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note18-when-you-want-a-view-partial-to-always-receive-data/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記17 Selecting Tags From the UI, Syncing Tags</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note17-selecting-tags-from-the-ui-and-syncing-tags/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note17-selecting-tags-from-the-ui-and-syncing-tags/#respond</comments>
+		<pubDate>Tue, 17 Mar 2015 09:01:38 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=903</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/22">https://laracasts.com/series/laravel-5-fundamentals/episodes/22</a><br />
+<a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/23">https://laracasts.com/series/laravel-5-fundamentals/episodes/23</a><br />
+<span id="more-903"></span><br />
+這節介紹怎麼在新增編輯表單中增加 tags 的選項<br />
+首先是修改 controller<br />
+▼ app/Http/Controllers/ArticlesController.php</p>
+<pre class="brush: php; title: ; notranslate">
+    public function create()
+    {
+        // 取得目前有的 tags
+        // lists() 第一個參數是欄位名稱 第二個參數是可選的 可以指定給出的 array 的 key 值要用哪個欄位
+        // 這邊是用 id 才能讓 view 的 select 使用
+        $tags = \App\Tag::lists('name','id');
+
+        return view(&quot;articles.create&quot;, compact('tags'));
+    }
+
+    public function store(ArticleRequest $request)
+    {
+        // 取得 $article 以供後一行使用
+        //$article = \Auth::user()-&gt;articles()-&gt;create($request-&gt;all());
+
+        // 使用前一節說明的 attach() 可以放單一個值 或是放一個 array
+        //$article-&gt;tags()-&gt;attach($request-&gt;input('tag_list'));
+
+        // 將上面這兩行再寫成一個 private method
+        $this-&gt;createArticle($request);
+
+        return redirect('articles')-&gt;with([
+            'flash_message' =&gt; '新增成功 [with] !!'
+        ]);
+    }
+
+    public function edit(Article $article)
+    {
+        // 同 create()
+        $tags = \App\Tag::lists('name','id');
+        return view('articles.edit', compact('article','tags'));
+        
+    }
+
+    public function update(Article $article, ArticleRequest $request)
+    {
+        $article-&gt;update($request-&gt;all());
+
+        // attach() 是新增用, detach() 是刪除用, sync() 是同步用
+        // 這邊使用 sync() 來簡化更新時候要做的處理
+        //$article-&gt;tags()-&gt;sync($request-&gt;input('tag_list'));
+        
+        // 將上面那行寫成一個 private method
+        $this-&gt;syncTags($article, $request-&gt;input('tag_list'));
+        
+        return redirect('articles');
+    }
+
+/* 以下是新增的兩個 private method */
+
+    private function createArticle(ArticleRequest $request)
+    {
+        $article = \Auth::user()-&gt;articles()-&gt;create($request-&gt;all());
+
+        // 這邊也改成共用的 private method
+        $this-&gt;syncTags($article, $request-&gt;input('tag_list'));
+        
+        return $article;
+    }
+
+    private function syncTags(Article $article, Array $tags)
+    {
+        $article-&gt;tags()-&gt;sync($tags);
+    }
+
+</pre>
+<p>&nbsp;<br />
+接著在 model Article.php 加上一個取得這 article 所有 tags 的 method<br />
+▼ app/Article.php</p>
+<pre class="brush: php; title: ; notranslate">
+    // 不能使用 getTagsAttribute() 因為會蓋到內建的 method
+    public function getTagListAttribute()
+    {
+        return $this-&gt;tags()-&gt;lists('id');
+    }
+</pre>
+<p>&nbsp;<br />
+接著在 form.blade.php 這個 form partial 加上 select<br />
+▼ resource/views/articles/form.blade.php</p>
+<pre class="brush: xml; title: ; notranslate">
+
+    &lt;div class=&quot;form-group&quot;&gt;
+        {!! Form::label('tag_list', 'Tags:') !!}
+        &lt;!-- 以下參數分別是 name, 可選的值, selected 的值, 加上的屬性 --&gt;
+        {!! Form::select('tag_list[]', $tags, null, ['class' =&gt; 'form-control', 'multiple']) !!}
+        &lt;!-- 因為 model Article.php 有加上 getTagListAttribute() 所以 model binding 會自己處理 selected 的值 所以第三個參數擺 null 即可 --&gt;
+    &lt;/div&gt;
+</pre>
+<p>&nbsp;<br />
+最後在 show.blade.php 顯示 tags<br />
+▼ resource/views/articles/show.blade.php</p>
+<pre class="brush: xml; title: ; notranslate">
+    &lt;!-- @unless 就是 if(! ) 的意思 --&gt;
+    @unless($article-&gt;tags-&gt;isEmpty())
+    &lt;h5&gt; Tags: &lt;/h5&gt;
+        &lt;ul&gt;
+        @foreach ($article-&gt;tags-&gt;lists('name') as $tag)
+            &lt;li&gt;{{ $tag }}&lt;/li&gt;
+        @endforeach
+        &lt;/ul&gt;
+    @endunless
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note17-selecting-tags-from-the-ui-and-syncing-tags/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記16 Many to Many Relations (With Tags)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note16-many-to-many-relations-with-tags/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note16-many-to-many-relations-with-tags/#respond</comments>
+		<pubDate>Tue, 17 Mar 2015 03:15:30 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=901</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/21">https://laracasts.com/series/laravel-5-fundamentals/episodes/21</a><br />
+<span id="more-901"></span></p>
+<p>本節以 articles 對 tags 練習<br />
+一個 article 有很多 tags<br />
+一個 tag 也可以對上很多 articles<br />
+&nbsp;<br />
+▼ app/Article.php</p>
+<pre class="brush: php; title: ; notranslate">
+    // 增加這個關連
+    public function tags()
+    {
+        // 因為可以有很多 tags 所以是 belongsToMany
+        // withTimeStamps() 是因為要讓 created_at updated_at 欄位會自動處理
+        return $this-&gt;belongsToMany('App\Tag')-&gt;withTimestamps();
+    }
+</pre>
+<p>&nbsp;<br />
+使用 artisan 建立 model 檔案</p>
+<pre class="brush: cpp; title: ; notranslate">
+php artisan make:model Tag
+</pre>
+<p>(沒有 migrate 檔案的話 會自動建立一個[建立 Tags table]的 migrate 檔案)<br />
+&nbsp;<br />
+▼ database/migrations/2015_03_17_023757_create_tags_table.php</p>
+<pre class="brush: php; title: ; notranslate">
+class CreateTagsTable extends Migration {
+	public function up()
+	{
+		// 建立 tags table 這邊還有一個 name 欄位
+		Schema::create('tags', function(Blueprint $table)
+		{
+			$table-&gt;increments('id');
+			$table-&gt;string('name');
+			$table-&gt;timestamps();
+		});
+		
+		// 另外還要一個中介的 table 名稱是這兩個 model 名稱中間加一個底線 英文字母排前面的放前面 ( a 排在 t 前面 所以 article 放前面)
+		Schema::create('article_tag', function(Blueprint $table)
+		{
+			// 數字 正數 同時也要設 index
+			$table-&gt;integer('article_id')-&gt;unsigned()-&gt;index();
+
+			// 刪除 article 的時候同時也要刪除這個中介用的資料 所以要設定 foreign			
+			$table-&gt;foreign('article_id')-&gt;references('id')-&gt;on('articles')-&gt;onDelete('cascade');
+			
+			// 同 article_id
+			$table-&gt;integer('tag_id')-&gt;unsigned()-&gt;index();
+			$table-&gt;foreign('tag_id')-&gt;references('id')-&gt;on('tags')-&gt;onDelete('cascade');
+
+			// created_at, updated_at 會自動處理
+			$table-&gt;timestamps();
+		});
+	}
+
+	public function down()
+	{
+		// rollback 則是將兩個 table drop 掉
+		Schema::drop('tags');
+		Schema::drop('article_tag');
+	}
+
+}
+</pre>
+<p>使用 artisan 執行 migrate</p>
+<pre class="brush: cpp; title: ; notranslate">
+php artisan migrate
+</pre>
+<p>&nbsp;<br />
+▼ app/Tag.php</p>
+<pre class="brush: php; title: ; notranslate">
+    // 這邊同樣也要增加關連
+    public function articles()
+    {
+        return $this-&gt;belongsToMany('App\Article');
+
+        // 如果要自己設定中介 table 的名稱 可以加在第二個參數 這邊示範即是設定成 tags_pivot
+        // 如果要自己另外設定 article_id 則是加在第三個參數 這邊示範設定成 article_identifier
+        return $this-&gt;belongsToMany('App\Article', 'tags_pivot', 'article_identifier');
+    }
+</pre>
+<p>&nbsp;<br />
+兩者關係建立好後 以下幾個例子</p>
+<pre class="brush: php; title: ; notranslate">
+// 取得一個示範用的 article
+$article = App\Article::first();
+
+// 將 article 跟 tag 連接起來 要在中介的 table 增加一筆資料
+// 以下就是將 tag id = 1 ( attach ) 的跟前一行取得的 article 的連起來
+$article-&gt;tags()-&gt;attach(1);
+
+// 執行下面這行後
+$article-&gt;tags();
+// $article 裡即會有 tags
+// tags 物件會有一個 key 為 pivot 的中介 table 資料
+
+// 以另一邊示範的話
+$tag = App\Tag::first();
+// 同樣也可以獲得屬於這個 tag 的 articles
+$tag-&gt;Articles();
+
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note16-many-to-many-relations-with-tags/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記15 Flash Messaging</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note15-flash-messaging/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note15-flash-messaging/#respond</comments>
+		<pubDate>Mon, 16 Mar 2015 10:13:27 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=893</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/20">https://laracasts.com/series/laravel-5-fundamentals/episodes/20</a><br />
+<span id="more-893"></span></p>
+<p>新增、編輯文章後 暫時要顯示的資訊 (像是 alert(&#8220;新增文章成功&#8221;); )<br />
+可以使用 Flash Messaging</p>
+<p>▼ app/Http/Controllers/ArticlesController.php</p>
+<pre class="brush: php; title: ; notranslate">
+    public function store(ArticleRequest $request)
+    {
+        // 儲存的部份修改成這樣
+        \Auth::user()-&gt;articles()-&gt;create($request-&gt;all());
+
+        // flash message
+        \Session::flash('flash_message', '新增成功!! ');
+        // 或是這樣也可以
+        session()-&gt;flash('flash_message', '新增成功!! ');
+
+        return redirect('articles');
+
+        // 另外一種方法 也可以直接使用 with() 接在 redirect() 後面
+        return redirect('articles')-&gt;with([
+            'flash_message' =&gt; '新增成功 with() !!'
+        ]);
+    }
+</pre>
+<p>&nbsp;<br />
+view 的部份則是加上判斷<br />
+這邊寫成一個 view partial 可以找個適合的位置用 @include 放在通用的 resources/views/app.blade.php<br />
+▼ resources/views/partials/flash.blade.php</p>
+<pre class="brush: xml; title: ; notranslate">
+@if (Session::has('flash_message'))
+    &lt;div class=&quot;alert alert-success&quot;&gt;{{ Session::get('flash_message') }}&lt;/div&gt;
+@endif
+</pre>
+<p>後半段是講者另外講一個 package 我就不筆記了 因為不一定要用</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note15-flash-messaging/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記14 Route Model Binding</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note14-route-model-binding/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note14-route-model-binding/#comments</comments>
+		<pubDate>Mon, 16 Mar 2015 08:10:17 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=889</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/18">https://laracasts.com/series/laravel-5-fundamentals/episodes/18</a><br />
+<span id="more-889"></span><br />
+Route Model Binding<br />
+可以將接到的參數經由設定好的規則 給出一個 model 的 instance<br />
+例如由網址接收到了一個 user_id 或是 article_id<br />
+可以給出一個 id = user_id 的 User instance<br />
+或是 id = article_id 的 Article instance<br />
+&nbsp;<br />
+這個 Binding 的設定要加在 RouteServiceProvider.php<br />
+▼ app/Providers/RouteServiceProvider.php</p>
+<pre class="brush: php; title: ; notranslate">
+	public function boot(Router $router)
+	{
+		parent::boot($router);
+
+		// 第一個參數是 route 的 wildcard key 
+		// 第二個參數是要指定到的 model
+		$router-&gt;model('articles', 'App\Article');
+
+		// 如果不是單純要獲得一個 Model instance 也可以自己寫處理邏輯
+		$router-&gt;bind('articles', function($id){
+    			return \App\Article::published()-&gt;findOrFail($id);
+		});
+
+	}
+</pre>
+<p>&nbsp;<br />
+wildcard key 就是在 Routes.php 裡面設定的 articles/{這個}<br />
+▼ app/Http/routes.php</p>
+<pre class="brush: php; title: ; notranslate">
+// 這邊的 aaa 即為設定 model binding 需要的值
+Route::get('articles/{aaa}', 'HomeController@index');
+
+// 前面使用 articles 是因為這邊使用 resource 後 自動生成的 wildcard key 就是 articles
+// 可以使用 artisan 查詢 php artisan route:list 看目前有什麼 wildcard key (也就是 { } 包起來的值)
+Route::resource('articles','ArticlesController');
+</pre>
+<p>&nbsp;<br />
+前面 RouteServiceProvider.php 設定完之後<br />
+就可以修改 Controller 的東西<br />
+▼ app/Http/Controllers/ArticlesController.php</p>
+<pre class="brush: php; title: ; notranslate">
+    public function show(Article $article)
+    {
+        // 原本參數是 $id 還要再找這個 $id 的 article 
+        // 現在參數直接就是這個 $id 的 Article instance
+        // 下面這行就可以省略了
+        //$article = Article::find($id);
+        return view(&quot;articles.show&quot;,compact('article'));
+    }
+
+    public function edit(Article $article)
+    {
+        //$article = Article::findOrFail($id);
+        return view('articles.edit', compact('article'));
+        
+    }
+
+    public function update(Article $article, ArticleRequest $request)
+    {
+        //$article = Article::findOrFail($id);
+        $article-&gt;update($request-&gt;all());
+        return redirect('articles');
+    }
+
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note14-route-model-binding/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記13 Ogres Are Like Middleware</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note13-ogres-are-like-middleware/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note13-ogres-are-like-middleware/#respond</comments>
+		<pubDate>Sun, 15 Mar 2015 15:50:43 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=885</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/16">https://laracasts.com/series/laravel-5-fundamentals/episodes/16</a><br />
+<span id="more-885"></span></p>
+<p>輸入網址 經由 routes 根據規則進入 controller 之前<br />
+可能會需要先判斷是否登入 或是登入的會員是否有管理者權限<br />
+為了不要在每個需要的 method 裡都做同樣的判斷<br />
+所以需要用到 middleware 讓這些判斷可以簡化並重複使用</p>
+<p>各 middleware 的路徑統一放在 Kernel.php<br />
+▼ app/Http/Kernel.php</p>
+<pre class="brush: php; title: ; notranslate">
+class Kernel extends HttpKernel {
+	// 通用的擺在這裡面 每個 controller 一定都會讀一遍
+	protected $middleware = [ /* something */ ];
+
+	// 需要依使用情況加入的放這裡
+	protected $routeMiddleware = [
+		// 安裝好後預設就有這些
+		'auth' =&gt; 'App\Http\Middleware\Authenticate',
+		'auth.basic' =&gt; 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+		'guest' =&gt; 'App\Http\Middleware\RedirectIfAuthenticated',
+
+		// 範例
+		'manager' =&gt; 'App\Http\Middleware\RedirectIfNotAManager'
+	];
+}
+</pre>
+<p>&nbsp;<br />
+使用 artisan 建立自己的 middleware (名字不限制 自己看得懂就好)</p>
+<pre class="brush: cpp; title: ; notranslate">
+php artisan make:middleware RedirectIfNotAManager
+</pre>
+<p>建立的檔案如下<br />
+▼ app/Http/Middleware/RedirectIfNotAManager.php</p>
+<pre class="brush: php; title: ; notranslate">
+class RedirectIfNotAManager {
+    public function handle($request, Closure $next)
+    {
+    	// 自己建立的條件 沒通過即轉到 articles
+    	if ( ! $request-&gt;user()-&gt;isATeamManager() ) {
+        	return redirect('articles');
+    	}
+    	
+        return $next($request);
+    }
+}
+</pre>
+<p>接著要在 model 檔案建立這個判斷用的 method<br />
+▼ app/User.php</p>
+<pre class="brush: php; title: ; notranslate">
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+    // 示範用 所以直接回 true    
+    public function isATeamManager() {
+        return true;
+    }
+}
+</pre>
+<p>&nbsp;<br />
+使用 middleware 的方法有兩種<br />
+第 1 種 在 Controller 裡使用<br />
+▼ app/Http/Controllers/ArticlesController.php</p>
+<pre class="brush: php; title: ; notranslate">
+class ArticlesController extends Controller {
+    public function __construct()
+    {
+        // 所有 method 都會先經過 auth 這個 middleware
+        $this-&gt;middleware('auth');
+
+        // 只有 create 會經過 auth 這個 middleware
+        $this-&gt;middleware('auth',['only' =&gt; 'create']);
+
+        // 除了 index 之外都會先經過 auth 這個 middleware
+        $this-&gt;middleware('auth',['except' =&gt; 'index']);
+    }
+}
+</pre>
+<p>第 2 種是直接在 routes 裡使用<br />
+▼ app/Http/routes.php</p>
+<pre class="brush: php; title: ; notranslate">
+// 針對要使用的規則加入 middleware
+Route::get('home', ['middleware' =&gt; 'auth', 'uses' =&gt; 'HomeController@index']);
+
+// 超過兩個規則的話則用 array 放置 ( manager 即為上面建立的示範檔案 )
+Route::get('foo', ['middleware' =&gt; ['auth', 'manager'], 'uses' =&gt; function(){
+    return 'good day';
+}]);
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note13-ogres-are-like-middleware/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[Laravel 5] 筆記12 Easy Auth</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note12-easy-auth/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note12-easy-auth/#respond</comments>
+		<pubDate>Sun, 15 Mar 2015 08:43:52 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[laravel]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=883</guid>
+		<description><![CDATA[https://laracasts.com/series/laravel-5-fundamentals/epi [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/15">https://laracasts.com/series/laravel-5-fundamentals/episodes/15</a><br />
+<span id="more-883"></span></p>
+<p>剛安裝好 laravel 的時候<br />
+裡面會預設有 Auth 相關的檔案 這節介紹了一點這個 Auth 內建的用法<br />
+在講這之前 有先講了一個 route 的用法<br />
+▼ app/Http/routes.php</p>
+<pre class="brush: php; title: ; notranslate">
+Route::controllers([
+	'auth' =&gt; 'Auth\AuthController',
+	'password' =&gt; 'Auth\PasswordController',
+]);
+</pre>
+<p>使用這個方法 可以將多個規則直接寫在 controller 裡面而不用一個一個寫在 routes 裡<br />
+controller 裡面寫法如下<br />
+( AuthController 有使用 trait 檔案為 /vendor/laravel/framework/src/illuminate/Foundation/Auth/AuthenticatesAndRegistersUsers.php )</p>
+<pre class="brush: php; title: ; notranslate">
+	// get 到網址 auth/register
+	public function getRegister()
+	{
+		return view('auth.register');
+	}
+
+	// post 到網址 /auth/register
+	public function postRegister(Request $request)
+	{
+		/* something */
+	}
+</pre>
+<p>&nbsp;<br />
+其實註冊、登入、登出功能都做好了<br />
+有個地方可以加一下<br />
+登入後會轉入到的頁面<br />
+▼ app/Http/Controllers/Auth/AuthController.php</p>
+<pre class="brush: php; title: ; notranslate">
+class AuthController extends Controller {
+
+	// 加上這行 登入後就會轉入 /articles 詳情看 trait
+	protected $redirectTo = &quot;/articles&quot;;
+
+}
+</pre>
+<p>&nbsp;<br />
+接著有說明儲存文章時<br />
+怎麼把 user_id 一併存入<br />
+▼ app/Http/Controllers/ArticlesController.php</p>
+<pre class="brush: php; title: ; notranslate">
+    // 修改這個 method 內容
+    public function store(ArticleRequest $request)
+    {
+        // 登入後 可以使用這樣的方式儲存 user_id 到這篇 article
+        $article = new Article($request-&gt;all());
+        // 因為有在 app/user.php 裡面設置 articles() 即與 articles 的關聯
+        // 所以可以這樣使用 會將 user_id 存入 article 裡
+        \Auth::user()-&gt;articles()-&gt;save($article);
+
+        return redirect('articles');
+    }
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/laravel-5-note12-easy-auth/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

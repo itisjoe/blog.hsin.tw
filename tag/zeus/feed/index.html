@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>zeus &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/zeus/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>Zeus Request Rewriting : 301 redirect</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2010/zeus-request-rewriting-301-redirect/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2010/zeus-request-rewriting-301-redirect/#respond</comments>
+		<pubDate>Thu, 03 Jun 2010 08:02:10 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[php]]></category>
+		<category><![CDATA[redirect]]></category>
+		<category><![CDATA[zeus]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=401</guid>
+		<description><![CDATA[這次的目標是把 http://myid.domainaaa.com 這個網址 轉到 http://www.do [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這次的目標是把<br />
+<span id="more-401"></span><br />
+http://<span style="color:#000099;">myid</span><span style="color:#009900;">.domainaaa.com</span><br />
+這個網址<br />
+轉到<br />
+http://www<span style="color:#990000;">.domainbbb.com</span>/<span style="color:#000099;">myid</span><br />
+以下就是要寫在Request Rewriting裡的</p>
+<pre class="brush: plain; title: ; notranslate">
+RULE_0_START:
+match IN:Host into $ with ^([0-9a-zA-Z]{1,30})\.domainaaa\.com
+if not matched then goto RULE_0_END
+if matched
+	set URL= http://www.domainbbb.com/$1
+	set RESPONSE = 301
+	set OUT:Location = %{URL}
+	set BODY = &lt;a href=&quot;%{URL}&quot;&gt;go&lt;/a&gt; \n
+endif
+goto END
+RULE_0_END:
+</pre>
+<p>[0-9a-zA-Z]{1,30}可以自己替換正規表示式的條件<br />
+這裡是挑出1~30個字的大小寫英文或數字<br />
+如果符合的話才會轉過去</p>
+<p>參考資料： (好多XD)<br />
+<a href="http://www.codingforums.com/showthread.php?t=156570">http://www.codingforums.com/showthread.php?t=156570</a><br />
+<a href="http://support.zeus.com/zws/examples/2006/03/07/rewrite_redirecting">http://support.zeus.com/zws/examples/2006/03/07/rewrite_redirecting</a><br />
+<a href="http://www.register365.com/knowledge/scripting/rewrite_scripts/528-zeus_rewrite_rules_user_guide.html">http://www.register365.com/knowledge/scripting/rewrite_scripts/528-zeus_rewrite_rules_user_guide.html</a><br />
+<a href="http://www.chinazeus.com/read.php?tid=6">http://www.chinazeus.com/read.php?tid=6</a></p>
+<p><del datetime="2010-06-03T07:14:43+00:00">銅廠加印</del> 同場加映<br />
+php header的301 redirect方法</p>
+<pre class="brush: php; title: ; notranslate">
+header(&quot;Location: http://www.domainbbb.com&quot;,TRUE,301);
+exit;
+</pre>
+<p>怎麼php的簡潔很多XD</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2010/zeus-request-rewriting-301-redirect/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

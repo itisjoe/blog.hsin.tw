@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ckeditor &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/ckeditor/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[CKEditor] 增加上傳圖片功能</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/ckeditor-upload-image/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/ckeditor-upload-image/#comments</comments>
+		<pubDate>Fri, 16 Dec 2011 06:59:24 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[javascript]]></category>
+		<category><![CDATA[ckeditor]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=481</guid>
+		<description><![CDATA[現在這個版本(3.x)的上傳圖片功能預設是沒有打開的 工具列[影像]點進去後 裡面原本只會有 [影像資訊] [ [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>現在這個版本(3.x)的上傳圖片功能預設是沒有打開的<br />
+<span id="more-481"></span><br />
+工具列[影像]點進去後<br />
+裡面原本只會有 [影像資訊] [超連結] [進階]<br />
+如果順利完成的話 會在[進階]左邊 出現一個[上傳]</p>
+<p>[START]</p>
+<p>▼ 首先當然是引入ckeditor檔案 跟Form</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;script src=&quot;/js/ckeditor/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;!-- textarea記得加上class=&quot;ckeditor&quot; 這樣就可以使用預設的ckeditor了 --&gt;
+&lt;form id=&quot;form1&quot; name=&quot;form1&quot; action=&quot;/goupdate&quot; method=&quot;post&quot;&gt;
+&lt;textarea id=&quot;editor1&quot; name=&quot;editor1&quot; class=&quot;ckeditor&quot;&gt;&lt;/textarea&gt;
+&lt;input type=&quot;submit&quot; value=&quot;送出&quot;&gt;
+&lt;/form&gt;
+</pre>
+<p>▼ javascript需要加上一行</p>
+<pre class="brush: jscript; title: ; notranslate">
+//接著就是寫上server端接收上傳圖片的路徑 -&gt; 這邊就是/upload
+CKEDITOR.replace('editor1'
+    ,{filebrowserImageUploadUrl : '/upload'}
+);
+</pre>
+<p>▼ server端(這裡使用PHP)接收上傳圖片部分 也就是上面說的/upload</p>
+<pre class="brush: php; title: ; notranslate">
+// 檔案的name預設是upload (我不知道去哪改耶XD 有人知道嗎?)
+$fileNameLong = $_FILES['upload']['name'];
+//
+//  作了一些對圖片的處理後
+//
+$pathToSave = '/var/www/htdoc/photo/myimage.jpg';
+move_uploaded_file($_FILES['upload']['tmp_name'],  $pathToSave);
+// 再做一些處理後
+// 如果上傳成功就是沒有錯誤訊息
+$errorMsg = '';
+// 這邊記得回傳給ckeditor
+echo &quot;&lt;script&gt;&quot;;
+if($errorMsg==''){
+    // CKEditor 的編號
+    $CKEditorFuncNum = isset($_GET['CKEditorFuncNum']) ? $_GET['CKEditorFuncNum'] : 2;
+    // $fileUrl是圖片網址 就自己先處理好吧
+    $fileUrl = &quot;http://www.mysite.com/photo/myimage.jpg&quot;;
+    echo &quot;window.parent.CKEDITOR.tools.callFunction(&quot;. $CKEditorFuncNum .&quot;,'&quot; . $fileUrl . &quot;','');&quot;;
+} else {
+    echo &quot;alert('&quot;.$errorMsg.&quot;');&quot;;
+}
+echo &quot;&lt;/script&gt;&quot;;
+</pre>
+<p>都順利的話 最後回傳給ckeditor後<br />
+會帶入到工具列[影像]裡面的[影像資訊]頁籤<br />
+他會把URL跟圖片預覽都帶進去<br />
+再自己做處理囉<br />
+接著再按確定<br />
+就會插入進文章了</p>
+<p>[END]</p>
+<p>[UPDATE 20130620]<br />
+當一個頁面要放2個以上的 CKEDITOR 時<br />
+需要獲得 CKEDITOR 的編號<br />
+其實上傳時有同時傳了一個 GET 參數 CKEditorFuncNum<br />
+所以回傳時要用到這個參數<br />
+上面的文章內容已更新成可以動作了<br />
+ref : <a href="http://stackoverflow.com/questions/1498628/how-can-you-integrate-a-custom-file-browser-uploader-with-ckeditor" title="how-can-you-integrate-a-custom-file-browser-uploader-with-ckeditor" target="_blank">http://stackoverflow.com/questions/1498628/how-can-you-integrate-a-custom-file-browser-uploader-with-ckeditor</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/ckeditor-upload-image/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

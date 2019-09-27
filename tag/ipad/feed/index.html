@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>iPad &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/ipad/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[iOS Dev] 建立一個有通知中心 widget 的 app (Notification Center, Today Extension Widget)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-notification-center-widget-app-today-extension-widget/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-notification-center-widget-app-today-extension-widget/#respond</comments>
+		<pubDate>Tue, 08 Dec 2015 10:29:52 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=1010</guid>
+		<description><![CDATA[Point.1 首先建立一個 Project File &#62; New &#62; Project&#8230 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h3 style="font-size:36px">Point.1</h3>
+<p>首先建立一個 Project<br />
+<strong>File &gt; New &gt; Project&#8230;</strong><br />
+接著選擇 <strong>iOS &gt; Application &gt; Single View Application</strong><br />
+<span id="more-1010"></span><br />
+接著是 widget 的部份<br />
+<strong>File &gt; New &gt; Target&#8230;</strong><br />
+選擇 <strong>iOS &gt; Application Extension &gt; Today Extension</strong><br />
+這裡設定的 Product Name 預設會是顯示在 widget title 的文字 (之後還可以更改)<br />
+建立完成後 Xcode 會建立一個 new scheme 並問你要不要 Activate<br />
+點選 Activate 即可</p>
+<p>到這裡已經完成了一個簡單的 widget<br />
+執行後可以在通知中心裡看到剛剛建立的內容<br />
+以及預設的內容 :<br />
+Hello World</p>
+<h3 style="font-size:36px">Point.2</h3>
+<p>因為預設的 widget 有使用 storyboard<br />
+我比較習慣寫純程式碼<br />
+所以這邊將設定改掉<br />
+找到剛剛建立的 widget 目錄下 會有一個 info.plist<br />
+在 NSExtension 裡面<br />
+可以找到一個 NSExtensionMainStoryboard 將這行刪除<br />
+接著在裡面增加一筆 NSExtensionPrincipalClass 並設成 TodayViewController (即建立 widget 後預設的 ViewController)</p>
+<h3 style="font-size:36px">Point.3</h3>
+<p>widget 跟 主 app 其實可以說是兩個獨立的 app<br />
+所以需要有讓他們兩個溝通的工具<br />
+即 App Groups</p>
+<p>首先點選主 app 的 target<br />
+接著點選 Capabilities 頁籤<br />
+找到 App Groups 並開啟 (轉成 ON )<br />
+接著新增一個 group<br />
+這邊先設定成 group.fastUrlSharedDefaults<br />
+新增後記得打勾</p>
+<p>然後切換到 widget 的 target<br />
+並在如上述同樣的位置<br />
+打勾 group.fastUrlSharedDefaults</p>
+<h4 style="font-size:30px">Point.3.1</h4>
+<p>App Groups 設定完成後 測試看看 先是使用 NSUserDefaults<br />
+▼ 在主 app 的 ViewController.m 中加入</p>
+<pre class="brush: cpp; title: ; notranslate">
+    NSString *valueToSave = @&quot;https://www.apple.com&quot;;
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@&quot;group.fastUrlSharedDefaults&quot;];
+    [sharedDefaults setObject:valueToSave forKey:@&quot;url&quot;];
+    [sharedDefaults synchronize];
+</pre>
+<p>▼ 在 widget 的 TodayViewController.m 加入</p>
+<pre class="brush: cpp; title: ; notranslate">
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@&quot;group.fastUrlSharedDefaults&quot;];
+    NSString *fastUrl = [sharedDefaults stringForKey:@&quot;url&quot;];
+</pre>
+<p>即可在 widget 中取得主 app 中設定的值</p>
+<h4 style="font-size:30px">Point.3.2</h4>
+<p>如果有其他不是純文字的檔案需要溝通<br />
+則是需要使用 NSFileManager<br />
+▼ 在各別的 ViewController.m 中加入</p>
+<pre class="brush: cpp; title: ; notranslate">
+    // 像是需要使用 SQLite 的檔案 myDB.db
+    NSURL *appGroupDirectoryPath = [[NSFileManager defaultManager] 
+    containerURLForSecurityApplicationGroupIdentifier:@&quot;group.fastUrlSharedDefaults&quot;];
+    NSURL *dataBaseURL = [appGroupDirectoryPath URLByAppendingPathComponent:@&quot;myDB.db&quot;];
+
+   // 或是圖檔也是一樣的情況
+    NSURL *containerURL = [[NSFileManager defaultManager] 
+    containerURLForSecurityApplicationGroupIdentifier:@&quot;group.fastUrlSharedDefaults&quot;];
+    containerURL = [containerURL URLByAppendingPathComponent:@&quot;pic.png&quot;];
+    UIImage *contents=[[UIImage alloc]initWithData:[NSData dataWithContentsOfURL:containerURL]];
+</pre>
+<p>即可獲得相同的檔案 後續則依照個別需求進行處理</p>
+<p>▼▼<br />
+這邊有一個小範例 Fast Url 只有一個功能<br />
+在主 app 設定一個 url 則在通知中心會顯示這個 url<br />
+點擊後會在 safari 中開啟這個 url<br />
+原始碼放在 <a href="https://github.com/itisjoe/fasturl">github</a></p>
+<h3 style="font-size:36px">一些片段的小技巧</h3>
+<p>▼ widget 內容四周有不明的(?)空白空間 消除這些空白要在 widget 的 TodayViewController.m 中加入這個 method</p>
+<pre class="brush: cpp; title: ; notranslate">
+-(UIEdgeInsets) widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
+    return UIEdgeInsetsZero;
+}
+</pre>
+<p>▼ 設定 widget 的高度, 在 widget 的 TodayViewController.m 中</p>
+<pre class="brush: cpp; title: ; notranslate">
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    // 寬度是固定的 不會有效果 所以這邊 x 填 0 即可, 高度就看需要多少 
+    self.preferredContentSize = CGSizeMake(0, 100);
+}
+</pre>
+<p>▼ 修改 widget 顯示的名稱<br />
+在 info.plist 中找到 Bundle display name<br />
+即可修改 widget title 顯示的名稱</p>
+<p>▼ widget 中 使用 openURL</p>
+<pre class="brush: cpp; title: ; notranslate">
+    NSURL *url = [NSURL URLWithString:@&quot;https://www.apple.com&quot;];
+
+    // 在 widget 中 無法使用這個方法 (會報錯誤)
+    [[UIApplication sharedApplication] openURL:url];
+    
+    // 而是要使用這個方法
+    [self.extensionContext openURL:url completionHandler:^(BOOL success) {
+        NSLog(@&quot;fun=%s after completion. success=%d&quot;, __func__, success);
+    }];
+</pre>
+<div style="font-size:16px">
+https://developer.apple.com/library/prerelease/ios/documentation/Foundation/Reference/NSExtensionContext_Class/#//apple_ref/occ/instm/NSExtensionContext/openURL:completionHandler:</div>
+<p>根據 Apple 的說法 這個方法只能使用在開啟主 app 的功能<br />
+如果要開啟其他的 app 則在上架審查時 可能會有額外的檢查 以確保符合規則</p>
+<p>主 app 中仍然要建立一個 URL Scheme 才能從 widget 回去主 app<br />
+建立方式如下網址<br />
+http://stackoverflow.com/questions/8201724/how-to-register-a-custom-app-opening-url-scheme-with-xcode-4</p>
+<p>▼ widget 標題要使用多國語系的話 參考下面這篇文章<br />
+<strong><a href="https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-localize-info-plist-infoplist-strings/">Localize info.plist 多國語系 InfoPlist.strings</a></strong></p>
+<p>▼ 要佈署上 App store 或是 Ad Hoc 時<br />
+記得主 app 跟 widget 要分別建立 Provisioning Profiles<br />
+因為要把他們想成是兩個獨立且不同的 app<br />
+所以同理 Bundle identifier 也不一樣<br />
+但 widget 的必須是主 app 的 id 再接一節 id<br />
+e.q.<br />
+主 app id : tw.hsin.demo<br />
+widget id : tw.hsin.demo.abcde   ( abcde 可以自己修改 但前面就要跟主 app 一樣)</p>
+<div style="font-size:16px;margin-top:50px">
+ref:<br />
+https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/ExtensibilityPG/NotificationCenter.html<br />
+https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/ExtensibilityPG/ExtensionCreation.html<br />
+http://code.tutsplus.com/tutorials/ios-8-creating-a-today-widget--cms-22379<br />
+http://tapadoo.com/2014/sharing-nsuserdefaults-between-your-app-and-a-today-extension-on-ios-8/<br />
+http://onevcat.com/2014/08/notification-today-widget/<br />
+http://www.jianshu.com/p/0efd62ee033a<br />
+http://stackoverflow.com/questions/25876171/ios-8-create-sqlite-database-for-app-group
+</div>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/ios-dev-notification-center-widget-app-today-extension-widget/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] 將iAD廣告放入APP中</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2014/ios-dev-integrate-iad-banners-into-your-app/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2014/ios-dev-integrate-iad-banners-into-your-app/#comments</comments>
+		<pubDate>Sun, 31 Aug 2014 11:36:30 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iAD]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=784</guid>
+		<description><![CDATA[步驟其實比ADMob還簡單 首先要把收錢的帳戶搞定 (其實也可以最後做 反正要做就是了) 到 iTunes C [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>步驟其實比ADMob還簡單<br />
+<span id="more-784"></span></p>
+<p>首先要把收錢的帳戶搞定 (其實也可以最後做 反正要做就是了)<br />
+到 iTunes Connect 網站中<br />
+進入到 Contracts, Tax, and Banking<br />
+有一行的 Contract Type 為 iAd App Network<br />
+將以下這三個 Contact Info, Bank Info, Tax Info 都個別按下 Set Up<br />
+並跟著步驟完成<br />
+這跟你賺到錢後要把錢匯到哪裡有關係<br />
+這篇文章就不詳述了</p>
+<p>接著進入程式部分</p>
+<p>1.<br />
+在左側的 Project Navigator 中點選你的Project (藍藍的)<br />
+再點選TARGETS中的專案<br />
+標籤選擇 General<br />
+在 Linked Frameworks and Libraries 這個部分 (應該是在最下面)<br />
+點選加號後<br />
+找到 iAd.framework (可以按搜尋 iAd 後 就會出現了)<br />
+點這個後按 add<br />
+便加入成功</p>
+<p>2.<br />
+在 ViewController.h 中<br />
+import .h檔案並加上 delegate</p>
+<pre class="brush: cpp; title: ; notranslate">
+// import iAd
+#import &lt;iAd/iAd.h&gt;
+
+// 加上 delegate
+@interface viewController : UIViewController &lt;ADBannerViewDelegate&gt;
+@end
+
+</pre>
+<p>3.<br />
+接著在 ViewController.m 中<br />
+先給 banner 一個變數<br />
+然後在 viewDidLoad 中將 banner 設定好<br />
+最後在 delegate 的 methods 中設定顯示或隱藏 banner </p>
+<pre class="brush: cpp; title: ; notranslate">
+
+@interface viewController (){
+// 變數
+    ADBannerView *bannerView_;
+}
+@end
+
+@implementation viewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+// 設定 banner 的位置及長寬 這邊是放在底部
+    bannerView_ = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, 320, 50)];
+    bannerView_.delegate = self;
+    // 預設為隱藏 load成功後再在 delegate 的 method 中顯示
+    bannerView_.alpha = 0.0;
+    [self.view addSubview:bannerView_];
+}
+
+// 這個是 delegate 的 method , load完後會呼叫
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@&quot;Ad Banner did load ad.&quot;);
+    // Show the ad banner.
+    [UIView animateWithDuration:0.5 animations:^{
+        bannerView_.alpha = 1.0;
+    }];
+}
+
+// 這個是 delegate 的 method , 如果失敗或有 error 會呼叫
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+
+    NSLog(@&quot;Unable to show ads. Error: %@&quot;, [error localizedDescription]);
+
+    // Hide the ad banner.
+    [UIView animateWithDuration:0.5 animations:^{
+        bannerView_.alpha = 0.0;
+    }];
+}
+@end
+
+</pre>
+<p>這樣就完成了<br />
+run 後會出現 iAd 相關的畫面<br />
+上架之後就會有正式的廣告了</p>
+<p>報表這邊看<br />
+<a href="https://iad.apple.com/itcportal/#app_homepage">https://iad.apple.com/itcportal/#app_homepage</a></p>
+<p>以上</p>
+<p>ref:<br />
+<a href="http://codewithchris.com/iad-tutorial/">http://codewithchris.com/iad-tutorial/</a><br />
+<a href="http://www.cocoachina.com/industry/20140701/8998.html">http://www.cocoachina.com/industry/20140701/8998.html</a></p>
+<p>===題外話 發牢騷===<br />
+原本是用 ADMob 的<br />
+但我的 google adsense 不知道為啥就被停權了<br />
+因為是連動的<br />
+所以連帶也把我的 ADMob 也停了&#8230;<br />
+乾&#8230;<br />
+後來又換新帳號<br />
+但前幾天又被停！<br />
+乾乾乾！！<br />
+所以不爽用了！！！<br />
+老子不爽用 ADMob 了！！<br />
+乾～～～！</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2014/ios-dev-integrate-iad-banners-into-your-app/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>[cocos2D] 1.x to 2.x API差異</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/cocos2d-1-to-2/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/cocos2d-1-to-2/#respond</comments>
+		<pubDate>Fri, 26 Apr 2013 07:44:35 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[Cocos2D]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+		<category><![CDATA[Xcode]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=714</guid>
+		<description><![CDATA[在用過cocos2D 1之後 這次嘗試使用cocos2D 2來開發 函式名稱好像很多都變了 做個筆記 感謝這位 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>在用過cocos2D 1之後<br />
+<span id="more-714"></span><br />
+這次嘗試使用cocos2D 2來開發<br />
+函式名稱好像很多都變了<br />
+做個筆記<br />
+感謝這位前輩的整理<br />
+<a href="http://space.itpub.net/14466241/viewspace-745815">cocos2d-x 1.x到2.x升級指南</a><br />
+雖然這個是用C++寫的cocos2D-X<br />
+但函式名稱我想都通用的</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/cocos2d-1-to-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] 點擊UITextField 跳出UIDatePicker以選取日期(生日,NSDate)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-tap-uitextfield-popup-uidatepicker-to-pick-date/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-tap-uitextfield-popup-uidatepicker-to-pick-date/#comments</comments>
+		<pubDate>Tue, 29 Jan 2013 05:14:19 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=687</guid>
+		<description><![CDATA[原以為是個簡單的部分 但花了我一下午才搞定 [先提醒] 這篇文章講的功能 不會自動幫忙移動畫面以顯示原本的 U [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>原以為是個簡單的部分<br />
+<span id="more-687"></span><br />
+但花了我一下午才搞定</p>
+<p>[先提醒]<br />
+這篇文章講的功能 不會自動幫忙移動畫面以顯示原本的 UITextField<br />
+所以當 UIDatePicker 跳出來的時候 是有可能擋住 UITextField<br />
+我想應該是有辦法加 但我目前還沒仔細研究</p>
+<p>首先在 ViewController.h 加上 delegate</p>
+<pre class="brush: cpp; title: ; notranslate">
+// 加上 UITextFieldDelegate
+@interface ViewController : UIViewController &lt;UITextFieldDelegate&gt; {
+// 例子需要的變數
+    UIDatePicker *datePicker;
+    UITextField *dateTextField;
+    NSLocale *datelocale;
+}
+@end
+</pre>
+<p>接著以下是 ViewController.m 要加的 method</p>
+<pre class="brush: cpp; title: ; notranslate">
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+// 建立 UITextField
+    dateTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 120, 40)];
+// 以下兩行是測試用 可以依照自己的需求增減屬性
+    dateTextField.text = @&quot;test&quot;;
+    dateTextField.backgroundColor = [UIColor blueColor];
+// 記得要設定 delegate
+    dateTextField.delegate = self;
+// 加入 view 中
+    [self.view addSubview:dateTextField];
+
+// 建立 UIDatePicker
+    datePicker = [[UIDatePicker alloc]init];
+// 時區的問題請再找其他協助 不是本篇重點
+    datelocale = [[NSLocale alloc] initWithLocaleIdentifier:@&quot;zh_TW&quot;];
+    datePicker.locale = datelocale;
+    datePicker.timeZone = [NSTimeZone timeZoneWithName:@&quot;GMT&quot;];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+// 以下這行是重點 (螢光筆畫兩行) 將 UITextField 的 inputView 設定成 UIDatePicker 
+// 則原本會跳出鍵盤的地方 就改成選日期了
+    dateTextField.inputView = datePicker;
+
+// 建立 UIToolbar
+    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+// 選取日期完成鈕 並給他一個 selector
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self     
+                                   action:@selector(cancelPicker)];
+// 把按鈕加進 UIToolbar
+    toolBar.items = [NSArray arrayWithObject:right];
+// 以下這行也是重點 (螢光筆畫兩行) 
+// 原本應該是鍵盤上方附帶內容的區塊 改成一個 UIToolbar 並加上完成鈕
+    dateTextField.inputAccessoryView = toolBar; 
+}
+
+// 按下完成鈕後的 method
+-(void) cancelPicker {
+// endEditing: 是結束編輯狀態的 method 
+    if ([self.view endEditing:NO]) {
+// 以下幾行是測試用 可以依照自己的需求增減屬性
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@&quot;yyyy-MM-dd&quot; options:0 locale:datelocale];
+        [formatter setDateFormat:dateFormat];
+        [formatter setLocale:datelocale];    
+// 將選取後的日期 填入 UITextField
+        dateTextField.text = [NSString stringWithFormat:@&quot;%@&quot;,[formatter stringFromDate:datePicker.date]];    
+    }
+}
+
+</pre>
+<p>這樣基本上應該就可以動了<br />
+沒有使用 ARC 的話 記得要把該 release 的 release 掉</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/ios-dev-tap-uitextfield-popup-uidatepicker-to-pick-date/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>[Cocos2D] iOS5 SDK 編譯時警告的解決方法</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2013/cocos2d-ios5-sdk-compile-warnning/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2013/cocos2d-ios5-sdk-compile-warnning/#respond</comments>
+		<pubDate>Fri, 11 Jan 2013 09:07:33 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[Cocos2D]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=672</guid>
+		<description><![CDATA[參考參考 不然每次都撞一次 ref: http://blog.csdn.net/cuibo1123/artic [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>參考參考 不然每次都撞一次</p>
+<p>ref:<br />
+<a href="http://blog.csdn.net/cuibo1123/article/details/7558466">http://blog.csdn.net/cuibo1123/article/details/7558466</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2013/cocos2d-ios5-sdk-compile-warnning/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] IAP 程式設定</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/ios-iap-code-example/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/ios-iap-code-example/#comments</comments>
+		<pubDate>Fri, 15 Jun 2012 09:15:56 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+		<category><![CDATA[Xcode]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=615</guid>
+		<description><![CDATA[請參考官方文件 In-App Purchase Programming Guide 請先設定好 APP 及產品 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>請參考官方文件 <a href="http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/AddingaStoretoYourApplication/AddingaStoretoYourApplication.html#//apple_ref/doc/uid/TP40008267-CH101-SW1">In-App Purchase Programming Guide</a><br />
+<span id="more-615"></span></p>
+<p>請先設定好 APP 及產品 再進行此篇的程式設定 請參考 <a href="https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-iap-setting/">[iOS Dev] IAP設定</a></p>
+<p>加入 StoreKit.framework<br />
+並 #import &lt;StoreKit/StoreKit.h&gt;<br />
+viewController.h 要加上delegate ： &lt;SKProductsRequestDelegate&gt;</p>
+<p>▼ viewController.h</p>
+<pre class="brush: cpp; title: ; notranslate">
+#import &lt;UIKit/UIKit.h&gt;
+#import &lt;StoreKit/StoreKit.h&gt;
+#import &quot;MyStoreObserver.h&quot;
+// MyStoreObserver 是另外建立的檔案 後面有說明
+
+@interface viewController : UIViewController &lt;SKProductsRequestDelegate, myStoreObserverDelegate&gt;{
+    NSSet *kMyFeatureIdentifiers;       // 產品的辨識ID
+    MyStoreObserver *observer;
+}
+@end
+</pre>
+<p>▼ viewController.m</p>
+<pre class="brush: cpp; title: ; notranslate">
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    // Product ID 在前一篇文章提到說會用到
+    kMyFeatureIdentifiers = [[NSSet alloc] initWithObjects:
+                             @&quot;tw.hsin.myapp.coins1&quot;,
+                             nil];
+
+    // 首先要先判斷是否可以使用IAP的功能 (iPhone可以關掉個別APP的IAP功能)
+    if ([SKPaymentQueue canMakePayments]) {
+        // 增加 store 的 queue
+        observer = [[MyStoreObserver alloc] init];
+        observer.mydelegate = self;
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
+        
+        // 取得商品
+        [self requestProductData];
+    } else {
+        //NSLog(@&quot;NO&quot;);
+    }
+}
+
+- (void) requestProductData
+{
+    // 取得商品列表
+    SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers:kMyFeatureIdentifiers];
+    request.delegate = self;
+    [request start];
+}
+
+// 獲得商品列表及其 SKProduct id
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    // 返回的 NSArray 裡面 objects 是 SKProduct
+    NSArray *myProducts = response.products;
+    for(SKProduct *product in myProducts){
+        // SKProduct 會有下面幾個屬性 所有屬性可以看官方文件
+        NSLog(@&quot;Product title: %@&quot; , product.localizedTitle);
+        NSLog(@&quot;Product description: %@&quot; , product.localizedDescription);
+        NSLog(@&quot;Product price: %@&quot; , product.price);
+        NSLog(@&quot;Product id: %@&quot; , product.productIdentifier);
+
+        // 這邊就必須把商品列出來 並設定可以購買的按鈕 依照自己的需求設計UI 
+
+    }
+}
+
+// 獲得商品列表失敗
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error{  
+    UIAlertView *alerView =  [[UIAlertView alloc] initWithTitle:@&quot;Alert&quot; message:[error localizedDescription]  delegate:nil cancelButtonTitle:NSLocalizedString(@&quot;Close&quot;,nil)  otherButtonTitles:nil];
+    [alerView show];
+}
+
+// 按下購買按鈕 這邊是依照自己設定的畫面&amp;按鈕 建立的 method
+-(IBAction)goPayForItem:(UIButton *)sender{
+    // 我的作法是獲得商品列表時 先建立一組 productIds 的NSDictionary
+    // 再用 currentTitle 來判斷按的是哪個按鈕
+    // 可依照自己的需求做不同的方式接收
+    SKProduct *product = [productIds objectForKey:sender.currentTitle];
+    //付費的動作
+    SKPayment *payment = [SKPayment paymentWithProduct:product];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+
+/*
+     以下 3 個 methods 是我自己的方式 是讓 viewController 來判斷要執行什麼
+     MyStoreObserver 就可以重複使用
+*/
+
+// myStoreObserverDelegate 的, 依照產品ID為使用者加上購買的物品
+-(void) myProvideContent:(id)productIdentifier{
+    // 依據 productIdentifier 為使用者增加所購買的物品
+    // 譬如購買了 3000 coins 就在這邊做增加
+    NSLog(@&quot;productID: %@&quot;,productIdentifier);
+}
+
+// myStoreObserverDelegate 的, 做購買記錄
+-(void) myRecordTransaction:(SKPaymentTransaction *)transaction{
+    // 依據獲得的  transaction 來做購買記錄
+    // 裡面有包含購買的資訊
+    NSString *productID = transaction.payment.productIdentifier;
+}
+
+// myStoreObserverDelegate 的, 除了按取消購買按鈕之外的錯誤訊息
+-(void) myFailedTransaction:(SKPaymentTransaction *)transaction{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Error&quot; message:[transaction.error localizedDescription] delegate:nil cancelButtonTitle:@&quot;OK&quot; otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+
+    // 離開此頁時 記得移除queue 
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:observer];
+    // 不然下次進來這頁會死掉
+}
+
+</pre>
+<p>以下的檔案需要另外建立<br />
+▼ MyStoreObserver.h</p>
+<pre class="brush: cpp; title: ; notranslate">
+#import &lt;Foundation/Foundation.h&gt;
+#import &lt;StoreKit/StoreKit.h&gt;
+#import &lt;StoreKit/SKPaymentTransaction.h&gt;
+@protocol myStoreObserverDelegate &lt;NSObject&gt;
+@required
+-(void) myFailedTransaction: (SKPaymentTransaction *)transaction;
+-(void) myRecordTransaction: (SKPaymentTransaction *) transaction;
+-(void) myProvideContent:productIdentifier;
+@end
+
+@interface MyStoreObserver : NSObject&lt;SKPaymentTransactionObserver&gt;
+@property (nonatomic, assign) id&lt;myStoreObserverDelegate&gt; mydelegate;
+-(void) paymentQueue:(SKPaymentQueue *)queue updatedTransaction:(NSArray *)transaction;
+-(void) completeTransaction: (SKPaymentTransaction *)transaction;
+-(void) restoreTransaction: (SKPaymentTransaction *)transaction;
+-(void) failedTransaction: (SKPaymentTransaction *)transaction;
+@end
+
+</pre>
+<p>▼ MyStoreObserver.m</p>
+<pre class="brush: cpp; title: ; notranslate">
+#import &quot;MyStoreObserver.h&quot;
+@implementation MyStoreObserver
+@synthesize mydelegate;
+-(void) paymentQueue:(SKPaymentQueue *)queue updatedTransaction:(NSArray *)transaction{
+     // required
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+    for (SKPaymentTransaction* transaction in transactions) {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchased:
+                [self completeTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateFailed:
+                [self failedTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateRestored:
+                [self restoreTransaction:transaction];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void) completeTransaction: (SKPaymentTransaction *)transaction
+{
+    NSLog(@&quot;complete&quot;);
+    // Your application should implement these two methods.
+    [self recordTransaction:transaction];
+    [self provideContent:transaction.payment.productIdentifier];
+    
+    // Remove the transaction from the payment queue.
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+// 如果前一次購買途中中斷 再回復後 會執行這段 restore
+- (void) restoreTransaction: (SKPaymentTransaction *)transaction
+{
+    NSLog(@&quot;restore&quot;);
+    [self recordTransaction: transaction];
+    [self provideContent: transaction.originalTransaction.payment.productIdentifier];
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+- (void) failedTransaction: (SKPaymentTransaction *)transaction
+{
+    NSLog(@&quot;failed&quot;);
+    if (transaction.error.code != SKErrorPaymentCancelled) {
+        // 除了按下取消按鈕之外的錯誤 交由 delegate 處理
+        [mydelegate myFailedTransaction:transaction];
+    }
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+-(void) recordTransaction:transaction{
+    NSLog(@&quot;record: %@&quot;,transaction);
+    // 交由 delegate 處理
+    [mydelegate myRecordTransaction:transaction];
+}
+
+-(void) provideContent:productIdentifier{
+    NSLog(@&quot;provide: %@&quot;, productIdentifier);
+    // 交由 delegate 處理
+    [mydelegate myProvideContent:productIdentifier];
+}
+
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/ios-iap-code-example/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] Some helpful articles about IAP</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-some-helpful-articles-about-iap/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-some-helpful-articles-about-iap/#respond</comments>
+		<pubDate>Sun, 03 Jun 2012 10:33:12 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+		<category><![CDATA[Xcode]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=629</guid>
+		<description><![CDATA[在卡住一段不小時間後 終於大概了解了怎麼使用 IAP 首先這是官方文件 最好還是看這個 有什麼更新主要都以官方 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>在卡住一段不小時間後<br />
+<span id="more-629"></span><br />
+終於大概了解了怎麼使用 IAP</p>
+<p>首先這是官方文件 最好還是看這個<br />
+有什麼更新主要都以官方的為主<br />
+我是遇到這文件看不懂的時候 才會再去估狗其他資訊<br />
+<a href="http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html">In-App Purchase Programming Guide ( The Step-By-Step Process )</a></p>
+<p>以下是對我幫助很大的文章<br />
+有些文章的一些東西可能會跟現在的東西不太一樣<br />
+要再自己嘗試看看</p>
+<p><a href="https://developer.apple.com/library/ios/#technotes/tn2259/_index.html">Technical Note TN2259<br />
+Adding In-App Purchase to your iOS and Mac Applications</a></p>
+<p><a href="http://blog.sina.com.cn/s/blog_6b9c53390100p8ju.html">In App Purchase Programming Guide(中文版) </a></p>
+<p><a href="http://www.cnblogs.com/andyque/archive/2012/01/15/2190193.html">（譯）In App Purchases 入門</a><br />
+<a href="http://www.raywenderlich.com/2797/introduction-to-in-app-purchases">(上面的原文)</a></p>
+<p><a href="http://benjenq.pixnet.net/blog/post/29167927-in-app-purchase">In-App Purchase實作心得</a></p>
+<p><a href="http://www.cocoachina.com/bbs/read.php?tid=69165">IAP（ 應用程序內購買）: 完全攻略</a></p>
+<p><a href="http://www.himigame.com/iphone-cocos2d/550.html">詳解iOS應用程序內使用IAP/StoreKit付費、沙盒（SandBox）測試、創建測試賬號流程！</a></p>
+<p><a href="http://iamgarlic.blogspot.com/2011/07/ios-in-app-purchase-3-app-store.html">iOS In App Purchase 學習筆記 (3) : 如何從App Store取得商品資訊</a></p>
+<p><a href="http://www.cocoachina.com/iphonedev/sdk/2010/0122/356.html">In App Purchase 個人使用總結</a></p>
+<p><a href="http://tiny4cocoa.com/thread-1423-1-1.html">In App Purchase apple內支付實現</a></p>
+<p><a href="http://www.cocoachina.com/ask/questions/show/3117/inapppurchase%E9%97%AE%E9%A2%98%E6%B1%82%E5%8A%A9">in app purchase 問題求助</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-some-helpful-articles-about-iap/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] Core Data 筆記1</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-core-data-note1/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-core-data-note1/#respond</comments>
+		<pubDate>Tue, 15 May 2012 10:46:38 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=588</guid>
+		<description><![CDATA[主要是看CS193P課程 (2011 Fall) 的內容 小弟我的英聽跟閱讀實在很弱 如果我有寫錯的地方請不吝 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>主要是看CS193P課程 (2011 Fall) 的內容<br />
+<span id="more-588"></span><br />
+小弟我的英聽跟閱讀實在很弱<br />
+如果我有寫錯的地方請不吝地跟我講 謝謝~ (揮手)<br />
+所以如果想看完整內容請看iTunes上的CS193P課程<br />
+13. Core Data (November 8,2011)<br />
+14. Core Data Demo (November 10,2011)</p>
+<p>首先是建立virtual mapping (就像是建立table一樣)<br />
+左邊選單的專案先focus後<br />
+按右鍵選擇<strong>New File&#8230;</strong><br />
+依序選擇 <strong>iOS下的Core Data</strong>  -&gt;  <strong>Data Model</strong><br />
+接著就是儲存位置跟名稱<br />
+如果只有一個的話 就取跟專案名稱一樣後面加上Model就好<br />
+(其實都可以啦XD 認得是Model就好)<br />
+建立好後 左邊檔案列表中就會出現一個 .xcdatamodeld 的檔案<br />
+(取名字是 coreDataTestModel 就會是 coreDataTestModel.xcdatamodeld )</p>
+<p>點這個 .xcdatamodeld 檔案後 主畫面會出現兩欄(左窄右寬)<br />
+[左欄]<br />
+ENTITIES<br />
+FETCH REQUESTS<br />
+CONFIGURATIONS<br />
+[右欄]<br />
+Attributes<br />
+Relationships<br />
+Fetched Properties</p>
+<p>這邊就是跟MySQL資料庫差不多 以下是相對的名稱<br />
+[資料庫]          ----&gt;         [Core Data]<br />
+資料表(table)   ----&gt;      Entity<br />
+欄位(field)      ----&gt;       Attribute<br />
+table間關聯    ----&gt;       Relationship (有點像join)</p>
+<p>新增entity跟attribute的方式很直覺<br />
+下面都有加號可以add<br />
+entity取名字的第一個字母必須大寫<br />
+attribute除了取名字外 還要選擇type 就是欄位型態 下拉選單一拉就很清楚了</p>
+<p>右下角有個 <strong>Editor Style</strong> 可以切換成圖形化<br />
+在圖形化下 一樣可以做上面的新增修改(這邊還滿直覺的 有卡住的請再發問)</p>
+<p>如果建立兩個entity以上的話 各entity間可以作relationship<br />
+圖形化下 對一個entity按 <strong>ctrl + 左鍵</strong> 再拖拉到另一個entity<br />
+就可以完成一個relationship<br />
+剛建立好會命名為newRelationship 可以點他改名字<br />
+各自entity可以從這個relationship來取得另一個entity的資訊<br />
+(有點抽象 看看下面例子)</p>
+<p>Ex:<br />
+entity1: Photo<br />
+entity2: Photographer<br />
+Photo的newRelationship重新命名為whotook<br />
+Photographer的newRelationship重新命名為photos</p>
+<p>點relationship後 右邊選單屬性裡面有一個Plural   To-Many Relationship<br />
+如果是一對多 就要打勾<br />
+所以 Photo 裡的 whotook 因為一張照片只會有一個攝影者 所以不用打勾<br />
+Photographer 的 photos 就要打勾 因為一個攝影者 可能會有很多張照片<br />
+也是有可能 一對一、多對多 看你的資料庫怎麼設定的</p>
+<p>之後就可以從 Photo 裡的 whotook 來取得 Photographer 的資訊<br />
+或是從 Photographer 的 photos 取得 Photo 的資訊</p>
+<p>儲存資訊時 會用到 :setValue:forKey 這個method<br />
+為了簡化成 可以用  XXX.YYY.ZZZ 的方式設值<br />
+在 .xcdatamodeld 裡面 選取所有的entity (用shift選)<br />
+按工具列上 Editor 裡面的 Create NSManagedObject Subclass<br />
+如果是2個以上的entity並且有作relationship<br />
+這個動作要作兩次 (原因請看課程)<br />
+作兩次就是了 第二次會replace過去 就replace吧</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-core-data-note1/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>[iOS Dev] 製作app需要的icon圖示,圖片 尺寸</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-app-icons-images-size/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-app-icons-images-size/#respond</comments>
+		<pubDate>Fri, 13 Apr 2012 05:02:23 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[iOS Dev]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iPad]]></category>
+		<category><![CDATA[iPhone]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=527</guid>
+		<description><![CDATA[需要的尺寸 就順便記一下 這個只到現在這時候喔 以後有出新尺寸的話 就是.. . 會有新尺寸XD icon圖示 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>需要的尺寸 就順便記一下<span id="more-527"></span><br />
+這個只到現在這時候喔<br />
+以後有出新尺寸的話<br />
+就是.. . 會有新尺寸XD</p>
+<p>icon圖示 (出現在iphone或ipad上的小icon)<br />
+ 57&#215;57   (一般iphone)<br />
+ 114&#215;114 (Retina iphone 視網膜)<br />
+ 72&#215;72 (iPad)<br />
+ 512&#215;512 (放app store的)<br />
+ 只能是png檔案格式</p>
+<p> 進入畫面<br />
+ 320&#215;480 (一般iphone)<br />
+ 640&#215;960 (Retina iphone 視網膜)<br />
+ 768&#215;1024 (iPad)<br />
+ 只能是png檔案格式</p>
+<p>寫完才發現有人列表好了 = =<br />
+比較詳細看英文的請看下面ref<br />
+ref : <a href="http://pinchmultimedia.com/blog/ios-5-icon-sizes-and-names-new-ipad">http://pinchmultimedia.com/blog/ios-5-icon-sizes-and-names-new-ipad</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2012/ios-dev-app-icons-images-size/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>firefox &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/category/firefox/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>[Firefox Addon] cmdEnter &#8211; 在Mac使用 cmd + Enter 開新頁</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2015/firefox-addon-cmdenter-cmd-enter-open-in-new-tab-for-mac/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2015/firefox-addon-cmdenter-cmd-enter-open-in-new-tab-for-mac/#respond</comments>
+		<pubDate>Thu, 08 Jan 2015 05:57:49 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[firefox]]></category>
+		<category><![CDATA[addon]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=807</guid>
+		<description><![CDATA[https://addons.mozilla.org/firefox/addon/cmdenterformac [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://addons.mozilla.org/firefox/addon/cmdenterformac/">https://addons.mozilla.org/firefox/addon/cmdenterformac/</a><br />
+<span id="more-807"></span><br />
+幾個月以前 原本有個可以用的 addon 突然在某次 Firefox 升級後就掛掉了<br />
+我有嘗試在官方討論區詢問或是在官方 FB 詢問<br />
+都沒有回音<br />
+所以最後的下下策就是&#8230;自己寫一個XD</p>
+<p>花了大概三四個小時吧<br />
+其實寫 Firefox addon 沒有很難<br />
+主要時間都是花在找 API 的功能在哪裡<br />
+兜來兜去終於好了<br />
+當然只是初版<br />
+所以有些 bug 也是很合理的 (咦</p>
+<p>我有放在 github 上<br />
+<a href="https://github.com/itisjoe/cmdEnter">https://github.com/itisjoe/cmdEnter</a><br />
+歡迎參考指教</p>
+<p><del datetime="2015-01-08T06:16:11+00:00">目前官方 addon 頁面還在審核<br />
+不過其實已經可以裝了<br />
+把 xpi 檔案拖到 Firefox 裡面就會提示安裝囉</del><br />
+官方 addon 已經審核過囉 (老外何時效率這麼高了XD)<br />
+可以到<a href="https://addons.mozilla.org/firefox/addon/cmdenterformac/">文章一開始那個連結</a>下載安裝<br />
+或是直接把 xpi 檔案拖到 Firefox 裡面也還是ok</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2015/firefox-addon-cmdenter-cmd-enter-open-in-new-tab-for-mac/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Firefox升級到3.5.x時 書籤工具列會縮起來</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/firefox3-5-x-bookmarksbarcontent/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/firefox3-5-x-bookmarksbarcontent/#respond</comments>
+		<pubDate>Fri, 21 Aug 2009 17:36:43 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[firefox]]></category>
+		<category><![CDATA[plugin]]></category>
+		<category><![CDATA[瀏覽器]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=363</guid>
+		<description><![CDATA[這次家裏電腦的fx升級到3.5 然後又忘記怎麼解決了 所以記一下咕狗到的東西 升級後書籤工具列會縮起來 這是在 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>這次家裏電腦的fx升級到3.5 然後又忘記怎麼解決了<br />
+<span id="more-363"></span><br />
+所以記一下咕狗到的東西<br />
+<a href="http://forum.moztw.org/viewtopic.php?f=2&#038;t=27252" target="_blank">升級後書籤工具列會縮起來</a><br />
+這是在官方討論區中咕狗到的<br />
+解決的方法是<br />
+以Stylish擴充套件新增下列樣式(或改userChrome.css檔內容)</p>
+<pre class="brush: css; title: ; notranslate">
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+#bookmarksBarContent .bookmark-item
+{visibility: visible !important;}
+</pre>
+<p>這是<a href="http://forum.moztw.org/index.php" target="_blank">MozTW討論區</a>的jefm提供的解法<br />
+感謝~~~</p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/firefox3-5-x-bookmarksbarcontent/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>FireFox的擴充套件 Greasemonkey</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin-greasemonkey/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin-greasemonkey/#respond</comments>
+		<pubDate>Thu, 26 Feb 2009 12:03:24 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[firefox]]></category>
+		<category><![CDATA[plugin]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=146</guid>
+		<description><![CDATA[可以增加使用者腳本更改網頁的呈現方式 再另外新po一篇文章 因為這個功能真是太好用啦 也避免自己忘記是哪裡看到 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>可以增加使用者腳本更改網頁的呈現方式<br />
+<span id="more-146"></span><br />
+再另外新po一篇文章<br />
+因為這個功能真是太好用啦<br />
+也避免自己忘記是哪裡看到的XD<br />
+目前主要是用在igoogle跟gmail<br />
+還有其他的好東西慢慢挖~<br />
+以下是有在用的script</p>
+<p><a href="http://userscripts.org/scripts/show/22660" target="_blank"><strong>gmail spam-count hide</strong></a><br />
+隱藏gmail裡的垃圾郵件數量</p>
+<p><a href="http://userstyles.org/styles/3958" target="_blank"><strong>gmail *2* small attachment icons</strong></a><br />
+將gmail裡 信件中的附加檔案以該檔案類型的圖示表現</p>
+<p><a href="http://userstyles.org/styles/4724" target="_blank"><strong>gmail -- hide invites</strong></a><br />
+隱藏gmail的邀請函選單</p>
+<p><a href="http://userscripts.org/scripts/show/8810" target="_blank"><strong>folders4Gmail</strong></a><br />
+將gmail的標籤也加上資料夾的功能 標籤太多的時候可以用</p>
+<p><a href="http://userscripts.org/scripts/show/2496" target="_blank"><strong>hide personalized google search box v2</strong></a><br />
+隱藏igoogle上面的搜尋列</p>
+<p><a href="http://userscripts.org/scripts/show/7736" target="_blank"><strong>google footer remover</strong></a><br />
+隱藏igoogle下面的連結及說明</p>
+<p><a href="http://userscripts.org/scripts/show/43019" target="_blank"><strong>ad-less Gmail</strong></a><br />
+隱藏gmail右側的廣告還有下面一堆哩哩摳摳的連結</p>
+<p><a href="http://userscripts.org/scripts/show/26855" target="_blank"><strong>Super iGoogle</strong></a> <span style="font-weight: bold; color: red;">new</span><br />
+隱藏igoogle上面左邊下面的東西 右上角也多一個下拉選單可以再把隱藏的東西顯示出來 算是整合起的囉 </p>
+<p>參考資訊：<a href="http://izaka.pixnet.net/blog/post/22142837" target="_blank">http://izaka.pixnet.net/blog/post/22142837</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin-greasemonkey/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>firefox 擴充套件 (20090821更新)</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin/#comments</comments>
+		<pubDate>Mon, 09 Feb 2009 11:59:28 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[firefox]]></category>
+		<category><![CDATA[plugin]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=117</guid>
+		<description><![CDATA[我有在用或是曾經有用過的firefox plugin 這是我的收藏集 下面說的大部分都有在裡面囉 看到喜歡的可 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>我有在用或是曾經有用過的firefox plugin<br />
+<span id="more-117"></span><br />
+<a target="_blank" href="https://addons.mozilla.org/zh-TW/firefox/collection/hsin">這是我的收藏集</a><br />
+下面說的大部分都有在裡面囉 看到喜歡的可以直接裝XD</p>
+<p><a href="http://www.moztw.org/firefox/extension_top_15/" target="_blank">http://www.moztw.org/firefox/extension_top_15/</a><br />
+這是第三屆Top15的列表 我好像幾乎都有裝喔XD<br />
+不過還是加減列一下我有裝的</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/1419" target="_blank"><strong>IE Tab</strong></a><br />
+可以在fx中直接用ie的引擎開啟，要看IE Only的網站很方便</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/6366" target="_blank"><strong>FireGestures</strong></a><br />
+讓fx支援滑鼠手勢</p>
+<p><a href="http://of.openfoundry.org/projects/333/download" target="_blank"><strong>新同文堂</strong></a><br />
+可以讓網頁的文字繁簡互換 看大陸網站的時候很方便</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/1865" target="_blank"><strong>Adblock Plus</strong></a><br />
+可以把網頁中的廣告擋住不顯示 畫面就不會亂七八糟啦~</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/26" target="_blank"><strong>Download Statusbar</strong></a><br />
+會把下載中的檔案跟進度顯示在瀏覽器下面 就不會擋住畫面了</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/2410" target="_blank"><strong>Foxmarks 書籤同步</strong></a><br />
+可以讓不同電腦上的fx書籤同步 這樣家裏跟公司的fx書籤可以一致 相當之好用阿</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/3006" target="_blank"><strong>Video DownloadHelper</strong></a><br />
+我主要是拿來抓youtube的flv檔 不用設定什麼 他自己會顯示有什麼檔可以下載 很方便！</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/710" target="_blank"><strong>Menu Editor</strong></a><br />
+整理每個選單中要顯示的項目 右鍵選單不會再又臭又長啦～</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/748" target="_blank"><strong>Greasemonkey</strong></a><br />
+可以自訂使用者script 對特定的網頁再作處理 這真的太好用啦</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/3895" target="_blank"><strong>Personal Menu</strong></a><br />
+可以整理選單要出現的選項 通通隱藏只留下一個按鈕 再把有需要的選項放進去就好 我喜歡越簡潔越好阿~<br />
+<a href="https://addons.mozilla.org/zh-TW/firefox/addon/1843" target="_blank"><br />
+<strong>Firebug</strong></a><br />
+檢視網頁的內容 偵錯網頁</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/7849" target="_blank"><strong>Favicon Picker</strong></a><br />
+把書籤的icon換掉 我拿來換bookmarklet的圖示~</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/1530" target="_blank"><strong>autoHideStatusbar</strong></a><br />
+隱藏下面的狀態列 但是可以設定移到連結或是某些網頁時 可以顯示狀態列</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/6639" target="_blank"><strong>Easy DragToGo</strong></a><br />
+用滑鼠對連結、文字或是圖片作拖曳 來達成某些功能 直接另存圖片或是咕狗文字<br />
+這個超懶人的 跟滑鼠手勢一樣懶XD</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/1951" target="_blank"><strong>Fission</strong></a><br />
+將進度列移到網址列的背景來執行<br />
+也可以設定在網址列顯示滑鼠所指的超連結網址<br />
+這個跟autoHideStatusbar搭配使用 大部分時間 就可以不用顯示狀態列囉</p>
+<p><a href="https://addons.mozilla.org/en-US/firefox/addon/7401" target="_blank"><strong>Smart Stop/Reload</strong></a><br />
+之前講的Stop-or-Reload在fx3.5已經不支援囉<br />
+所以找到這個相同功能的addon</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/1122" target="_blank"><strong>Tab Mix Plus</strong></a><br />
+增強firefox的分頁功能</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/8823" target="_blank"><strong>Omnibar</strong></a><br />
+智慧型網址列 加強網址列的功能 可以設定在網址列輸入文字後要使用的搜尋引擎<br />
+還可以設定不同的關鍵字來在不同的搜尋引擎搜尋</p>
+<p><a href="https://addons.mozilla.org/en-US/firefox/addon/3682" target="_blank"><strong>Add to Search Bar</strong></a><br />
+將任何一個網頁的搜尋列 加到firefox裡的搜尋列中 之後就可以直接搜尋囉</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/2108" target="_blank"><strong>Stylish</strong></a><br />
+修改頁面的css</p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/13860" target="_blank"><strong>PlacesCleaner 收藏庫清潔工</strong></a> <span style="font-weight:bold;color:red;">new</span><br />
+清理收藏庫 刪除瀏覽歷史中 瀏覽次數少於兩次的資料</p>
+<p>=======================<br />
+下面是已經沒有在用的囉<br />
+=======================</p>
+<p><a href="http://mozilla.dorando.at/readme.html" target="_blank"><strong>keyconfig</strong></a><br />
+自訂firefox的熱鍵<br />
+<a href="http://mozilla.dorando.at/keyconfig.xpi">按這裡直接安裝</a></p>
+<p><a href="https://addons.mozilla.org/zh-TW/firefox/addon/313" target="_blank"><strong>Stop-or-Reload</strong></a><br />
+把重新載入跟停止的按鈕合在一起 越簡潔越好~~~</p>
+<p><a href="http://addons.sociz.com/firefox/54/" target="_blank"><strong>Tab Mix Lite CE</strong></a><br />
+是一個類似Tab Mix Plus的分頁擴充套件<br />
+<span style="font-weight:bold;color:#cc0000;">note:這個安裝網址是在大陸的網站，如果有疑慮的人請不要安裝</span></p>
+<p><a href="https://addons.mozilla.org/en-US/firefox/addon/4865" target="_blank"><strong>Sxipper</strong></a><br />
+可以自動填寫表單的addon跟管理多人的帳號密碼 我是拿來填每天只能填一次的抽獎表單XD 省很多時間<br />
+這是咕狗到的-><a href="http://www.goston.net/2008/06/17/1434/" target="_blank">[FF] 方便好用的網頁表單填表工具 -- Sxipper</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2009/firefox-plugin/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

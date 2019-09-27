@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ubuntu &#8211; [lifeIs: tooShort to: waste]</title>
+	<atom:link href="https://itisjoe.github.io/blog.hsin.tw/tag/ubuntu/feed/" rel="self" type="application/rss+xml" />
+	<link>https://itisjoe.github.io/blog.hsin.tw/</link>
+	<description></description>
+	<lastBuildDate>Fri, 16 Nov 2018 10:07:01 +0000</lastBuildDate>
+	<language>zh-TW</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<item>
+		<title>ubuntu 顯示中文</title>
+		<link>https://itisjoe.github.io/blog.hsin.tw/2011/ubuntu-zh_tw/</link>
+		<comments>https://itisjoe.github.io/blog.hsin.tw/2011/ubuntu-zh_tw/#comments</comments>
+		<pubDate>Wed, 13 Apr 2011 05:16:49 +0000</pubDate>
+		<dc:creator><![CDATA[hsin]]></dc:creator>
+				<category><![CDATA[server]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">https://itisjoe.github.io/blog.hsin.tw/?p=433</guid>
+		<description><![CDATA[昨天買了linode主機一年份 他預設選項是ubuntu 所以就照他的用了 因為我也沒有習慣常用的 然後裝了才 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>昨天買了linode主機一年份<br />
+<span id="more-433"></span><br />
+他預設選項是ubuntu<br />
+所以就照他的用了<br />
+因為我也沒有習慣常用的</p>
+<p>然後裝了才發現中文沒辦法正常顯示<br />
+原本以為是pietty的問題<br />
+但是編碼選UTF-8了還是亂碼<br />
+後來終於找到網路上有人有相同的問題<br />
+雖然是幾年前的了<br />
+但是有用就好</p>
+<p>主機是 Ubuntu 10.04 LTS 64bit<br />
+首先檢查系統是否有 zh_TW.UTF-8 </p>
+<pre class="brush: plain; title: ; notranslate">
+locale -a
+</pre>
+<p>不過通常是沒有 不然就不會沒辦法顯示中文了<br />
+接著在/var/lib/locales/supported.d/底下新建檔案local<br />
+裡面新填上一行</p>
+<pre class="brush: plain; title: ; notranslate">
+zh_TW.UTF-8 UTF-8
+</pre>
+<p>我找到的資料 都說該目錄下已經有一個叫local的檔案<br />
+但是我的沒有耶XD 只有一個叫en的檔案<br />
+不管他 還是自己加上去<br />
+存檔出來後 接著執行</p>
+<pre class="brush: plain; title: ; notranslate">
+locale-gen
+</pre>
+<p>最後把下面這行加到/etc/environment這隻檔案裡</p>
+<pre class="brush: plain; title: ; notranslate">
+export LC_CTYPE=zh_TW.UTF-8
+</pre>
+<p>重新登入後<br />
+這樣就可以正常顯示中文囉<br />
+ya~</p>
+<p>from<br />
+<a target="_blank" href="http://zgod.pixnet.net/blog/post/6979614">[Ubuntu]初建置的中文環境</a></p>
+]]></content:encoded>
+			<wfw:commentRss>https://itisjoe.github.io/blog.hsin.tw/2011/ubuntu-zh_tw/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>
