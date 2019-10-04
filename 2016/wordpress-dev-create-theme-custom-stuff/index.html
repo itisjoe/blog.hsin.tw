@@ -32,7 +32,7 @@ if (function_exists('register_nav_menus')) {
 </pre>
 <p>用 <strong>function_exists()</strong> 先確認是否有這個函式可以用，雖然新寫的佈景主題應該比較少會有用舊版 WP 的人用，但還是加一下以防萬一。</p>
 <p>接著就使用 <strong>register_nav_menus()</strong> 來註冊選單，要讓使用者可以用幾個選單就註冊幾個(就看你的佈景主題需要多少個)，陣列的 key 值可以說是這個選單的 id ，而 value 值則是後台顯示的名稱。這邊註冊兩個選單，分別放在不同的地方。</p>
-<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>選單</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br><img src="http://img.hsin.tw/201609/02.png" alt="[外觀]中的[選單]"><br>
+<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>選單</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br><img src="https://itisjoe.github.io/blog.hsin.tw/img/201609/02.png" alt="[外觀]中的[選單]"><br>
 點選後就可以設定你的選單要顯示什麼(文章、頁面或是分類都可以，很活)。</p>
 <p>接著就是在佈景主題的前台顯示選單，在要顯示的頁面(像是 index.php 或 header.php )中加入：</p>
 <pre class="brush: php; title: ; notranslate" title="">
@@ -60,7 +60,7 @@ add_action( 'widgets_init', 'theme_widgets_init' );
 </pre>
 <p>使用 <strong>register_sidebar()</strong> 來註冊一個自定義側邊欄，可以傳入一個陣列參數作額外的設定，更多可以設定的內容可以<a href="https://codex.wordpress.org/Function_Reference/register_sidebar">參考文件</a>。</p>
 <p>上述將註冊動作用一個函式包起來，並使用 <strong>add_action( ‘widgets_init’, ‘theme_widgets_init’ )</strong> 來加入這個註冊動作， <strong>add_action()</strong> 是 WP 特殊功能，可以在不碰到核心程式的情況下，在不同階段加入自定義的程式，像是製作 PlugIn 也是很常用到這個功能。</p>
-<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>小工具</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br><img src="http://img.hsin.tw/201609/03.png" alt="[外觀]中的[小工具]"></p>
+<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>小工具</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br><img src="https://itisjoe.github.io/blog.hsin.tw/img/201609/03.png" alt="[外觀]中的[小工具]"></p>
 <p>接著在前台顯示的地方( index.php 或是有切出來的 sidebar.php )加入：</p>
 <pre class="brush: xml; title: ; notranslate" title="">
 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar Widgets') ) : ?>
@@ -110,7 +110,7 @@ add_action( 'after_setup_theme', 'theme_custom_setup' );
 </pre>
 <p>使用 <strong>add_theme_support(‘custom-header’)</strong> 來註冊一個首頁圖片，第一個參數是可以自定義的類型( WP 把一些項目都整合到這個函式了，另外還有像是 custom-logo 可以設定)，還可以傳入第二個陣列參數作額外的設定，更多可以設定的內容可以<a href="https://codex.wordpress.org/Custom_Headers">參考文件</a>。</p>
 <p>上述將註冊動作用一個函式包起來，並使用 <strong>add_action( ‘after_setup_theme’, ‘theme_custom_setup’ )</strong> 來加入這個註冊動作， <strong>add_action()</strong> 是 WP 特殊功能，可以在不碰到核心程式的情況下，在不同階段加入自定義的程式，像是製作 PlugIn 也是很常用到這個功能。</p>
-<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>頁首</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br><img src="http://img.hsin.tw/201609/04.png" alt="[外觀]中的[頁首]"></p>
+<p>加好後在 WP 後台的左側選單就可以看到<strong>外觀</strong>下有<strong>頁首</strong>可以選(當然要先啟用這個佈景主題)，如下圖：<br><img src="https://itisjoe.github.io/blog.hsin.tw/img/201609/04.png" alt="[外觀]中的[頁首]"></p>
 <p>接著在前台顯示的地方( index.php 或是有切出來的 header.php )加入：</p>
 <pre class="brush: xml; title: ; notranslate" title="">
 <img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
@@ -136,11 +136,11 @@ add_action( 'after_setup_theme', 'theme_custom_setup' );
 <p>與前面講過的 Header Image 類似(可以寫在同一個 <strong>theme_custom_setup()</strong> 中一起註冊)。第二個傳入的陣列參數可以作額外的設定，更多設定的內容可以<a href="https://codex.wordpress.org/Theme_Logo">參考文件</a>。</p>
 <p>加好後在 WP 後台的左側選單… <span style="color:red">看不到 LOGO !!! (我卡在這邊兩三個小時！這也太不人性化了吧！誰知道你突然有個選項是藏在裡面的啦！)</span></p>
 <p>他是藏在<strong>外觀</strong>下的<strong>自訂</strong>，點進去後要先選<strong>網站識別</strong>，接著在裡面就可以看到<strong>標誌</strong>( logo )了，如下面三張圖片：</p>
-<table><tr><td style="border:0px;vertical-align:top"><img src="http://img.hsin.tw/201609/05.png" alt="[外觀]中的[自訂]"></td>
+<table><tr><td style="border:0px;vertical-align:top"><img src="https://itisjoe.github.io/blog.hsin.tw/img/201609/05.png" alt="[外觀]中的[自訂]"></td>
 <td style="border:0px;vertical-align:top"><span style="font-size:36px">-></span></td>
-<td style="border:0px;vertical-align:top"><img src="http://img.hsin.tw/201609/06.png" alt="[自訂]中的[網站識別]"></td>
+<td style="border:0px;vertical-align:top"><img src="https://itisjoe.github.io/blog.hsin.tw/img/201609/06.png" alt="[自訂]中的[網站識別]"></td>
 <td style="border:0px;vertical-align:top"><span style="font-size:36px">-></span></td>
-<td style="border:0px;vertical-align:top"><img src="http://img.hsin.tw/201609/07.png" alt="[網站識別]中的[標誌]"></td>
+<td style="border:0px;vertical-align:top"><img src="https://itisjoe.github.io/blog.hsin.tw/img/201609/07.png" alt="[網站識別]中的[標誌]"></td>
 </tr></table><p>接著在前台顯示的地方( index.php 或是有切出來的 header.php )加入：</p>
 <pre class="brush: xml; title: ; notranslate" title="">
 <?php if (has_custom_logo()) :
